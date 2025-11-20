@@ -570,6 +570,47 @@
   #themeToggle:hover{box-shadow:0 28px 56px rgba(15,23,42,0.3)}
   :root[data-theme="dark"] #themeToggle{box-shadow:0 24px 52px rgba(1,5,19,0.55)}
 
+  .app-shell{display:none; min-height:100vh;}
+  .app-shell.app-active{display:block;}
+  .fab-coupocut{bottom:170px; background:linear-gradient(135deg,#fff,#e0f2fe); border-color:rgba(148,163,184,0.45);}
+  .fab-coupocut img{width:28px; height:28px; border-radius:50%; object-fit:cover}
+  .fab-return{bottom:32px;}
+
+  /* CoupoCut specific */
+  #coupocutApp{background:linear-gradient(180deg,var(--bg1),var(--bg2) 55%,var(--bg3)); color:var(--ink); padding-bottom:60px;}
+  #coupocutApp .cc-header{position:sticky; top:0; z-index:40; backdrop-filter:blur(12px); background:var(--headerBg); border-bottom:1px solid var(--border);}
+  #coupocutApp .cc-header .inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 16px;}
+  #coupocutApp .cc-brand{display:flex; align-items:center; gap:12px;}
+  #coupocutApp .cc-logoBadge{width:46px; height:46px; border-radius:50%; overflow:hidden; box-shadow:0 10px 26px rgba(14,165,233,.28); background:#fff; display:grid; place-items:center;}
+  #coupocutApp .cc-logoBadge img{width:100%; height:100%; object-fit:cover;}
+  #coupocutApp .cc-title{display:flex; flex-direction:column;}
+  #coupocutApp .cc-title h1{font-size:20px; margin:0; line-height:1.2;}
+  #coupocutApp .cc-sub{color:var(--muted); font-size:13px;}
+  #coupocutApp .cc-right-head{display:flex; flex-direction:column; align-items:flex-end; text-align:right;}
+  #coupocutApp .cc-meta{font-weight:600; font-size:13px;}
+  #coupocutApp .cc-meta-sub{color:var(--muted); font-size:12px;}
+  #coupocutApp main{padding:16px 16px 36px;}
+  #coupocutApp .cc-panel.sticky{top:calc(var(--headerH) + 12px); height:calc(100vh - var(--headerH) - 24px);}
+  #coupocutApp .cc-section-foot{margin-top:6px; color:var(--muted); font-size:12px;}
+  #coupocutApp .cc-editorWrap{position:relative; margin-top:8px; border-radius:16px; border:1px solid var(--border); background:var(--stageBg); padding:12px; display:flex; align-items:center; justify-content:center; min-height:240px;}
+  #coupocutApp #ccLogoEditorCanvas{display:block; max-width:100%; height:auto; background:conic-gradient(from 0deg,#f3f4f6 0 25%,#e5e7eb 25% 50%,#f3f4f6 50% 75%,#e5e7eb 75% 100%); background-size:22px 22px; border-radius:12px;}
+  #coupocutApp .cc-editorWrap .cc-hint{position:absolute; inset:auto 12px 12px 12px; text-align:center; font-size:12px; color:var(--muted); pointer-events:none;}
+  #coupocutApp #ccBrushPreview{position:absolute; border:2px solid rgba(14,165,233,0.7); border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:hard-light; display:none;}
+  #coupocutApp .cc-editorWrap.show-preview #ccBrushPreview{display:block;}
+  #coupocutApp .cc-toolToggles{display:flex; gap:10px; margin-top:8px;}
+  #coupocutApp .cc-toolToggles .btn{flex:1; justify-content:center;}
+  #coupocutApp .cc-toolToggles .btn.active{outline:2px solid var(--brand); outline-offset:0;}
+  #coupocutApp .cc-preview-panel .preview-head{padding:16px 18px 10px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:12px;}
+  #coupocutApp .cc-stage{padding:18px; background:var(--stageBg); border-radius:var(--radius); flex:1; display:flex;}
+  #coupocutApp .cc-stage-inner{position:relative; flex:1; border-radius:24px; background-image:linear-gradient(45deg,#e5e7eb 25%,transparent 25%,transparent 75%,#e5e7eb 75%,#e5e7eb),linear-gradient(45deg,#e5e7eb 25%,transparent 25%,transparent 75%,#e5e7eb 75%,#e5e7eb); background-size:24px 24px; background-position:0 0,12px 12px; display:flex; align-items:center; justify-content:center; overflow:hidden; box-shadow:0 20px 45px rgba(15,23,42,0.25);}
+  #coupocutApp #ccPreviewCanvas{display:block; max-width:100%; height:auto; transform-origin:center center;}
+  #coupocutApp .cc-stageHint{position:absolute; inset:auto 14px 14px 14px; text-align:center; font-size:12px; color:var(--muted); pointer-events:none;}
+  #coupocutApp .cc-preview-footer{padding:10px 18px 16px; font-size:12px; color:var(--muted); border-top:1px solid var(--border);}
+  #coupocutApp .cc-chipRow{display:flex; gap:12px; align-items:center; flex-wrap:wrap;}
+  #coupocutApp .cc-partner-grid{display:flex; gap:10px; overflow:auto; padding:6px 2px;}
+  #coupocutApp .cc-partner-grid .libItem img{height:26px;}
+  #coupocutApp .cc-floatingRow{position:fixed; right:24px; bottom:24px; z-index:64; display:flex; flex-direction:column; gap:12px;}
+
   .resizeHandle{position:absolute; width:18px; height:18px; border-radius:50%; border:2px solid rgba(255,255,255,0.9); background:rgba(14,165,233,0.75); box-shadow:0 6px 16px rgba(14,165,233,0.25); cursor:nwse-resize; z-index:30; transition:transform .12s ease}
   .resizeHandle:hover{transform:scale(1.1)}
   .resizeHandle[data-corner="ne"], .resizeHandle[data-corner="sw"]{cursor:nesw-resize}
@@ -642,6 +683,7 @@
 </style>
 </head>
 <body>
+  <div id="frozoneApp" class="app-shell app-active" aria-label="Frozone workspace">
   <div id="introScreen" class="introScreen show" aria-hidden="true">
     <div class="introInner">
       <div class="introLogoWrap"><img src="https://i.postimg.cc/QMTckmdX/unnamed-1-1.png" alt=""></div>
@@ -1542,6 +1584,10 @@
   </div>
 
   <div class="globalDropOverlay" id="globalDropOverlay">Drop images anywhere to upload</div>
+  <button id="openCoupocut" type="button" class="floatingFab fab-coupocut" aria-label="Open CoupoCut">
+    <div class="fabIconWrap" aria-hidden="true"><img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="CoupoCut logo"></div>
+    <span class="fab-label">Open CoupoCut</span>
+  </button>
   <button id="downloadApp" type="button" class="floatingFab fab-download" aria-label="Download Web App">
     <i data-lucide="download" class="btn-ico" aria-hidden="true"></i>
     <span class="fab-label">Download Web App</span>
@@ -1844,6 +1890,11 @@
 
   const partnerDataScript = document.getElementById('partnerData');
   let partnerLibrary = [];
+  const partnerSubscribers = new Set();
+  const normalizePartners = (list)=> (Array.isArray(list) ? list : [])
+    .map(entry => ({ name: String(entry?.name || '').trim(), url: String(entry?.url || '').trim(), cleanedUrl: entry?.cleanedUrl ? String(entry.cleanedUrl).trim() : undefined }))
+    .filter(entry => entry.name && entry.url);
+  const partnerLogoUrl = (entry)=> String(entry?.cleanedUrl || entry?.url || '').trim();
   try {
     partnerLibrary = JSON.parse(partnerDataScript?.textContent || '[]');
   } catch (err) {
@@ -1863,10 +1914,7 @@
       if(Array.isArray(parsed) && parsed.length){ partnerLibrary = parsed; }
     }
   }catch(err){ console.warn('Unable to read partner storage', err); }
-  if(!Array.isArray(partnerLibrary)) partnerLibrary = [];
-  partnerLibrary = partnerLibrary
-    .map(entry => ({ name: String(entry?.name || '').trim(), url: String(entry?.url || '').trim() }))
-    .filter(entry => entry.name && entry.url);
+  partnerLibrary = normalizePartners(partnerLibrary);
 
   const els = {
     header: document.getElementById('appHeader'),
@@ -4303,12 +4351,37 @@
     });
   }
 
+  function notifyPartnerSubscribers(){
+    partnerSubscribers.forEach(fn => {
+      try { fn(normalizePartners(partnerLibrary)); }
+      catch(err){ console.error('Partner subscriber failed', err); }
+    });
+  }
+
   function persistPartnerLibrary(){
+    partnerLibrary = normalizePartners(partnerLibrary);
     if(partnerDataScript){
       partnerDataScript.textContent = JSON.stringify(partnerLibrary, null, 2);
     }
     try{ localStorage.setItem(PARTNER_STORAGE_KEY, JSON.stringify(partnerLibrary)); }catch(err){ console.warn('Failed to store partner logos', err); }
+    notifyPartnerSubscribers();
   }
+
+  window.frozone = window.frozone || {};
+  window.frozone.getPartnerLibrary = ()=> normalizePartners(partnerLibrary);
+  window.frozone.setPartnerLibrary = (next)=>{
+    partnerLibrary = normalizePartners(next);
+    persistPartnerLibrary();
+    buildAllGalleries();
+  };
+  window.frozone.setTheme = setTheme;
+  window.frozone.getTheme = ()=> document.documentElement.dataset.theme || 'light';
+  window.frozone.onPartnerLibraryChange = (fn)=>{
+    if(typeof fn !== 'function') return ()=>{};
+    partnerSubscribers.add(fn);
+    try{ fn(normalizePartners(partnerLibrary)); }catch(err){ console.error('Partner subscriber failed on init', err); }
+    return ()=> partnerSubscribers.delete(fn);
+  };
 
   function updatePartnerPreview(img, url){
     if(!img) return;
@@ -4328,7 +4401,7 @@
 
     const preview = document.createElement('img');
     preview.alt = entry.name ? `${entry.name} logo` : 'Logo preview';
-    updatePartnerPreview(preview, entry.url);
+    updatePartnerPreview(preview, partnerLogoUrl(entry));
 
     const fields = document.createElement('div');
     fields.className = 'partnerRowFields';
@@ -5469,8 +5542,9 @@
       return;
     }
     partnerLibrary.forEach(p=>{
+      const sourceUrl = partnerLogoUrl(p);
       const it = document.createElement('button'); it.type='button'; it.className='libItem'; it.dataset.name=p.name.toLowerCase();
-      it.innerHTML = `<img alt="${p.name}" src="${p.url}"><div class=\"cap\">${p.name}</div>`;
+      it.innerHTML = `<img alt="${p.name}" src="${sourceUrl}"><div class=\"cap\">${p.name}</div>`;
       const isActive = !!(store && store.source==='partner' && store.chosen === p.name);
       if(isActive) it.classList.add('active');
       it.addEventListener('click', async ()=>{
@@ -5534,11 +5608,11 @@
   els.removeVertLogo?.addEventListener('click', ()=>{ state.vertLogo = {src:null,w:0,h:0,sizeKey:state.vertLogo.sizeKey||'M', tone:'orig', source:'none', chosen:""}; els.vertLogoPrev.style.display='none'; render(); updateControls(); });
 
   function buildAllGalleries(){
-    buildGallery(els.logo1Gallery, p=>loadLogoURL(p.url, els.logo1Prev, state.frost.logo1, 'logo1', p.name), ()=>state.frost.logo1);
-    buildGallery(els.logo2Gallery, p=>loadLogoURL(p.url, els.logo2Prev, state.frost.logo2, 'logo2', p.name), ()=>state.frost.logo2);
-    buildGallery(els.sqLogoGallery, p=>loadLogoURL(p.url, els.sqLogoPrev, state.squareLogo, 'squareLogo', p.name), ()=>state.squareLogo);
-    buildGallery(els.vertLogoGallery, p=>loadLogoURL(p.url, els.vertLogoPrev, state.vertLogo, 'vertLogo', p.name), ()=>state.vertLogo);
-    buildGallery(els.bannerLogoGallery, p=>loadLogoURL(p.url, els.bannerLogoPrev, state.bannerLogo, 'bannerLogo', p.name), ()=>state.bannerLogo);
+    buildGallery(els.logo1Gallery, p=>loadLogoURL(partnerLogoUrl(p), els.logo1Prev, state.frost.logo1, 'logo1', p.name), ()=>state.frost.logo1);
+    buildGallery(els.logo2Gallery, p=>loadLogoURL(partnerLogoUrl(p), els.logo2Prev, state.frost.logo2, 'logo2', p.name), ()=>state.frost.logo2);
+    buildGallery(els.sqLogoGallery, p=>loadLogoURL(partnerLogoUrl(p), els.sqLogoPrev, state.squareLogo, 'squareLogo', p.name), ()=>state.squareLogo);
+    buildGallery(els.vertLogoGallery, p=>loadLogoURL(partnerLogoUrl(p), els.vertLogoPrev, state.vertLogo, 'vertLogo', p.name), ()=>state.vertLogo);
+    buildGallery(els.bannerLogoGallery, p=>loadLogoURL(partnerLogoUrl(p), els.bannerLogoPrev, state.bannerLogo, 'bannerLogo', p.name), ()=>state.bannerLogo);
     if(els.logo1Search?.value) filterGallery(els.logo1Gallery, els.logo1Search.value);
     if(els.logo2Search?.value) filterGallery(els.logo2Gallery, els.logo2Search.value);
     if(els.sqLogoSearch?.value) filterGallery(els.sqLogoGallery, els.sqLogoSearch.value);
@@ -5567,10 +5641,12 @@
     if(!els.partnerSettingsList) return;
     const rows = Array.from(els.partnerSettingsList.querySelectorAll('.partnerRow'));
     if(rows.length === 0) return;
-    const entries = rows.map(row=>({
-      name:(row.querySelector('.partnerName')?.value||'').trim(),
-      url:(row.querySelector('.partnerUrl')?.value||'').trim()
-    }));
+    const entries = rows.map(row=>{
+      const name = (row.querySelector('.partnerName')?.value||'').trim();
+      const url = (row.querySelector('.partnerUrl')?.value||'').trim();
+      const existing = partnerLibrary.find(p => (p.name || '').toLowerCase() === name.toLowerCase());
+      return { name, url, cleanedUrl: existing?.cleanedUrl };
+    });
     entries.sort((a,b)=>{
       const nameA = a.name.toLowerCase();
       const nameB = b.name.toLowerCase();
@@ -5610,10 +5686,12 @@
         hasError = true;
         return;
       }
-      next.push({ name, url });
+      const existing = partnerLibrary.find(p => (p.name || '').toLowerCase() === name.toLowerCase());
+      const cleanedUrl = existing?.cleanedUrl;
+      next.push({ name, url, ...(cleanedUrl ? { cleanedUrl } : {}) });
     });
     if(hasError){ return; }
-    partnerLibrary = next;
+    partnerLibrary = normalizePartners(next);
     persistPartnerLibrary();
     buildAllGalleries();
     persistLogoState();
@@ -6181,5 +6259,623 @@
   handleUnsplashSearch({ reset:true });
 })();
 </script>
+
+  </div>
+
+  <div id="coupocutApp" class="app-shell" aria-label="CoupoCut workspace" aria-hidden="true">
+    <header class="cc-header" id="ccHeader">
+      <div class="wrap inner">
+        <div class="cc-brand">
+          <div class="cc-logoBadge"><img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="CoupoCut logo"></div>
+          <div class="cc-title">
+            <h1>CoupoCut</h1>
+            <div class="cc-sub">Punch partner logos into clean coupon cutouts</div>
+          </div>
+        </div>
+        <div class="cc-right-head">
+          <span class="cc-meta">P+ LiveOps Tools</span>
+          <span class="cc-meta-sub">built on top of Frozone flow</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="panel sticky cc-panel">
+        <div class="pad">
+          <div class="kv" aria-label="Export status">
+            <div class="kv-item"><span class="k">Output</span><span class="v">PNG 800 x 800</span></div>
+            <span class="kv-sep">•</span>
+            <div class="kv-item"><span class="k">Circle</span><span class="v" id="ccCircleMeta">transparent punch</span></div>
+          </div>
+        </div>
+
+        <div class="scroll">
+          <div class="section">
+            <div class="section-title"><span class="badge">1</span> Pick logo</div>
+            <div class="uploadGrid">
+              <div class="uploadCell">
+                <label class="btn primary">
+                  <i data-lucide="upload" class="btn-ico" aria-hidden="true"></i>
+                  <span class="btn-text">Upload logo</span>
+                  <input id="ccLogoFile" type="file" accept="image/*" style="display:none" />
+                </label>
+              </div>
+            </div>
+            <div class="libWrap" style="margin-top:12px">
+              <div class="libHeader">
+                <input id="ccPartnerSearch" type="search" placeholder="Search partner library" />
+                <span id="ccLibraryStatus" class="chipInfo">Synced with Frozone</span>
+              </div>
+              <div id="ccPartnerGallery" class="cc-partner-grid" aria-label="Partner logo library"></div>
+            </div>
+            <p class="muted small cc-section-foot">Shares the partner logo library with Frozone.</p>
+          </div>
+
+          <div class="section">
+            <div class="section-title"><span class="badge">2</span> Circle layout</div>
+            <div class="stack">
+              <div class="sliderRow">
+                <span>Logo scale</span>
+                <div class="sliderControls">
+                  <input id="ccLogoScale" type="range" min="0.3" max="1.3" step="0.02" value="0.6" />
+                  <span class="chipInfo" id="ccLogoScaleVal">0.60x</span>
+                </div>
+              </div>
+              <div class="sliderRow">
+                <span>Offset X</span>
+                <div class="sliderControls">
+                  <input id="ccLogoOffsetX" type="range" min="-100" max="100" step="1" value="0" />
+                  <span class="chipInfo" id="ccLogoOffsetXVal">0</span>
+                </div>
+              </div>
+              <div class="sliderRow">
+                <span>Offset Y</span>
+                <div class="sliderControls">
+                  <input id="ccLogoOffsetY" type="range" min="-100" max="100" step="1" value="0" />
+                  <span class="chipInfo" id="ccLogoOffsetYVal">0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-title"><span class="badge">3</span> Logo clean up</div>
+            <p class="muted small">Paint directly on the logo preview to punch holes. Transparent pixels in the logo will become part of the cutout.</p>
+            <div class="cc-editorWrap" id="ccEditorWrap">
+              <div id="ccBrushPreview" aria-hidden="true"></div>
+              <canvas id="ccLogoEditorCanvas"></canvas>
+              <div class="cc-hint" id="ccEditorHint">Upload or pick a logo to start cleaning.</div>
+            </div>
+            <div class="cc-toolToggles" role="group" aria-label="Erase tools">
+              <button class="btn ghost active" type="button" data-tool="brush" id="ccBrushTool">Cleaning brush</button>
+              <button class="btn ghost" type="button" data-tool="magic" id="ccMagicTool">Magic eraser</button>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <div class="sliderRow" style="flex:1">
+                <span>Brush size</span>
+                <div class="sliderControls">
+                  <input id="ccBrushSize" type="range" min="4" max="80" step="1" value="30" />
+                  <span class="chipInfo" id="ccBrushSizeVal">30 px</span>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-top:8px; flex-wrap:wrap">
+              <button class="btn small ghost" type="button" id="ccResetLogo">Reset logo</button>
+              <button class="btn small ghost" type="button" id="ccClearLogo">Clear all</button>
+              <button class="btn small ghost" type="button" id="ccUseOriginal" style="display:none">Use original logo</button>
+              <button class="btn small primary" type="button" id="ccSaveCleanup">Save cleanup to library</button>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-title"><span class="badge">4</span> Export cutout</div>
+            <div class="row" style="justify-content:space-between; gap:12px">
+              <button class="btn primary" type="button" id="ccExportBtn" disabled>Export PNG</button>
+              <div class="chipInfo" id="ccLastExport">No export yet</div>
+            </div>
+            <p class="muted small cc-section-foot">Exports a square PNG with a transparent punch. No outline added.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel cc-preview-panel">
+        <div class="preview-head">
+          <div class="section-title" style="margin:0">
+            <span>Preview</span>
+          </div>
+          <div class="row" style="gap:12px">
+            <span class="muted small">Preview zoom</span>
+            <span class="muted small"><span id="ccZoomLabel">1.00</span>x</span>
+            <input id="ccPreviewZoom" type="range" min="0.5" max="2" step="0.05" value="1" style="width:160px" />
+          </div>
+        </div>
+        <div class="cc-stage" id="ccStage">
+          <div class="cc-stage-inner">
+            <canvas id="ccPreviewCanvas"></canvas>
+            <div class="cc-stageHint" id="ccStageHint">Upload or pick a partner logo to start.</div>
+          </div>
+        </div>
+        <div class="cc-preview-footer">Transparent punch ships without a stroke for clean coupon placements.</div>
+      </section>
+    </main>
+
+  <div class="cc-floatingRow">
+    <button id="openFrozoneFromCoupocut" type="button" class="floatingFab fab-return" aria-label="Back to Frozone">
+      <div class="fabIconWrap" aria-hidden="true"><img src="https://i.postimg.cc/QMTckmdX/unnamed-1-1.png" alt="Frozone logo" style="width:28px; height:28px; border-radius:50%"></div>
+      <span class="fab-label">Back to Frozone</span>
+    </button>
+    <button id="ccThemeToggle" type="button" class="floatingFab fab-theme" aria-pressed="false" aria-label="Toggle CoupoCut theme" data-next="dark">
+        <span class="fabIconWrap" aria-hidden="true">
+          <i data-lucide="sun" class="btn-ico"></i>
+        </span>
+      <span class="fab-label" id="ccThemeToggleLabelText">Night mode</span>
+    </button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const frozoneApp = document.getElementById('frozoneApp');
+  const coupocutApp = document.getElementById('coupocutApp');
+  const coupoHeader = document.getElementById('ccHeader');
+  const frozoneHeader = document.getElementById('appHeader');
+  const openCoupoBtn = document.getElementById('openCoupocut');
+  const backToFrozoneBtn = document.getElementById('openFrozoneFromCoupocut');
+  const ccThemeToggle = document.getElementById('ccThemeToggle');
+  const ccThemeToggleLabel = document.getElementById('ccThemeToggleLabelText');
+
+  const els = {
+    previewCanvas: document.getElementById('ccPreviewCanvas'),
+    editorCanvas: document.getElementById('ccLogoEditorCanvas'),
+    editorWrap: document.getElementById('ccEditorWrap'),
+    editorHint: document.getElementById('ccEditorHint'),
+    stageHint: document.getElementById('ccStageHint'),
+    brushPreview: document.getElementById('ccBrushPreview'),
+    logoFile: document.getElementById('ccLogoFile'),
+    partnerSearch: document.getElementById('ccPartnerSearch'),
+    partnerGallery: document.getElementById('ccPartnerGallery'),
+    libraryStatus: document.getElementById('ccLibraryStatus'),
+    logoScale: document.getElementById('ccLogoScale'),
+    logoScaleVal: document.getElementById('ccLogoScaleVal'),
+    logoOffsetX: document.getElementById('ccLogoOffsetX'),
+    logoOffsetXVal: document.getElementById('ccLogoOffsetXVal'),
+    logoOffsetY: document.getElementById('ccLogoOffsetY'),
+    logoOffsetYVal: document.getElementById('ccLogoOffsetYVal'),
+    brushSize: document.getElementById('ccBrushSize'),
+    brushSizeVal: document.getElementById('ccBrushSizeVal'),
+    resetLogo: document.getElementById('ccResetLogo'),
+    clearLogo: document.getElementById('ccClearLogo'),
+    saveCleanup: document.getElementById('ccSaveCleanup'),
+    useOriginal: document.getElementById('ccUseOriginal'),
+    exportBtn: document.getElementById('ccExportBtn'),
+    lastExport: document.getElementById('ccLastExport'),
+    previewZoom: document.getElementById('ccPreviewZoom'),
+    zoomLabel: document.getElementById('ccZoomLabel'),
+    brushTool: document.getElementById('ccBrushTool'),
+    magicTool: document.getElementById('ccMagicTool')
+  };
+
+  const EXPORT_SIZE = 800;
+  const previewCtx = els.previewCanvas?.getContext('2d');
+  const editCtx = els.editorCanvas?.getContext('2d');
+  if(!coupocutApp || !previewCtx || !editCtx) return;
+
+  els.previewCanvas.width = EXPORT_SIZE;
+  els.previewCanvas.height = EXPORT_SIZE;
+  els.editorCanvas.width = 400;
+  els.editorCanvas.height = 200;
+
+  const state = {
+    logoImageOriginal: null,
+    hasLogo:false,
+    brushSize:30,
+    circleRadius:EXPORT_SIZE * 0.42,
+    logoScale:0.6,
+    offsetX:0,
+    offsetY:0,
+    previewZoom:1,
+    tool:'brush',
+    activePartnerName:null,
+    activePartnerOriginalUrl:null,
+    activePartnerCleanUrl:null,
+    usingCleaned:false
+  };
+
+  function syncHeaderHeightForActive(){
+    const activeHeader = coupocutApp.classList.contains('app-active') ? coupoHeader : frozoneHeader;
+    const h = activeHeader?.offsetHeight || 64;
+    document.documentElement.style.setProperty('--headerH', `${h}px`);
+  }
+
+  function showApp(which){
+    const isCoupo = which === 'coupocut';
+    if(frozoneApp){
+      frozoneApp.classList.toggle('app-active', !isCoupo);
+      frozoneApp.setAttribute('aria-hidden', isCoupo ? 'true' : 'false');
+    }
+    if(coupocutApp){
+      coupocutApp.classList.toggle('app-active', isCoupo);
+      coupocutApp.setAttribute('aria-hidden', isCoupo ? 'false' : 'true');
+    }
+    syncHeaderHeightForActive();
+    updateThemeToggle();
+  }
+
+  openCoupoBtn?.addEventListener('click', ()=>{ showApp('coupocut'); });
+  backToFrozoneBtn?.addEventListener('click', ()=>{ showApp('frozone'); });
+
+  function updateThemeToggle(){
+    const current = (window.frozone?.getTheme?.() || document.documentElement.dataset.theme || 'light');
+    const next = current === 'dark' ? 'light' : 'dark';
+    ccThemeToggle?.setAttribute('aria-pressed', current === 'dark' ? 'true' : 'false');
+    if(ccThemeToggle){ ccThemeToggle.dataset.next = next; }
+    if(ccThemeToggleLabel){ ccThemeToggleLabel.textContent = next === 'dark' ? 'Night mode' : 'Light mode'; }
+  }
+
+  ccThemeToggle?.addEventListener('click', ()=>{
+    const target = ccThemeToggle?.dataset.next === 'dark' ? 'dark' : 'light';
+    if(window.frozone?.setTheme){ window.frozone.setTheme(target); }
+    else { document.documentElement.dataset.theme = target; }
+    updateThemeToggle();
+  });
+
+  updateThemeToggle();
+
+  const partnerAPI = window.frozone || {};
+  let partnerLibrary = partnerAPI.getPartnerLibrary ? partnerAPI.getPartnerLibrary() : [];
+  partnerAPI.onPartnerLibraryChange?.((list)=>{
+    partnerLibrary = list || [];
+    renderPartnerGallery(els.partnerSearch?.value || '');
+    refreshSourceToggle();
+  });
+
+  function preferredLogoUrl(entry){
+    if(!entry) return '';
+    if(entry.cleanedUrl && String(entry.cleanedUrl).trim()) return String(entry.cleanedUrl).trim();
+    return String(entry.url || '').trim();
+  }
+
+  function updateLibraryStatus(text){ if(els.libraryStatus){ els.libraryStatus.textContent = text; } }
+
+  function renderPartnerGallery(filterTerm){
+    const term = (filterTerm || '').toLowerCase();
+    if(!els.partnerGallery) return;
+    els.partnerGallery.innerHTML = '';
+    const list = (partnerLibrary || []).filter(p => p.name.toLowerCase().includes(term));
+    if(!list.length){
+      const msg = document.createElement('div');
+      msg.className = 'muted small';
+      msg.textContent = term ? 'No matches in partner library' : 'Partner library is empty.';
+      els.partnerGallery.appendChild(msg);
+      return;
+    }
+    list.forEach(entry => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'libItem';
+      btn.dataset.name = entry.name.toLowerCase();
+      btn.innerHTML = `<img src="${preferredLogoUrl(entry)}" alt="${entry.name}"><div class="cap">${entry.name}</div>`;
+      if(state.activePartnerName === entry.name){ btn.classList.add('active'); }
+      btn.addEventListener('click', ()=>{ loadPartnerLogo(entry); });
+      els.partnerGallery.appendChild(btn);
+    });
+  }
+
+  function updateSliderLabels(){
+    if(els.logoScaleVal) els.logoScaleVal.textContent = state.logoScale.toFixed(2) + 'x';
+    if(els.logoOffsetXVal) els.logoOffsetXVal.textContent = state.offsetX.toFixed(0);
+    if(els.logoOffsetYVal) els.logoOffsetYVal.textContent = state.offsetY.toFixed(0);
+    if(els.brushSizeVal) els.brushSizeVal.textContent = state.brushSize.toFixed(0) + ' px';
+  }
+
+  function applyZoom(){
+    if(!els.previewCanvas) return;
+    els.previewCanvas.style.transform = `scale(${state.previewZoom.toFixed(2)})`;
+  }
+
+  function refreshHints(){
+    if(els.stageHint){ els.stageHint.textContent = state.hasLogo ? '' : 'Upload or pick a partner logo to start.'; }
+    if(els.editorHint){ els.editorHint.style.display = state.hasLogo ? 'none' : ''; }
+  }
+
+  function refreshSourceToggle(){
+    if(!els.useOriginal){ return; }
+    if(state.activePartnerCleanUrl && state.activePartnerOriginalUrl){
+      els.useOriginal.style.display = 'inline-flex';
+      els.useOriginal.textContent = state.usingCleaned ? 'Use original logo' : 'Use saved cleanup';
+    } else {
+      els.useOriginal.style.display = 'none';
+    }
+  }
+
+  function renderPreview(){
+    const c = els.previewCanvas;
+    const ctx = previewCtx;
+    const w = c.width;
+    const h = c.height;
+
+    ctx.clearRect(0,0,w,h);
+    if(!state.hasLogo){ return; }
+
+    const r = state.circleRadius;
+
+    ctx.save();
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(w/2, h/2, r, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+
+    const maskCanvas = els.editorCanvas;
+    const maskW = maskCanvas.width;
+    const maskH = maskCanvas.height;
+    if(maskW > 0 && maskH > 0){
+      const maxDim = Math.max(maskW, maskH) || 1;
+      const scale = state.logoScale * (2 * r) / maxDim;
+      const drawW = maskW * scale;
+      const drawH = maskH * scale;
+
+      const dx = (state.offsetX / 100) * r * 0.8;
+      const dy = (state.offsetY / 100) * r * 0.8;
+
+      const cx = w / 2 + dx;
+      const cy = h / 2 + dy;
+
+      ctx.save();
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.drawImage(maskCanvas, cx - drawW / 2, cy - drawH / 2, drawW, drawH);
+      ctx.restore();
+    }
+  }
+
+  function getEditorPos(evt){
+    const rect = els.editorCanvas.getBoundingClientRect();
+    const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
+    const clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+    const x = (clientX - rect.left) * (els.editorCanvas.width / rect.width);
+    const y = (clientY - rect.top) * (els.editorCanvas.height / rect.height);
+    return { x, y, clientX, clientY };
+  }
+
+  function updateBrushPreview(evt){
+    if(!els.brushPreview || !els.editorWrap) return;
+    if(!state.hasLogo){
+      els.editorWrap.classList.remove('show-preview');
+      return;
+    }
+    const rect = els.editorWrap.getBoundingClientRect();
+    const canvasRect = els.editorCanvas.getBoundingClientRect();
+    const scale = canvasRect.width && els.editorCanvas.width ? canvasRect.width / els.editorCanvas.width : 1;
+    const size = Math.max(6, state.brushSize * 2 * scale);
+    els.brushPreview.style.width = `${size}px`;
+    els.brushPreview.style.height = `${size}px`;
+    if(evt){
+      const inside = evt.clientX >= rect.left && evt.clientX <= rect.right && evt.clientY >= rect.top && evt.clientY <= rect.bottom;
+      if(!inside){
+        els.editorWrap.classList.remove('show-preview');
+        return;
+      }
+      const wrapLeft = evt.clientX - rect.left;
+      const wrapTop = evt.clientY - rect.top;
+      els.brushPreview.style.left = `${wrapLeft}px`;
+      els.brushPreview.style.top = `${wrapTop}px`;
+    }
+    els.editorWrap.classList.add('show-preview');
+  }
+
+  function applyToolButtonState(){
+    els.brushTool?.classList.toggle('active', state.tool === 'brush');
+    els.magicTool?.classList.toggle('active', state.tool === 'magic');
+  }
+
+  function initLogoFromImage(img, meta = {}){
+    state.logoImageOriginal = img;
+    els.editorCanvas.width = img.width;
+    els.editorCanvas.height = img.height;
+    editCtx.setTransform(1,0,0,1,0,0);
+    editCtx.clearRect(0,0,els.editorCanvas.width,els.editorCanvas.height);
+    editCtx.drawImage(img,0,0);
+
+    const maxSize = 360;
+    const scale = Math.min(maxSize / img.width, maxSize / img.height, 1);
+    els.editorCanvas.style.width = (img.width * scale) + 'px';
+    els.editorCanvas.style.height = (img.height * scale) + 'px';
+
+    state.logoScale = 0.6;
+    state.offsetX = 0;
+    state.offsetY = 0;
+    state.hasLogo = true;
+    state.activePartnerName = meta.name || null;
+    state.activePartnerOriginalUrl = meta.originalUrl || null;
+    state.activePartnerCleanUrl = meta.cleanedUrl || null;
+    state.usingCleaned = !!meta.useCleaned;
+
+    if(els.exportBtn) els.exportBtn.disabled = false;
+    refreshHints();
+    updateSliderLabels();
+    refreshSourceToggle();
+    renderPreview();
+  }
+
+  function loadImageCORS(src){
+    return new Promise((resolve,reject)=>{
+      if(!src) return reject(new Error('No source'));
+      const img = new Image();
+      if(!/^data:/i.test(src)){ img.crossOrigin = 'anonymous'; }
+      img.onload = ()=> resolve(img);
+      img.onerror = (e)=> reject(e);
+      img.src = src;
+    });
+  }
+
+  async function loadPartnerLogo(entry, preferClean = true){
+    try{
+      const chosen = (preferClean && entry.cleanedUrl) ? entry.cleanedUrl : preferredLogoUrl(entry);
+      const img = await loadImageCORS(chosen);
+      state.activePartnerName = entry.name;
+      initLogoFromImage(img, { name: entry.name, originalUrl: entry.url, cleanedUrl: entry.cleanedUrl, useCleaned: !!(entry.cleanedUrl && chosen === entry.cleanedUrl) });
+      renderPartnerGallery(els.partnerSearch?.value || '');
+      updateLibraryStatus('Loaded from library');
+    }catch(err){
+      alert('This logo host blocks pixel access. Please download the logo and upload it as a file.');
+    }
+  }
+
+  els.logoFile?.addEventListener('change', function(e){
+    const file = e.target.files && e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = function(){
+      const img = new Image();
+      img.onload = function(){ initLogoFromImage(img); updateLibraryStatus('Using uploaded logo'); };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  els.logoScale?.addEventListener('input', (e)=>{ state.logoScale = parseFloat(e.target.value) || 0.6; updateSliderLabels(); renderPreview(); });
+  els.logoOffsetX?.addEventListener('input', (e)=>{ state.offsetX = parseFloat(e.target.value) || 0; updateSliderLabels(); renderPreview(); });
+  els.logoOffsetY?.addEventListener('input', (e)=>{ state.offsetY = parseFloat(e.target.value) || 0; updateSliderLabels(); renderPreview(); });
+  els.brushSize?.addEventListener('input', (e)=>{ state.brushSize = parseFloat(e.target.value) || 10; updateSliderLabels(); updateBrushPreview(); });
+
+  function eraseAt(evt){
+    if(!state.hasLogo) return;
+    const pos = getEditorPos(evt);
+    editCtx.save();
+    editCtx.globalCompositeOperation = 'destination-out';
+    editCtx.beginPath();
+    editCtx.arc(pos.x, pos.y, state.brushSize, 0, Math.PI * 2);
+    editCtx.fill();
+    editCtx.restore();
+    renderPreview();
+    updateBrushPreview(evt);
+  }
+
+  function magicEraseAt(evt){
+    if(!state.hasLogo) return;
+    const pos = getEditorPos(evt);
+    const w = els.editorCanvas.width;
+    const h = els.editorCanvas.height;
+    const data = editCtx.getImageData(0,0,w,h);
+    const pixels = data.data;
+    const startX = Math.floor(pos.x);
+    const startY = Math.floor(pos.y);
+    const startIdx = (startY * w + startX) * 4;
+    const target = [pixels[startIdx], pixels[startIdx+1], pixels[startIdx+2], pixels[startIdx+3]];
+    if(target[3] === 0) return;
+    const tol = 24;
+    const visited = new Uint8Array(w * h);
+    const stack = [[startX,startY]];
+    while(stack.length){
+      const [cx, cy] = stack.pop();
+      if(cx < 0 || cy < 0 || cx >= w || cy >= h) continue;
+      const idx = cy * w + cx;
+      if(visited[idx]) continue;
+      visited[idx] = 1;
+      const pi = idx * 4;
+      const dr = Math.abs(pixels[pi] - target[0]);
+      const dg = Math.abs(pixels[pi+1] - target[1]);
+      const db = Math.abs(pixels[pi+2] - target[2]);
+      const da = Math.abs(pixels[pi+3] - target[3]);
+      if(dr > tol || dg > tol || db > tol || da > tol) continue;
+      pixels[pi+3] = 0;
+      stack.push([cx+1, cy]);
+      stack.push([cx-1, cy]);
+      stack.push([cx, cy+1]);
+      stack.push([cx, cy-1]);
+    }
+    editCtx.putImageData(data, 0, 0);
+    renderPreview();
+    updateBrushPreview(evt);
+  }
+
+  let isDrawing = false;
+  els.editorCanvas.addEventListener('mousedown', (e)=>{
+    if(!state.hasLogo) return;
+    if(state.tool === 'magic'){ magicEraseAt(e); return; }
+    isDrawing = true; eraseAt(e);
+  });
+  window.addEventListener('mousemove', (e)=>{ if(isDrawing){ eraseAt(e); } updateBrushPreview(e); });
+  window.addEventListener('mouseup', ()=>{ isDrawing = false; });
+  els.editorCanvas.addEventListener('mouseleave', ()=>{ els.editorWrap?.classList.remove('show-preview'); });
+
+  els.editorCanvas.addEventListener('touchstart', (e)=>{
+    if(!state.hasLogo) return;
+    if(state.tool === 'magic'){ magicEraseAt(e); e.preventDefault(); return; }
+    isDrawing = true; eraseAt(e); e.preventDefault();
+  }, { passive:false });
+  window.addEventListener('touchmove', (e)=>{ if(isDrawing){ eraseAt(e); e.preventDefault(); } updateBrushPreview(e); }, { passive:false });
+  window.addEventListener('touchend', ()=>{ isDrawing = false; });
+
+  els.resetLogo?.addEventListener('click', ()=>{ if(state.logoImageOriginal){ initLogoFromImage(state.logoImageOriginal, { name: state.activePartnerName, originalUrl: state.activePartnerOriginalUrl, cleanedUrl: state.activePartnerCleanUrl, useCleaned: state.usingCleaned }); } });
+  els.clearLogo?.addEventListener('click', ()=>{ if(!state.hasLogo) return; editCtx.clearRect(0,0,els.editorCanvas.width,els.editorCanvas.height); renderPreview(); });
+
+  els.useOriginal?.addEventListener('click', ()=>{
+    if(!state.activePartnerOriginalUrl || !state.activePartnerCleanUrl) return;
+    const useCleaned = !state.usingCleaned;
+    const src = useCleaned ? state.activePartnerCleanUrl : state.activePartnerOriginalUrl;
+    loadImageCORS(src).then(img=>{
+      state.usingCleaned = useCleaned;
+      initLogoFromImage(img, { name: state.activePartnerName, originalUrl: state.activePartnerOriginalUrl, cleanedUrl: state.activePartnerCleanUrl, useCleaned });
+      refreshSourceToggle();
+    });
+  });
+
+  els.saveCleanup?.addEventListener('click', ()=>{
+    if(!state.hasLogo) return;
+    const name = window.prompt('Save cleaned logo as', state.activePartnerName || 'Cleaned logo');
+    if(!name) return;
+    const dataUrl = els.editorCanvas.toDataURL('image/png');
+    const baseUrl = state.activePartnerOriginalUrl || dataUrl;
+    const next = (partnerLibrary || []).slice();
+    const idx = next.findIndex(p => (p.name || '').toLowerCase() === name.toLowerCase());
+    const updated = idx >= 0 ? { ...next[idx] } : { name, url: baseUrl };
+    if(!updated.url) updated.url = baseUrl;
+    updated.cleanedUrl = dataUrl;
+    if(idx >= 0){ next[idx] = updated; } else { next.push(updated); }
+    partnerAPI.setPartnerLibrary ? partnerAPI.setPartnerLibrary(next) : (partnerLibrary = next);
+    partnerLibrary = partnerAPI.getPartnerLibrary ? partnerAPI.getPartnerLibrary() : next;
+    renderPartnerGallery(els.partnerSearch?.value || '');
+    updateLibraryStatus('Cleanup saved to library');
+  });
+
+  els.exportBtn?.addEventListener('click', ()=>{
+    if(!state.hasLogo) return;
+    renderPreview();
+    const dataURL = els.previewCanvas.toDataURL('image/png');
+    const bytes = (()=>{ try{ return atob(dataURL.split(',')[1]).length; }catch(e){ return 0; }})();
+    const kb = bytes / 1024;
+    const now = new Date();
+    const stamp = now.toISOString().slice(0,19).replace(/[-:T]/g,'');
+    const a = document.createElement('a');
+    a.href = dataURL;
+    a.download = `coupocut-${stamp}.png`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    if(els.lastExport){ els.lastExport.textContent = `${EXPORT_SIZE} x ${EXPORT_SIZE} px · ${kb.toFixed(1)} KB`; }
+  });
+
+  els.previewZoom?.addEventListener('input', (e)=>{
+    state.previewZoom = parseFloat(e.target.value) || 1;
+    if(els.zoomLabel) els.zoomLabel.textContent = state.previewZoom.toFixed(2);
+    applyZoom();
+  });
+
+  els.partnerSearch?.addEventListener('input', (e)=>{ renderPartnerGallery(e.target.value); });
+  els.brushTool?.addEventListener('click', ()=>{ state.tool = 'brush'; applyToolButtonState(); });
+  els.magicTool?.addEventListener('click', ()=>{ state.tool = 'magic'; applyToolButtonState(); });
+
+  renderPartnerGallery('');
+  updateSliderLabels();
+  applyToolButtonState();
+  applyZoom();
+  refreshHints();
+  syncHeaderHeightForActive();
+  renderPreview();
+})();
+</script>
+
 </body>
 </html>
