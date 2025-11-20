@@ -545,6 +545,44 @@
   .fullscreenControlDock .toggleGuides[aria-pressed="true"]{background:rgba(148,163,184,0.2)}
   .stage-inner.fullscreen-active .fullscreenControlDock{display:flex}
 
+  .frozone-shell{min-height:100vh;}
+  body.show-coupocut{overflow:auto;}
+  body.show-coupocut #coupoCutShell{display:block;}
+  .coupocut-shell{position:fixed; inset:0; display:none; background: linear-gradient(180deg,var(--bg1),var(--bg2) 55%, var(--bg3)); overflow:auto; z-index:70; padding-bottom:140px;}
+  .coupocut-shell .wrap{padding:16px;}
+  .cc-header{position:sticky; top:0; z-index:75; backdrop-filter: blur(12px); background:var(--headerBg); border-bottom:1px solid var(--border); transition:background .25s ease}
+  .cc-header-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0}
+  .cc-brand{display:flex; align-items:center; gap:12px}
+  .cc-logoBadge{width:44px; height:44px; border-radius:14px; background:var(--card); border:1px solid var(--border); box-shadow:0 10px 24px rgba(15,23,42,0.12); display:grid; place-items:center; overflow:hidden}
+  .cc-logoBadge img{width:100%; height:100%; object-fit:contain}
+  .cc-main{display:grid; grid-template-columns:1fr 1.25fr; gap:18px; padding:16px 0 36px}
+  .cc-main>*{min-width:0}
+  @media (max-width: 1000px){ .cc-main{grid-template-columns:1fr} }
+  .cc-scroll{padding:0 20px 20px; overflow:auto}
+  .cc-stack{display:grid; gap:12px; text-align:left}
+  .cc-sliderRow{display:flex; flex-direction:column; gap:6px; font-size:13px}
+  .cc-sliderRow>span{font-weight:700}
+  .cc-sliderControls{display:flex; align-items:center; gap:10px}
+  .cc-sliderControls input[type="range"]{flex:1}
+  .cc-toolSwitch{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px}
+  .cc-toolSwitch .btn.active{background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#fff; border-color:transparent}
+  .cc-editorWrap{margin-top:8px; border-radius:16px; border:1px solid var(--border); background:var(--stageBg); padding:12px; display:flex; align-items:center; justify-content:center; min-height:220px; position:relative}
+  .cc-editorWrap canvas{display:block; max-width:100%; height:auto; background:conic-gradient(from 0deg,#f3f4f6 0 25%,#e5e7eb 25% 50%,#f3f4f6 50% 75%,#e5e7eb 75% 100%); background-size:24px 24px; border-radius:12px}
+  .cc-brushPreview{position:absolute; border:1.5px dashed var(--brand); border-radius:50%; pointer-events:none; opacity:0; transform:translate(-50%,-50%); box-shadow:0 6px 20px rgba(14,165,233,0.25); transition:opacity .12s ease}
+  .cc-stage{padding:18px; background:var(--stageBg); border-radius:var(--radius); flex:1; display:flex}
+  .cc-stage-inner{position:relative; flex:1; border-radius:24px; background-image: linear-gradient(45deg,#e5e7eb 25%,transparent 25%,transparent 75%,#e5e7eb 75%,#e5e7eb), linear-gradient(45deg,#e5e7eb 25%,transparent 25%,transparent 75%,#e5e7eb 75%,#e5e7eb); background-size:24px 24px; background-position:0 0,12px 12px; display:flex; align-items:center; justify-content:center; overflow:hidden; box-shadow:0 20px 45px rgba(15,23,42,0.25)}
+  .cc-stage-inner canvas{display:block; max-width:100%; height:auto; transform-origin:center center}
+  .cc-stageHint{position:absolute; inset:auto 14px 14px 14px; text-align:center; font-size:12px; color:var(--muted); pointer-events:none}
+  .cc-preview-head{padding:16px 18px 10px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:12px}
+  .cc-cleanActions{gap:10px; align-items:center; flex-wrap:wrap}
+  .cc-cleanActions .btn{white-space:nowrap}
+  .cc-libScroller .libItem{position:relative}
+  .cc-cleanTag{position:absolute; top:6px; right:6px; font-size:10px; background:rgba(14,165,233,0.14); color:var(--ink); padding:2px 6px; border-radius:999px; border:1px solid var(--border); box-shadow:0 6px 14px rgba(15,23,42,0.08)}
+  .fab-coupocut{bottom:188px; border-color:rgba(148,163,184,0.45); justify-content:center}
+  .fab-coupocut:hover{background:rgba(255,255,255,0.92)}
+  .fab-coupo-back{bottom:32px; background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#0f172a; border:none}
+  .cc-fabLogo{width:32px; height:32px; object-fit:contain}
+
   .floatingFab{position:fixed; right:24px; display:inline-flex; align-items:center; justify-content:flex-start; gap:0; min-width:56px; max-width:56px; height:56px; padding:0 12px; border-radius:50%; border:1px solid transparent; background:var(--card); color:var(--ink); font-weight:600; letter-spacing:0.02em; box-shadow:0 20px 38px rgba(15,23,42,0.16); z-index:61; cursor:pointer; white-space:nowrap; overflow:hidden; backdrop-filter:blur(14px); transition:max-width .36s cubic-bezier(.4,0,.2,1), padding .36s cubic-bezier(.4,0,.2,1), gap .36s cubic-bezier(.4,0,.2,1), border-radius .36s cubic-bezier(.4,0,.2,1), transform .36s cubic-bezier(.22,.61,.36,1), box-shadow .36s cubic-bezier(.22,.61,.36,1), background .3s ease, color .3s ease;}
   .floatingFab .btn-ico{width:22px; height:22px; stroke:currentColor; flex-shrink:0; transition:transform .3s cubic-bezier(.22,.61,.36,1)}
   .floatingFab .fab-label{font-size:13px; font-weight:600; opacity:0; max-width:0; transform:translateX(8px); transition:opacity .28s ease, transform .28s ease, max-width .36s cubic-bezier(.4,0,.2,1); white-space:nowrap}
@@ -642,6 +680,7 @@
 </style>
 </head>
 <body>
+  <div id="frozoneShell" class="frozone-shell">
   <div id="introScreen" class="introScreen show" aria-hidden="true">
     <div class="introInner">
       <div class="introLogoWrap"><img src="https://i.postimg.cc/QMTckmdX/unnamed-1-1.png" alt=""></div>
@@ -1542,6 +1581,12 @@
   </div>
 
   <div class="globalDropOverlay" id="globalDropOverlay">Drop images anywhere to upload</div>
+  <button id="openCoupoCut" type="button" class="floatingFab fab-coupocut" aria-label="Open CoupoCut">
+    <span class="fabIconWrap" aria-hidden="true">
+      <img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="" class="cc-fabLogo" />
+    </span>
+    <span class="fab-label">Open CoupoCut</span>
+  </button>
   <button id="downloadApp" type="button" class="floatingFab fab-download" aria-label="Download Web App">
     <i data-lucide="download" class="btn-ico" aria-hidden="true"></i>
     <span class="fab-label">Download Web App</span>
@@ -1588,6 +1633,164 @@
     </div>
   </div>
   <div class="versionTag">V2.24</div>
+
+  </div><!-- end frozoneShell -->
+
+  <div id="coupoCutShell" class="coupocut-shell" aria-hidden="true">
+    <header class="cc-header" id="ccHeader">
+      <div class="wrap cc-header-inner">
+        <div class="cc-brand">
+          <div class="cc-logoBadge">
+            <img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="CoupoCut logo" />
+          </div>
+          <div class="title">
+            <h1>CoupoCut</h1>
+            <div class="sub">Punch partner logos into clean coupon cutouts</div>
+          </div>
+        </div>
+        <div class="right-head">
+          <div class="team">P+ LiveOps Tools</div>
+          <div class="by">Built alongside Frozone</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap cc-main">
+      <section class="panel sticky cc-controls">
+        <div class="pad">
+          <div class="kv" aria-label="Export status">
+            <div class="kv-item"><span class="k">Output</span><span class="v">PNG 800 x 800</span></div>
+            <span class="kv-sep">•</span>
+            <div class="kv-item"><span class="k">Circle</span><span class="v" id="ccCircleMeta">transparent punch</span></div>
+          </div>
+        </div>
+
+        <div class="scroll cc-scroll">
+          <div class="section">
+            <div class="section-title"><span class="badge">1</span> Pick logo</div>
+            <div class="uploadGrid">
+              <div class="uploadCell">
+                <label class="btn primary">
+                  <span class="btn-text">Upload logo</span>
+                  <input id="ccLogoFile" type="file" accept="image/*" style="display:none" />
+                </label>
+              </div>
+            </div>
+            <div class="libWrap">
+              <div class="libHeader">
+                <input id="ccPartnerSearch" type="search" placeholder="Search partner library" />
+                <button class="btn ghost icon partnerSettingsBtn" type="button" aria-label="Open partner logo settings" data-partner-settings>
+                  <i data-lucide="sliders" class="btn-ico" aria-hidden="true"></i>
+                </button>
+              </div>
+              <div id="ccPartnerGallery" class="libScroller cc-libScroller" aria-label="Partner logo library"></div>
+            </div>
+            <p class="muted small">CoupoCut reads and saves the same browser logo library as Frozone.</p>
+          </div>
+
+          <div class="section">
+            <div class="section-title"><span class="badge">2</span> Circle layout</div>
+            <div class="cc-stack">
+              <div class="cc-sliderRow">
+                <span>Logo scale</span>
+                <div class="cc-sliderControls">
+                  <input id="ccLogoScale" type="range" min="0.3" max="1.3" step="0.02" value="0.6" />
+                  <span class="chip" id="ccLogoScaleVal">0.60x</span>
+                </div>
+              </div>
+              <div class="cc-sliderRow">
+                <span>Offset X</span>
+                <div class="cc-sliderControls">
+                  <input id="ccLogoOffsetX" type="range" min="-100" max="100" step="1" value="0" />
+                  <span class="chip" id="ccLogoOffsetXVal">0</span>
+                </div>
+              </div>
+              <div class="cc-sliderRow">
+                <span>Offset Y</span>
+                <div class="cc-sliderControls">
+                  <input id="ccLogoOffsetY" type="range" min="-100" max="100" step="1" value="0" />
+                  <span class="chip" id="ccLogoOffsetYVal">0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-title"><span class="badge">3</span> Logo clean up</div>
+            <div class="cc-toolSwitch" role="group" aria-label="Cleanup tool">
+              <button class="btn small ghost active" type="button" id="ccToolBrush">Cleaning brush</button>
+              <button class="btn small ghost" type="button" id="ccToolMagic">Magic eraser</button>
+            </div>
+            <p class="muted small">
+              Paint directly on the logo preview to remove areas. Magic eraser wipes connected pixels of the tapped color.
+            </p>
+            <div class="cc-editorWrap">
+              <canvas id="ccLogoEditorCanvas"></canvas>
+              <div id="ccBrushPreview" class="cc-brushPreview" aria-hidden="true"></div>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <div class="cc-sliderRow" style="flex:1">
+                <span>Brush size</span>
+                <div class="cc-sliderControls">
+                  <input id="ccBrushSize" type="range" min="4" max="80" step="1" value="30" />
+                  <span class="chip" id="ccBrushSizeVal">30 px</span>
+                </div>
+              </div>
+            </div>
+            <div class="row cc-cleanActions">
+              <button class="btn small ghost" type="button" id="ccResetLogo">Reset logo</button>
+              <button class="btn small ghost" type="button" id="ccClearLogo">Clear all</button>
+              <button class="btn small" type="button" id="ccLoadOriginal" disabled>Load original logo</button>
+            </div>
+            <div class="row cc-cleanActions">
+              <button class="btn primary small" type="button" id="ccSaveCleaned" disabled>Save cleanup to library</button>
+              <span class="muted small" id="ccSaveStatus">Select a library logo to save cleanup.</span>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-title"><span class="badge">4</span> Export cutout</div>
+            <div class="row" style="justify-content:space-between;gap:12px">
+              <button class="btn primary" type="button" id="ccExportBtn" disabled>Export PNG</button>
+              <div class="chip" id="ccLastExport">No export yet</div>
+            </div>
+            <p class="muted small" style="margin-top:6px">
+              Output is a square PNG with a clean transparent punch—no outline stroke.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel preview-panel cc-preview-panel">
+        <div class="preview-head cc-preview-head">
+          <div class="section-title" style="margin:0">
+            <span>Preview</span>
+          </div>
+          <div class="row" style="gap:12px">
+            <span class="muted small">Preview zoom</span>
+            <span class="muted small"><span id="ccZoomLabel">1.00</span>x</span>
+            <input id="ccPreviewZoom" type="range" min="0.5" max="2" step="0.05" value="1" style="width:160px" />
+          </div>
+        </div>
+        <div class="cc-stage" id="ccStage">
+          <div class="cc-stage-inner">
+            <canvas id="ccPreviewCanvas"></canvas>
+            <div class="cc-stageHint" id="ccStageHint">Upload or pick a partner logo to start.</div>
+          </div>
+        </div>
+        <div class="foot-note">
+          Saved cleanups stay with the partner entry and sync with Frozone's library.
+        </div>
+      </section>
+    </main>
+
+    <button id="ccBackFab" type="button" class="floatingFab fab-coupo-back" aria-label="Back to Frozone">
+      <span class="fabIconWrap" aria-hidden="true">
+        <img src="https://i.postimg.cc/QMTckmdX/unnamed-1-1.png" alt="" class="cc-fabLogo" />
+      </span>
+      <span class="fab-label">Back to Frozone</span>
+    </button>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/fflate@0.8.2/umd/index.min.js"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
@@ -1855,6 +2058,7 @@
   const LOGO_STATE_KEY = 'frozone-logo-state';
   const TEXT_STATE_KEY = 'frozone-text-state';
   let partnerSettingsRestoreFocus = null;
+  let refreshCoupoGallery = ()=>{};
 
   try{
     const storedPartners = localStorage.getItem(PARTNER_STORAGE_KEY);
@@ -1865,7 +2069,11 @@
   }catch(err){ console.warn('Unable to read partner storage', err); }
   if(!Array.isArray(partnerLibrary)) partnerLibrary = [];
   partnerLibrary = partnerLibrary
-    .map(entry => ({ name: String(entry?.name || '').trim(), url: String(entry?.url || '').trim() }))
+    .map(entry => ({
+      name: String(entry?.name || '').trim(),
+      url: String(entry?.url || '').trim(),
+      cleanedDataUrl: typeof entry?.cleanedDataUrl === 'string' ? entry.cleanedDataUrl : ''
+    }))
     .filter(entry => entry.name && entry.url);
 
   const els = {
@@ -4308,6 +4516,7 @@
       partnerDataScript.textContent = JSON.stringify(partnerLibrary, null, 2);
     }
     try{ localStorage.setItem(PARTNER_STORAGE_KEY, JSON.stringify(partnerLibrary)); }catch(err){ console.warn('Failed to store partner logos', err); }
+    refreshCoupoGallery();
   }
 
   function updatePartnerPreview(img, url){
@@ -4325,6 +4534,7 @@
   function createPartnerRow(entry = {name:'', url:''}){
     const row = document.createElement('div');
     row.className = 'partnerRow';
+    row.dataset.cleanedDataUrl = entry.cleanedDataUrl || '';
 
     const preview = document.createElement('img');
     preview.alt = entry.name ? `${entry.name} logo` : 'Logo preview';
@@ -5469,14 +5679,15 @@
       return;
     }
     partnerLibrary.forEach(p=>{
+      const displayUrl = p.cleanedDataUrl || p.url;
       const it = document.createElement('button'); it.type='button'; it.className='libItem'; it.dataset.name=p.name.toLowerCase();
-      it.innerHTML = `<img alt="${p.name}" src="${p.url}"><div class=\"cap\">${p.name}</div>`;
+      it.innerHTML = `<img alt="${p.name}" src="${displayUrl}"><div class=\"cap\">${p.name}</div>${p.cleanedDataUrl ? '<span class="cc-cleanTag">Clean</span>' : ''}`;
       const isActive = !!(store && store.source==='partner' && store.chosen === p.name);
       if(isActive) it.classList.add('active');
       it.addEventListener('click', async ()=>{
         scroller.querySelectorAll('.libItem').forEach(i=>i.classList.remove('active'));
         it.classList.add('active');
-        await onPick(p);
+        await onPick(p, displayUrl);
       });
       scroller.appendChild(it);
     });
@@ -5484,6 +5695,346 @@
   function filterGallery(scroller, q){ const qq=(q||'').trim().toLowerCase(); scroller?.querySelectorAll('.libItem').forEach(it=>{ it.style.display = (!qq || it.dataset.name.includes(qq)) ? '' : 'none'; }); }
 
   function loadImageCORS(src){ return new Promise((res,rej)=>{ if(!src) return res(null); const im=new Image(); im.crossOrigin='anonymous'; im.onload=()=>res(im); im.onerror=(e)=>rej(e); im.src=src; }); }
+
+  // ---------- CoupoCut addon ----------
+  const coupoEls = {
+    shell: document.getElementById('coupoCutShell'),
+    header: document.getElementById('ccHeader'),
+    previewCanvas: document.getElementById('ccPreviewCanvas'),
+    editorCanvas: document.getElementById('ccLogoEditorCanvas'),
+    stageHint: document.getElementById('ccStageHint'),
+    logoFile: document.getElementById('ccLogoFile'),
+    partnerSearch: document.getElementById('ccPartnerSearch'),
+    partnerGallery: document.getElementById('ccPartnerGallery'),
+    logoScale: document.getElementById('ccLogoScale'),
+    logoScaleVal: document.getElementById('ccLogoScaleVal'),
+    logoOffsetX: document.getElementById('ccLogoOffsetX'),
+    logoOffsetXVal: document.getElementById('ccLogoOffsetXVal'),
+    logoOffsetY: document.getElementById('ccLogoOffsetY'),
+    logoOffsetYVal: document.getElementById('ccLogoOffsetYVal'),
+    brushSize: document.getElementById('ccBrushSize'),
+    brushSizeVal: document.getElementById('ccBrushSizeVal'),
+    resetLogo: document.getElementById('ccResetLogo'),
+    clearLogo: document.getElementById('ccClearLogo'),
+    exportBtn: document.getElementById('ccExportBtn'),
+    lastExport: document.getElementById('ccLastExport'),
+    previewZoom: document.getElementById('ccPreviewZoom'),
+    zoomLabel: document.getElementById('ccZoomLabel'),
+    toolBrush: document.getElementById('ccToolBrush'),
+    toolMagic: document.getElementById('ccToolMagic'),
+    brushPreview: document.getElementById('ccBrushPreview'),
+    saveCleaned: document.getElementById('ccSaveCleaned'),
+    saveStatus: document.getElementById('ccSaveStatus'),
+    loadOriginal: document.getElementById('ccLoadOriginal'),
+    openBtn: document.getElementById('openCoupoCut'),
+    backBtn: document.getElementById('ccBackFab')
+  };
+  const coupoPreviewCtx = coupoEls.previewCanvas?.getContext('2d');
+  const coupoEditCtx = coupoEls.editorCanvas?.getContext('2d');
+  const COUPO_EXPORT_SIZE = 800;
+  const coupoState = {
+    hasLogo:false,
+    brushSize:30,
+    circleRadius:COUPO_EXPORT_SIZE * 0.42,
+    logoScale:0.6,
+    offsetX:0,
+    offsetY:0,
+    previewZoom:1,
+    activeTool:'brush',
+    libraryEntryName:'',
+    originalSourceUrl:'',
+    cleanedFromLibrary:false,
+    logoImageOriginal:null
+  };
+
+  function updateCoupoSliderLabels(){
+    if(!coupoEls.logoScaleVal) return;
+    coupoEls.logoScaleVal.textContent = coupoState.logoScale.toFixed(2) + 'x';
+    coupoEls.logoOffsetXVal.textContent = coupoState.offsetX.toFixed(0);
+    coupoEls.logoOffsetYVal.textContent = coupoState.offsetY.toFixed(0);
+    coupoEls.brushSizeVal.textContent = coupoState.brushSize.toFixed(0) + ' px';
+  }
+  function applyCoupoZoom(){
+    if(coupoEls.previewCanvas){
+      coupoEls.previewCanvas.style.transform = 'scale(' + coupoState.previewZoom.toFixed(2) + ')';
+    }
+  }
+  function updateCoupoSaveButtons(){
+    const hasLibrary = !!coupoState.libraryEntryName;
+    if(coupoEls.saveCleaned){ coupoEls.saveCleaned.disabled = !hasLibrary || !coupoState.hasLogo; }
+    if(coupoEls.loadOriginal){ coupoEls.loadOriginal.disabled = !hasLibrary || !coupoState.originalSourceUrl; }
+    if(coupoEls.saveStatus){
+      if(!hasLibrary){
+        coupoEls.saveStatus.textContent = 'Select a library logo to save cleanup.';
+      } else if(coupoState.cleanedFromLibrary){
+        coupoEls.saveStatus.textContent = 'Using saved cleanup for ' + coupoState.libraryEntryName + '.';
+      } else {
+        coupoEls.saveStatus.textContent = 'Save this cleanup once and reuse it from the library.';
+      }
+    }
+  }
+  function renderCoupoPreview(){
+    if(!coupoPreviewCtx || !coupoEls.previewCanvas) return;
+    const c = coupoEls.previewCanvas;
+    const ctx = coupoPreviewCtx;
+    const w = c.width;
+    const h = c.height;
+    ctx.clearRect(0,0,w,h);
+    if(!coupoState.hasLogo){ return; }
+    const r = coupoState.circleRadius;
+    ctx.save();
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(w/2, h/2, r, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+    const maskCanvas = coupoEls.editorCanvas;
+    const maskW = maskCanvas?.width || 0;
+    const maskH = maskCanvas?.height || 0;
+    if(maskW > 0 && maskH > 0){
+      const maxDim = Math.max(maskW, maskH) || 1;
+      const scale = coupoState.logoScale * (2 * r) / maxDim;
+      const drawW = maskW * scale;
+      const drawH = maskH * scale;
+      const dx = (coupoState.offsetX / 100) * r * 0.8;
+      const dy = (coupoState.offsetY / 100) * r * 0.8;
+      const cx = w / 2 + dx;
+      const cy = h / 2 + dy;
+      ctx.save();
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.drawImage(maskCanvas, cx - drawW / 2, cy - drawH / 2, drawW, drawH);
+      ctx.restore();
+    }
+  }
+
+  function setCoupoTool(tool){
+    coupoState.activeTool = tool === 'magic' ? 'magic' : 'brush';
+    if(coupoEls.toolBrush && coupoEls.toolMagic){
+      coupoEls.toolBrush.classList.toggle('active', coupoState.activeTool === 'brush');
+      coupoEls.toolMagic.classList.toggle('active', coupoState.activeTool === 'magic');
+    }
+  }
+  function showBrushPreview(evt){
+    if(!coupoEls.brushPreview || !coupoEls.editorCanvas) return;
+    const rect = coupoEls.editorCanvas.getBoundingClientRect();
+    const factor = rect.width ? (coupoEls.editorCanvas.width / rect.width) : 1;
+    const size = coupoState.brushSize * 2 / factor;
+    coupoEls.brushPreview.style.width = size + 'px';
+    coupoEls.brushPreview.style.height = size + 'px';
+    coupoEls.brushPreview.style.left = (evt.clientX - rect.left) + 'px';
+    coupoEls.brushPreview.style.top = (evt.clientY - rect.top) + 'px';
+    coupoEls.brushPreview.style.opacity = coupoState.hasLogo ? 1 : 0;
+  }
+  function hideBrushPreview(){ if(coupoEls.brushPreview){ coupoEls.brushPreview.style.opacity = 0; } }
+  function getCoupoEditorPos(evt){
+    if(!coupoEls.editorCanvas) return {x:0,y:0};
+    const rect = coupoEls.editorCanvas.getBoundingClientRect();
+    const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
+    const clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+    const x = (clientX - rect.left) * (coupoEls.editorCanvas.width / rect.width);
+    const y = (clientY - rect.top) * (coupoEls.editorCanvas.height / rect.height);
+    return {x,y};
+  }
+  function eraseBrush(evt){
+    if(!coupoEditCtx || !coupoState.hasLogo) return;
+    const pos = getCoupoEditorPos(evt);
+    coupoEditCtx.save();
+    coupoEditCtx.globalCompositeOperation = 'destination-out';
+    coupoEditCtx.beginPath();
+    coupoEditCtx.arc(pos.x, pos.y, coupoState.brushSize, 0, Math.PI * 2);
+    coupoEditCtx.fill();
+    coupoEditCtx.restore();
+    renderCoupoPreview();
+  }
+  function magicEraseAt(evt){
+    if(!coupoEditCtx || !coupoState.hasLogo) return;
+    const pos = getCoupoEditorPos(evt);
+    const w = coupoEls.editorCanvas.width;
+    const h = coupoEls.editorCanvas.height;
+    const targetX = Math.round(Math.max(0, Math.min(w - 1, pos.x)));
+    const targetY = Math.round(Math.max(0, Math.min(h - 1, pos.y)));
+    const image = coupoEditCtx.getImageData(0,0,w,h);
+    const data = image.data;
+    const startIdx = (targetY * w + targetX) * 4;
+    const target = [data[startIdx], data[startIdx+1], data[startIdx+2], data[startIdx+3]];
+    if(target[3] === 0) return;
+    const tol = 22;
+    const visited = new Uint8Array(w*h);
+    const stack = [[targetX, targetY]];
+    while(stack.length){
+      const [x,y] = stack.pop();
+      if(x<0 || y<0 || x>=w || y>=h) continue;
+      const idx = y * w + x;
+      if(visited[idx]) continue;
+      visited[idx] = 1;
+      const di = idx * 4;
+      const a = data[di+3];
+      if(a === 0) continue;
+      const dr = Math.abs(data[di] - target[0]);
+      const dg = Math.abs(data[di+1] - target[1]);
+      const db = Math.abs(data[di+2] - target[2]);
+      if(dr > tol || dg > tol || db > tol) continue;
+      data[di+3] = 0;
+      stack.push([x+1,y],[x-1,y],[x,y+1],[x,y-1]);
+    }
+    coupoEditCtx.putImageData(image,0,0);
+    renderCoupoPreview();
+  }
+  function initCoupoLogo(img, opts = {}){
+    if(!coupoEls.editorCanvas || !img) return;
+    coupoState.logoImageOriginal = img;
+    coupoEls.editorCanvas.width = img.width;
+    coupoEls.editorCanvas.height = img.height;
+    coupoEditCtx.setTransform(1,0,0,1,0,0);
+    coupoEditCtx.clearRect(0,0,coupoEls.editorCanvas.width,coupoEls.editorCanvas.height);
+    coupoEditCtx.drawImage(img,0,0);
+    const maxSize = 420;
+    const scale = Math.min(maxSize / img.width, maxSize / img.height, 1);
+    coupoEls.editorCanvas.style.width = (img.width * scale) + 'px';
+    coupoEls.editorCanvas.style.height = (img.height * scale) + 'px';
+    coupoState.logoScale = 0.6;
+    coupoState.offsetX = 0;
+    coupoState.offsetY = 0;
+    coupoState.hasLogo = true;
+    coupoState.libraryEntryName = opts.libraryName || '';
+    coupoState.originalSourceUrl = opts.originalUrl || '';
+    coupoState.cleanedFromLibrary = !!opts.cleaned;
+    if(coupoEls.exportBtn) coupoEls.exportBtn.disabled = false;
+    if(coupoEls.stageHint) coupoEls.stageHint.textContent = '';
+    updateCoupoSliderLabels();
+    updateCoupoSaveButtons();
+    renderCoupoPreview();
+  }
+  async function loadCoupoPartner(entry, displayUrl){
+    try{
+      const img = await loadImageCORS(displayUrl || entry.url);
+      initCoupoLogo(img, { libraryName: entry.name, originalUrl: entry.url, cleaned: !!entry.cleanedDataUrl });
+    }catch(err){
+      alert('This logo host blocks pixel access. Please download the logo and upload it as a file.');
+    }
+  }
+  function buildCoupoGallery(filter){
+    if(!coupoEls.partnerGallery) return;
+    const term = (filter || '').toLowerCase();
+    coupoEls.partnerGallery.innerHTML = '';
+    const list = partnerLibrary.filter(p=>p.name.toLowerCase().includes(term));
+    if(!list.length){
+      const msg = document.createElement('div');
+      msg.className = 'muted small';
+      msg.textContent = term ? 'No matches in partner library' : 'Partner library is empty in this browser.';
+      coupoEls.partnerGallery.appendChild(msg);
+      return;
+    }
+    list.forEach(entry => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'libItem';
+      btn.dataset.name = entry.name.toLowerCase();
+      const displayUrl = entry.cleanedDataUrl || entry.url;
+      btn.innerHTML = `<img src="${displayUrl}" alt="${entry.name}"><div class=\"cap\">${entry.name}</div>${entry.cleanedDataUrl ? '<span class="cc-cleanTag">Clean</span>' : ''}`;
+      if(entry.name === coupoState.libraryEntryName){ btn.classList.add('active'); }
+      btn.addEventListener('click', ()=>{ loadCoupoPartner(entry, displayUrl); });
+      coupoEls.partnerGallery.appendChild(btn);
+    });
+  }
+
+  function openCoupoCut(){
+    document.body.classList.add('show-coupocut');
+    if(coupoEls.shell){ coupoEls.shell.setAttribute('aria-hidden','false'); }
+  }
+  function closeCoupoCut(){
+    document.body.classList.remove('show-coupocut');
+    if(coupoEls.shell){ coupoEls.shell.setAttribute('aria-hidden','true'); }
+  }
+
+  function saveCoupoCleanup(){
+    if(!coupoState.libraryEntryName || !coupoState.hasLogo) return;
+    const cleanedUrl = coupoEls.editorCanvas.toDataURL('image/png');
+    const idx = partnerLibrary.findIndex(p=>p.name === coupoState.libraryEntryName);
+    if(idx >= 0){
+      partnerLibrary[idx] = { ...partnerLibrary[idx], cleanedDataUrl: cleanedUrl };
+      coupoState.cleanedFromLibrary = true;
+      persistPartnerLibrary();
+      buildAllGalleries();
+      buildCoupoGallery(coupoEls.partnerSearch?.value || '');
+      updateCoupoSaveButtons();
+    }
+  }
+
+  async function reloadCoupoOriginal(){
+    if(!coupoState.originalSourceUrl) return;
+    try{
+      const img = await loadImageCORS(coupoState.originalSourceUrl);
+      initCoupoLogo(img, { libraryName: coupoState.libraryEntryName, originalUrl: coupoState.originalSourceUrl, cleaned:false });
+    }catch(err){
+      alert('Unable to load the original logo source.');
+    }
+  }
+
+  function initCoupoCut(){
+    if(!coupoEls.shell || !coupoPreviewCtx || !coupoEditCtx) return;
+    coupoEls.previewCanvas.width = COUPO_EXPORT_SIZE;
+    coupoEls.previewCanvas.height = COUPO_EXPORT_SIZE;
+    coupoEls.editorCanvas.width = 400;
+    coupoEls.editorCanvas.height = 200;
+    updateCoupoSliderLabels();
+    applyCoupoZoom();
+    updateCoupoSaveButtons();
+    refreshCoupoGallery = buildCoupoGallery;
+    buildCoupoGallery('');
+    coupoEls.logoFile?.addEventListener('change', (e)=>{
+      const file = e.target.files && e.target.files[0];
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = ()=>{ const img = new Image(); img.onload = ()=>{ initCoupoLogo(img); }; img.src = reader.result; };
+      reader.readAsDataURL(file);
+    });
+    coupoEls.logoScale?.addEventListener('input', e=>{ coupoState.logoScale = parseFloat(e.target.value) || 0.6; updateCoupoSliderLabels(); renderCoupoPreview(); });
+    coupoEls.logoOffsetX?.addEventListener('input', e=>{ coupoState.offsetX = parseFloat(e.target.value) || 0; updateCoupoSliderLabels(); renderCoupoPreview(); });
+    coupoEls.logoOffsetY?.addEventListener('input', e=>{ coupoState.offsetY = parseFloat(e.target.value) || 0; updateCoupoSliderLabels(); renderCoupoPreview(); });
+    coupoEls.brushSize?.addEventListener('input', e=>{ coupoState.brushSize = parseFloat(e.target.value) || 10; updateCoupoSliderLabels(); });
+    coupoEls.toolBrush?.addEventListener('click', ()=>setCoupoTool('brush'));
+    coupoEls.toolMagic?.addEventListener('click', ()=>setCoupoTool('magic'));
+    let isDrawing = false;
+    coupoEls.editorCanvas?.addEventListener('pointerdown', (e)=>{
+      if(!coupoState.hasLogo) return;
+      if(coupoState.activeTool === 'magic'){
+        magicEraseAt(e);
+      } else {
+        isDrawing = true;
+        eraseBrush(e);
+      }
+      showBrushPreview(e);
+      e.preventDefault();
+    });
+    window.addEventListener('pointermove', (e)=>{ if(isDrawing && coupoState.activeTool === 'brush'){ eraseBrush(e); } if(e.target === coupoEls.editorCanvas){ showBrushPreview(e); } });
+    window.addEventListener('pointerup', ()=>{ isDrawing = false; hideBrushPreview(); });
+    coupoEls.editorCanvas?.addEventListener('pointerenter', showBrushPreview);
+    coupoEls.editorCanvas?.addEventListener('pointerleave', hideBrushPreview);
+    coupoEls.resetLogo?.addEventListener('click', ()=>{ if(coupoState.logoImageOriginal){ initCoupoLogo(coupoState.logoImageOriginal, { libraryName: coupoState.libraryEntryName, originalUrl: coupoState.originalSourceUrl, cleaned: coupoState.cleanedFromLibrary }); } });
+    coupoEls.clearLogo?.addEventListener('click', ()=>{ if(!coupoState.hasLogo) return; coupoEditCtx.clearRect(0,0,coupoEls.editorCanvas.width,coupoEls.editorCanvas.height); renderCoupoPreview(); });
+    coupoEls.exportBtn?.addEventListener('click', ()=>{
+      if(!coupoState.hasLogo) return;
+      renderCoupoPreview();
+      const dataURL = coupoEls.previewCanvas.toDataURL('image/png');
+      const now = new Date();
+      const stamp = now.toISOString().slice(0,19).replace(/[-:T]/g,'');
+      const a = document.createElement('a');
+      a.href = dataURL;
+      a.download = 'coupocut-' + stamp + '.png';
+      document.body.appendChild(a); a.click(); a.remove();
+      const bytes = (()=>{ try{ return atob(dataURL.split(',')[1]).length; }catch(err){ return 0; }})();
+      const kb = bytes / 1024;
+      if(coupoEls.lastExport){ coupoEls.lastExport.textContent = COUPO_EXPORT_SIZE + ' x ' + COUPO_EXPORT_SIZE + ' px · ' + kb.toFixed(1) + ' KB'; }
+    });
+    coupoEls.previewZoom?.addEventListener('input', e=>{ coupoState.previewZoom = parseFloat(e.target.value) || 1; if(coupoEls.zoomLabel){ coupoEls.zoomLabel.textContent = coupoState.previewZoom.toFixed(2); } applyCoupoZoom(); });
+    coupoEls.partnerSearch?.addEventListener('input', e=> buildCoupoGallery(e.target.value));
+    coupoEls.saveCleaned?.addEventListener('click', saveCoupoCleanup);
+    coupoEls.loadOriginal?.addEventListener('click', reloadCoupoOriginal);
+    coupoEls.openBtn?.addEventListener('click', openCoupoCut);
+    coupoEls.backBtn?.addEventListener('click', closeCoupoCut);
+  }
 
   function toneImageSource(image, tone){
     if(!tone || tone==='orig') return image;
@@ -5534,11 +6085,11 @@
   els.removeVertLogo?.addEventListener('click', ()=>{ state.vertLogo = {src:null,w:0,h:0,sizeKey:state.vertLogo.sizeKey||'M', tone:'orig', source:'none', chosen:""}; els.vertLogoPrev.style.display='none'; render(); updateControls(); });
 
   function buildAllGalleries(){
-    buildGallery(els.logo1Gallery, p=>loadLogoURL(p.url, els.logo1Prev, state.frost.logo1, 'logo1', p.name), ()=>state.frost.logo1);
-    buildGallery(els.logo2Gallery, p=>loadLogoURL(p.url, els.logo2Prev, state.frost.logo2, 'logo2', p.name), ()=>state.frost.logo2);
-    buildGallery(els.sqLogoGallery, p=>loadLogoURL(p.url, els.sqLogoPrev, state.squareLogo, 'squareLogo', p.name), ()=>state.squareLogo);
-    buildGallery(els.vertLogoGallery, p=>loadLogoURL(p.url, els.vertLogoPrev, state.vertLogo, 'vertLogo', p.name), ()=>state.vertLogo);
-    buildGallery(els.bannerLogoGallery, p=>loadLogoURL(p.url, els.bannerLogoPrev, state.bannerLogo, 'bannerLogo', p.name), ()=>state.bannerLogo);
+    buildGallery(els.logo1Gallery, (p, displayUrl)=>loadLogoURL(displayUrl, els.logo1Prev, state.frost.logo1, 'logo1', p.name), ()=>state.frost.logo1);
+    buildGallery(els.logo2Gallery, (p, displayUrl)=>loadLogoURL(displayUrl, els.logo2Prev, state.frost.logo2, 'logo2', p.name), ()=>state.frost.logo2);
+    buildGallery(els.sqLogoGallery, (p, displayUrl)=>loadLogoURL(displayUrl, els.sqLogoPrev, state.squareLogo, 'squareLogo', p.name), ()=>state.squareLogo);
+    buildGallery(els.vertLogoGallery, (p, displayUrl)=>loadLogoURL(displayUrl, els.vertLogoPrev, state.vertLogo, 'vertLogo', p.name), ()=>state.vertLogo);
+    buildGallery(els.bannerLogoGallery, (p, displayUrl)=>loadLogoURL(displayUrl, els.bannerLogoPrev, state.bannerLogo, 'bannerLogo', p.name), ()=>state.bannerLogo);
     if(els.logo1Search?.value) filterGallery(els.logo1Gallery, els.logo1Search.value);
     if(els.logo2Search?.value) filterGallery(els.logo2Gallery, els.logo2Search.value);
     if(els.sqLogoSearch?.value) filterGallery(els.sqLogoGallery, els.sqLogoSearch.value);
@@ -5569,7 +6120,8 @@
     if(rows.length === 0) return;
     const entries = rows.map(row=>({
       name:(row.querySelector('.partnerName')?.value||'').trim(),
-      url:(row.querySelector('.partnerUrl')?.value||'').trim()
+      url:(row.querySelector('.partnerUrl')?.value||'').trim(),
+      cleanedDataUrl: row.dataset.cleanedDataUrl || ''
     }));
     entries.sort((a,b)=>{
       const nameA = a.name.toLowerCase();
@@ -5610,7 +6162,7 @@
         hasError = true;
         return;
       }
-      next.push({ name, url });
+      next.push({ name, url, cleanedDataUrl: row.dataset.cleanedDataUrl || '' });
     });
     if(hasError){ return; }
     partnerLibrary = next;
@@ -6143,6 +6695,7 @@
   updateGradientPreview();
   refreshIcons();
   buildAllGalleries();
+  initCoupoCut();
   let restored = false;
   try{
     restored = await restoreLogoState();
