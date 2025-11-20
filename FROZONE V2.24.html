@@ -536,6 +536,10 @@
   .globalDropOverlay{position:fixed; inset:0; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700; color:var(--brand2); background:rgba(14,165,233,0.18); backdrop-filter:blur(22px); opacity:0; pointer-events:none; transition:opacity .2s ease; z-index:50; text-align:center; padding:40px}
   .globalDropOverlay.show{opacity:1}
 
+  .appView{display:none}
+  .appView.active{display:block}
+  #frozoneApp{position:relative; min-height:100vh}
+
   .versionTag{position:fixed; left:24px; bottom:24px; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(100,116,139,0.8); backdrop-filter:blur(8px); background:rgba(255,255,255,0.45); border-radius:999px; padding:6px 12px; box-shadow:0 10px 20px rgba(15,23,42,0.1);}
   .fullscreenControlDock{position:absolute; top:16px; left:50%; transform:translateX(-50%); display:none; align-items:center; gap:12px; padding:10px 18px; border-radius:999px; background:var(--headerBg); border:1px solid var(--border); box-shadow:0 22px 44px rgba(2,6,23,0.32); backdrop-filter:blur(18px); z-index:63}
   .fullscreenControlDock .btn{box-shadow:none}
@@ -560,6 +564,12 @@
   #downloadApp:hover{background:rgba(255,255,255,0.92)}
   :root[data-theme="dark"] #downloadApp{background:rgba(9,20,41,0.72); border-color:rgba(46,63,98,0.65); box-shadow:0 26px 50px rgba(1,5,19,0.6)}
   :root[data-theme="dark"] #downloadApp:hover{background:rgba(15,32,58,0.85)}
+
+  #openCoupoCut{bottom:188px; min-width:64px; max-width:64px; height:64px; padding:0 12px; border-color:rgba(148,163,184,0.45); justify-content:center; background:var(--card)}
+  #openCoupoCut img{width:32px; height:32px; object-fit:contain; border-radius:50%}
+  #openCoupoCut .fab-label{color:var(--ink)}
+  :root[data-theme="dark"] #openCoupoCut{background:rgba(9,20,41,0.72); border-color:rgba(46,63,98,0.65); box-shadow:0 26px 50px rgba(1,5,19,0.6)}
+  :root[data-theme="dark"] #openCoupoCut:hover{background:rgba(15,32,58,0.85)}
 
   #themeToggle{bottom:32px; background:linear-gradient(135deg,var(--brand),var(--brand2)); border:none; box-shadow:0 18px 36px rgba(15,23,42,0.22); color:#fff; z-index:62}
   #themeToggle .btn-ico{width:26px; height:26px; stroke:#fff}
@@ -639,9 +649,82 @@
   :root[data-theme="dark"] .partnerRowRemove .btn-ico{stroke:#fecaca}
   :root[data-theme="dark"] .btn.feedback-success{border-color:#4ade80; color:#bbf7d0; background:rgba(34,197,94,0.25)}
   :root[data-theme="dark"] .btn.feedback-error{border-color:#fca5a5; color:#fecaca; background:rgba(248,113,113,0.3)}
+
+  /* CoupoCut scoped styles */
+  #coupocutApp{
+    --bg1:#fff7e6; --bg2:#fff0cc; --bg3:#ffffff;
+    --ink:#111827; --muted:#6b7280;
+    --brand:#ffa200; --brand2:#ffd000; --accent:#fb923c;
+    --card:#ffffffdd; --border:#e5e7eb; --shadow:0 18px 40px rgba(15,23,42,0.12);
+    --btn-bg:#ffffff; --btn-ghost-bg:transparent; --chip-bg:#ffffff;
+    --stageBg:#f9fafb; --stageInner:#ffffff; --headerBg:#fff8ecdd;
+    --radius:18px; --radius-sm:12px; --headerH:64px;
+    position:fixed; inset:0; overflow:auto; z-index:70; background:linear-gradient(180deg,var(--bg1),var(--bg2) 55%,var(--bg3));
+    color:var(--ink); font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+    transition:background .6s ease,color .45s ease; display:none; padding-bottom:72px;
+  }
+  #coupocutApp.active{display:block}
+  #coupocutApp[data-theme="dark"]{
+    color-scheme:dark;
+    --bg1:#0b0f19; --bg2:#111827; --bg3:#020617;
+    --ink:#e5e7eb; --muted:#9ca3af;
+    --brand:#f59e0b; --brand2:#facc15; --accent:#fb923c;
+    --card:#020617f2; --border:#1f2933; --shadow:0 22px 44px rgba(0,0,0,0.6);
+    --btn-bg:#020617; --btn-ghost-bg:rgba(15,23,42,0.75); --chip-bg:#020617;
+    --stageBg:#020617; --stageInner:#020617; --headerBg:#020617f0;
+  }
+  #coupocutApp *{box-sizing:border-box}
+  #coupocutApp .coupoWrap{max-width:1280px; margin:0 auto; padding:16px}
+  #coupocutApp .cc-header{position:sticky; top:0; z-index:40; backdrop-filter:blur(12px); background:var(--headerBg); border-bottom:1px solid var(--border); transition:background .25s ease}
+  #coupocutApp .cc-header .inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 16px}
+  #coupocutApp .cc-brand{display:flex; align-items:center; gap:12px}
+  #coupocutApp .cc-logoBadge{width:40px; height:40px; border-radius:50%; overflow:hidden; box-shadow:0 6px 18px rgba(249,115,22,0.35); display:grid; place-items:center; background:#fff}
+  #coupocutApp .cc-logoBadge img{width:100%; height:100%; object-fit:contain}
+  #coupocutApp .cc-title{display:flex; flex-direction:column}
+  #coupocutApp .cc-title h1{font-size:20px; line-height:1.2; margin:0}
+  #coupocutApp .cc-title .sub{font-size:13px; color:var(--muted)}
+  #coupocutApp .cc-right-head{display:flex; flex-direction:column; align-items:flex-end; text-align:right}
+  #coupocutApp .cc-right-head .team{font-weight:600; font-size:13px}
+  #coupocutApp .cc-right-head .by{font-size:12px; color:var(--muted)}
+  #coupocutApp main{display:grid; grid-template-columns:1fr 1.25fr; gap:18px; padding:16px 16px 36px}
+  #coupocutApp main>*{min-width:0}
+  #coupocutApp .panel.sticky{top:calc(var(--headerH) + 12px); height:calc(100vh - var(--headerH) - 24px)}
+  #coupocutApp .panel .pad{padding:18px 20px 6px}
+  #coupocutApp .panel .scroll{overflow:auto; padding:0 20px 20px}
+  #coupocutApp .kv{display:flex; align-items:center; gap:10px; font-size:13px; color:var(--muted)}
+  #coupocutApp .kv-item{display:flex; align-items:center; gap:4px}
+  #coupocutApp .kv .k{opacity:.8}
+  #coupocutApp .kv .v{font-weight:600; color:var(--ink)}
+  #coupocutApp .kv-sep{opacity:.5}
+  #coupocutApp .chipInfo{display:inline-flex; align-items:center; justify-content:center; padding:4px 10px; border-radius:999px; background:rgba(248,250,252,0.9); border:1px solid var(--border); font-size:12px; color:var(--muted); white-space:nowrap}
+  #coupocutApp[data-theme="dark"] .chipInfo{background:rgba(15,23,42,0.9)}
+  #coupocutApp .sliderRow{display:flex; flex-direction:column; gap:6px; font-size:13px}
+  #coupocutApp .sliderRow>span{font-weight:700}
+  #coupocutApp .sliderControls{display:flex; align-items:center; gap:10px}
+  #coupocutApp input[type=range]{appearance:none; height:6px; border-radius:999px; background:linear-gradient(90deg,var(--brand),var(--brand2)); outline:none}
+  #coupocutApp input[type=range]::-webkit-slider-thumb{appearance:none; width:16px; height:16px; border-radius:50%; background:#ffffff; border:2px solid var(--brand); box-shadow:0 4px 10px rgba(15,23,42,0.2); cursor:pointer}
+  #coupocutApp input[type=range]::-moz-range-thumb{width:16px; height:16px; border-radius:50%; background:#ffffff; border:2px solid var(--brand); box-shadow:0 4px 10px rgba(15,23,42,0.2); cursor:pointer}
+  #coupocutApp .cc-stage{padding:18px; background:var(--stageBg); border-radius:var(--radius); flex:1; display:flex}
+  #coupocutApp .cc-stage-inner{position:relative; flex:1; border-radius:24px; background-image:linear-gradient(45deg,#e5e7eb 25%,transparent 25%,transparent 75%,#e5e7eb 75%,#e5e7eb),linear-gradient(45deg,#e5e7eb 25%,transparent 25%,transparent 75%,#e5e7eb 75%,#e5e7eb); background-size:24px 24px; background-position:0 0,12px 12px; display:flex; align-items:center; justify-content:center; overflow:hidden; box-shadow:0 20px 45px rgba(15,23,42,0.25)}
+  #coupocutApp .cc-stage-inner canvas{display:block; max-width:100%; height:auto; transform-origin:center center}
+  #coupocutApp .cc-stageHint{position:absolute; inset:auto 14px 14px 14px; text-align:center; font-size:12px; color:var(--muted); pointer-events:none}
+  #coupocutApp .cc-editorWrap{margin-top:8px; border-radius:16px; border:1px solid var(--border); background:var(--stageBg); padding:10px; display:flex; align-items:center; justify-content:center; min-height:220px; position:relative}
+  #coupocutApp #cc-logoEditorCanvas{display:block; max-width:100%; height:auto; background:conic-gradient(from 0deg,#f3f4f6 0 25%,#e5e7eb 25% 50%,#f3f4f6 50% 75%,#e5e7eb 75% 100%); background-size:24px 24px; border-radius:12px}
+  #coupocutApp .cc-brush-preview{position:absolute; pointer-events:none; width:0; height:0; border-radius:50%; border:2px solid rgba(251,146,60,0.85); box-shadow:0 10px 24px rgba(15,23,42,0.25)}
+  #coupocutApp .cc-preview-head{padding:16px 18px 10px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:12px}
+  #coupocutApp .cc-toolbar-row{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+  #coupocutApp .cc-toolbar-row .muted{color:var(--muted)}
+  #coupocutApp .cc-foot-note{padding:10px 18px 16px; font-size:12px; color:var(--muted); border-top:1px solid var(--border)}
+  #coupocutApp .cc-preview-panel{position:sticky; top:calc(var(--headerH) + 12px); height:calc(100vh - var(--headerH) - 24px)}
+  #coupocutApp .cc-fab{position:fixed; right:24px; border-radius:50%; width:64px; height:64px; border:1px solid var(--border); background:var(--card); box-shadow:var(--shadow); display:grid; place-items:center; cursor:pointer; z-index:80; overflow:hidden; transition:transform .2s ease, box-shadow .2s ease}
+  #coupocutApp .cc-fab:hover{transform:translateY(-2px); box-shadow:0 24px 46px rgba(15,23,42,0.22)}
+  #coupocutApp .cc-fab img{width:36px; height:36px; object-fit:contain; border-radius:50%}
+  #coupocutApp #returnToFrozone{bottom:28px}
+  #coupocutApp .cc-magic-note{font-size:12px; color:var(--muted); margin-top:6px; line-height:1.4}
 </style>
 </head>
 <body>
+  <div id="frozoneApp" class="appView active" aria-hidden="false">
   <div id="introScreen" class="introScreen show" aria-hidden="true">
     <div class="introInner">
       <div class="introLogoWrap"><img src="https://i.postimg.cc/QMTckmdX/unnamed-1-1.png" alt=""></div>
@@ -1542,6 +1625,12 @@
   </div>
 
   <div class="globalDropOverlay" id="globalDropOverlay">Drop images anywhere to upload</div>
+  <button id="openCoupoCut" type="button" class="floatingFab fab-coupocut" aria-label="Open CoupoCut">
+    <span class="fabIconWrap" aria-hidden="true">
+      <img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="CoupoCut">
+    </span>
+    <span class="fab-label">Open CoupoCut</span>
+  </button>
   <button id="downloadApp" type="button" class="floatingFab fab-download" aria-label="Download Web App">
     <i data-lucide="download" class="btn-ico" aria-hidden="true"></i>
     <span class="fab-label">Download Web App</span>
@@ -1833,7 +1922,182 @@
 ]
   </script>
 
+  </div>
+
+  <div id="coupocutApp" class="appView" aria-hidden="true" data-theme="light">
+    <header class="cc-header">
+      <div class="coupoWrap inner">
+        <div class="cc-brand">
+          <div class="cc-logoBadge"><img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="CoupoCut logo"></div>
+          <div class="cc-title">
+            <h1>CoupoCut</h1>
+            <div class="sub">Punch partner logos into clean coupon cutouts</div>
+          </div>
+        </div>
+        <div class="cc-right-head">
+          <div class="team">P+ LiveOps Tools</div>
+          <div class="by">built on top of Frozone flow</div>
+          <button class="btn small ghost" type="button" id="cc-themeToggle">Toggle theme</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="coupoWrap">
+      <section class="panel sticky">
+        <div class="pad">
+          <div class="kv" aria-label="Export status">
+            <div class="kv-item"><span class="k">Output</span><span class="v">PNG 800 x 800</span></div>
+            <span class="kv-sep">•</span>
+            <div class="kv-item"><span class="k">Circle</span><span class="v" id="cc-circleMeta">padded white</span></div>
+          </div>
+        </div>
+
+        <div class="scroll">
+          <div class="section">
+            <div class="section-title"><span class="badge">1</span> Pick logo</div>
+            <div class="uploadGrid">
+              <div class="uploadCell">
+                <label class="btn primary" title="Upload logo">
+                  <i data-lucide="upload" class="btn-ico" aria-hidden="true"></i>
+                  <span class="btn-text">Upload logo</span>
+                  <input id="cc-logoFile" type="file" accept="image/*" style="display:none" />
+                </label>
+              </div>
+            </div>
+            <div class="libWrap">
+              <div class="libHeader">
+                <input id="cc-partnerSearch" type="search" placeholder="Search partner library" />
+              </div>
+              <div id="cc-partnerGallery" class="libScroller" aria-label="Partner logo library"></div>
+            </div>
+            <p class="muted" style="font-size:12px; margin-top:8px">CoupoCut shares the Frozone logo library stored in this browser.</p>
+          </div>
+
+          <div class="section">
+            <div class="section-title"><span class="badge">2</span> Circle layout</div>
+            <div class="stack">
+              <div class="sliderRow">
+                <span>Logo scale</span>
+                <div class="sliderControls">
+                  <input id="cc-logoScale" type="range" min="0.3" max="1.3" step="0.02" value="0.6" />
+                  <span class="chipInfo" id="cc-logoScaleVal">0.60x</span>
+                </div>
+              </div>
+              <div class="sliderRow">
+                <span>Offset X</span>
+                <div class="sliderControls">
+                  <input id="cc-logoOffsetX" type="range" min="-100" max="100" step="1" value="0" />
+                  <span class="chipInfo" id="cc-logoOffsetXVal">0</span>
+                </div>
+              </div>
+              <div class="sliderRow">
+                <span>Offset Y</span>
+                <div class="sliderControls">
+                  <input id="cc-logoOffsetY" type="range" min="-100" max="100" step="1" value="0" />
+                  <span class="chipInfo" id="cc-logoOffsetYVal">0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-title"><span class="badge">3</span> Logo clean up</div>
+            <div class="seg" id="cc-toolToggle" role="group" aria-label="Cleanup tool">
+              <button type="button" data-tool="brush" class="active" aria-pressed="true">Cleaning brush</button>
+              <button type="button" data-tool="magic" aria-pressed="false">Magic eraser</button>
+            </div>
+            <p class="muted" style="font-size:12px; margin:10px 0 6px">Paint directly on the logo preview to punch holes or tap a color to remove it.</p>
+            <div class="cc-editorWrap">
+              <canvas id="cc-logoEditorCanvas"></canvas>
+              <div id="cc-brushPreview" class="cc-brush-preview" aria-hidden="true"></div>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <div class="sliderRow" style="flex:1">
+                <span>Brush size</span>
+                <div class="sliderControls">
+                  <input id="cc-brushSize" type="range" min="4" max="80" step="1" value="30" />
+                  <span class="chipInfo" id="cc-brushSizeVal">30 px</span>
+                </div>
+              </div>
+            </div>
+            <div class="cc-magic-note">Magic eraser removes connected pixels of the tapped color. Save your cleaned logo so it’s ready next time.</div>
+            <div class="row" style="margin-top:8px">
+              <button class="btn small ghost" type="button" id="cc-resetLogo">Reset logo</button>
+              <button class="btn small ghost" type="button" id="cc-clearLogo">Clear all</button>
+              <button class="btn small" type="button" id="cc-saveCleaned" disabled>Save cleaned to library</button>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-title"><span class="badge">4</span> Export cutout</div>
+            <div class="row" style="justify-content:space-between; gap:12px">
+              <button class="btn primary" type="button" id="cc-exportBtn" disabled>Export PNG</button>
+              <div class="chipInfo" id="cc-lastExport">No export yet</div>
+            </div>
+            <p class="muted" style="font-size:12px; margin-top:6px">Output is a square PNG with a clean circular punch for coupons.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel cc-preview-panel">
+        <div class="cc-preview-head">
+          <div class="section-title" style="margin:0"><span>Preview</span></div>
+          <div class="cc-toolbar-row">
+            <span class="muted" style="font-size:12px">Preview zoom</span>
+            <span class="muted" style="font-size:12px"><span id="cc-zoomLabel">1.00</span>x</span>
+            <input id="cc-previewZoom" type="range" min="0.5" max="2" step="0.05" value="1" style="width:160px" />
+          </div>
+        </div>
+        <div class="cc-stage">
+          <div class="cc-stage-inner">
+            <canvas id="cc-previewCanvas"></canvas>
+            <div class="cc-stageHint" id="cc-stageHint">Upload or pick a partner logo to start.</div>
+          </div>
+        </div>
+        <div class="cc-foot-note">Saved cleanups remain attached to the partner entry in your shared library.</div>
+      </section>
+    </main>
+
+    <button id="returnToFrozone" type="button" class="cc-fab" aria-label="Return to Frozone">
+      <img src="https://i.postimg.cc/QMTckmdX/unnamed-1-1.png" alt="Return to Frozone">
+    </button>
+  </div>
+
 <script>
+  const appViews = {
+    frozone: document.getElementById('frozoneApp'),
+    coupocut: document.getElementById('coupocutApp')
+  };
+  const appViewState = { active:'frozone' };
+  function setActiveApp(next){
+    const target = next === 'coupocut' ? 'coupocut' : 'frozone';
+    appViewState.active = target;
+    document.body.dataset.activeApp = target;
+    Object.entries(appViews).forEach(([key, el])=>{
+      if(!el) return;
+      if(key === target){
+        el.classList.add('active');
+        el.removeAttribute('aria-hidden');
+      } else {
+        el.classList.remove('active');
+        el.setAttribute('aria-hidden','true');
+      }
+    });
+  }
+  setActiveApp('frozone');
+  document.getElementById('openCoupoCut')?.addEventListener('click', ()=>setActiveApp('coupocut'));
+  document.getElementById('returnToFrozone')?.addEventListener('click', ()=>setActiveApp('frozone'));
+
+  const normalizePartnerLibrary = (list)=> (Array.isArray(list) ? list : [])
+    .map(entry => ({
+      name:String(entry?.name || '').trim(),
+      url:String(entry?.url || '').trim(),
+      cleaned: typeof entry?.cleaned === 'string' ? entry.cleaned : '',
+      cleanedUpdatedAt: entry?.cleanedUpdatedAt || entry?.cleanedAt || ''
+    }))
+    .filter(entry => entry.name && entry.url);
+  window.frozonePartnerHelpers = { normalize: normalizePartnerLibrary };
+
 (async function(){
   const FORMATS = {
     HORIZ:   { key:'HORIZ',  label:'Horizontal',         sub:'Native Story / MPU / Video / Coupon Exp', icon:'H', wPreview:335, hPreview:203, wExport:1080, hExport:635 },
@@ -1863,10 +2127,18 @@
       if(Array.isArray(parsed) && parsed.length){ partnerLibrary = parsed; }
     }
   }catch(err){ console.warn('Unable to read partner storage', err); }
-  if(!Array.isArray(partnerLibrary)) partnerLibrary = [];
-  partnerLibrary = partnerLibrary
-    .map(entry => ({ name: String(entry?.name || '').trim(), url: String(entry?.url || '').trim() }))
-    .filter(entry => entry.name && entry.url);
+  partnerLibrary = normalizePartnerLibrary(partnerLibrary);
+
+  window.addEventListener('storage', (e)=>{
+    if(e.key !== PARTNER_STORAGE_KEY || !e.newValue) return;
+    try{
+      const parsed = JSON.parse(e.newValue);
+      partnerLibrary = normalizePartnerLibrary(parsed);
+      persistPartnerLibrary({ skipEvent:true, source:'storage' });
+      buildAllGalleries();
+      persistLogoState();
+    }catch(err){ console.warn('Unable to sync partner logos from storage', err); }
+  });
 
   const els = {
     header: document.getElementById('appHeader'),
@@ -4303,12 +4575,36 @@
     });
   }
 
-  function persistPartnerLibrary(){
+  function persistPartnerLibrary(options = {}){
     if(partnerDataScript){
       partnerDataScript.textContent = JSON.stringify(partnerLibrary, null, 2);
     }
     try{ localStorage.setItem(PARTNER_STORAGE_KEY, JSON.stringify(partnerLibrary)); }catch(err){ console.warn('Failed to store partner logos', err); }
+    if(!options.skipEvent){
+      window.dispatchEvent(new CustomEvent('frozone-partners-updated', { detail:{ partners: partnerLibrary, source: options.source || 'frozone' } }));
+    }
   }
+
+  window.frozonePartnerSync = {
+    getLibrary: ()=> [...partnerLibrary],
+    replaceLibrary: (list, options = {})=>{
+      partnerLibrary = normalizePartnerLibrary(list);
+      persistPartnerLibrary({ source: options.source || 'external', skipEvent: options.skipEvent });
+      buildAllGalleries();
+      persistLogoState();
+    },
+    saveCleaned: (name, cleanedData)=>{
+      if(!name || !cleanedData) return;
+      const match = partnerLibrary.find(p=>p.name === name);
+      if(match){
+        match.cleaned = cleanedData;
+        match.cleanedUpdatedAt = new Date().toISOString();
+        persistPartnerLibrary({ source:'frozone' });
+        buildAllGalleries();
+        persistLogoState();
+      }
+    }
+  };
 
   function updatePartnerPreview(img, url){
     if(!img) return;
@@ -5469,8 +5765,10 @@
       return;
     }
     partnerLibrary.forEach(p=>{
+      const displayUrl = p.cleaned || p.url;
+      const nameLabel = p.cleaned ? `${p.name} (cleaned)` : p.name;
       const it = document.createElement('button'); it.type='button'; it.className='libItem'; it.dataset.name=p.name.toLowerCase();
-      it.innerHTML = `<img alt="${p.name}" src="${p.url}"><div class=\"cap\">${p.name}</div>`;
+      it.innerHTML = `<img alt="${p.name}" src="${displayUrl}"><div class=\"cap\">${nameLabel}</div>`;
       const isActive = !!(store && store.source==='partner' && store.chosen === p.name);
       if(isActive) it.classList.add('active');
       it.addEventListener('click', async ()=>{
@@ -5534,11 +5832,11 @@
   els.removeVertLogo?.addEventListener('click', ()=>{ state.vertLogo = {src:null,w:0,h:0,sizeKey:state.vertLogo.sizeKey||'M', tone:'orig', source:'none', chosen:""}; els.vertLogoPrev.style.display='none'; render(); updateControls(); });
 
   function buildAllGalleries(){
-    buildGallery(els.logo1Gallery, p=>loadLogoURL(p.url, els.logo1Prev, state.frost.logo1, 'logo1', p.name), ()=>state.frost.logo1);
-    buildGallery(els.logo2Gallery, p=>loadLogoURL(p.url, els.logo2Prev, state.frost.logo2, 'logo2', p.name), ()=>state.frost.logo2);
-    buildGallery(els.sqLogoGallery, p=>loadLogoURL(p.url, els.sqLogoPrev, state.squareLogo, 'squareLogo', p.name), ()=>state.squareLogo);
-    buildGallery(els.vertLogoGallery, p=>loadLogoURL(p.url, els.vertLogoPrev, state.vertLogo, 'vertLogo', p.name), ()=>state.vertLogo);
-    buildGallery(els.bannerLogoGallery, p=>loadLogoURL(p.url, els.bannerLogoPrev, state.bannerLogo, 'bannerLogo', p.name), ()=>state.bannerLogo);
+    buildGallery(els.logo1Gallery, p=>loadLogoURL(p.cleaned || p.url, els.logo1Prev, state.frost.logo1, 'logo1', p.name), ()=>state.frost.logo1);
+    buildGallery(els.logo2Gallery, p=>loadLogoURL(p.cleaned || p.url, els.logo2Prev, state.frost.logo2, 'logo2', p.name), ()=>state.frost.logo2);
+    buildGallery(els.sqLogoGallery, p=>loadLogoURL(p.cleaned || p.url, els.sqLogoPrev, state.squareLogo, 'squareLogo', p.name), ()=>state.squareLogo);
+    buildGallery(els.vertLogoGallery, p=>loadLogoURL(p.cleaned || p.url, els.vertLogoPrev, state.vertLogo, 'vertLogo', p.name), ()=>state.vertLogo);
+    buildGallery(els.bannerLogoGallery, p=>loadLogoURL(p.cleaned || p.url, els.bannerLogoPrev, state.bannerLogo, 'bannerLogo', p.name), ()=>state.bannerLogo);
     if(els.logo1Search?.value) filterGallery(els.logo1Gallery, els.logo1Search.value);
     if(els.logo2Search?.value) filterGallery(els.logo2Gallery, els.logo2Search.value);
     if(els.sqLogoSearch?.value) filterGallery(els.sqLogoGallery, els.sqLogoSearch.value);
@@ -5610,10 +5908,11 @@
         hasError = true;
         return;
       }
-      next.push({ name, url });
+      const prev = partnerLibrary.find(p=>p.name === name);
+      next.push({ name, url, cleaned: prev?.cleaned || '', cleanedUpdatedAt: prev?.cleanedUpdatedAt || '' });
     });
     if(hasError){ return; }
-    partnerLibrary = next;
+    partnerLibrary = normalizePartnerLibrary(next);
     persistPartnerLibrary();
     buildAllGalleries();
     persistLogoState();
@@ -6107,6 +6406,7 @@
     }
   });
   window.addEventListener('keydown', (e)=>{
+    if(document.body.dataset.activeApp === 'coupocut') return;
     if(e.defaultPrevented) return;
     if(e.altKey || e.ctrlKey || e.metaKey) return;
     const active = document.activeElement;
@@ -6180,6 +6480,471 @@
   renderCarousel();
   handleUnsplashSearch({ reset:true });
 })();
+
+  // CoupoCut addon
+  (function(){
+    const app = document.getElementById('coupocutApp');
+    if(!app) return;
+    const EXPORT_SIZE = 800;
+    const PARTNER_STORAGE_KEY = 'frozone-partners';
+    const normalize = window.frozonePartnerHelpers?.normalize || (list => Array.isArray(list) ? list : []);
+    const els = {
+      previewCanvas: document.getElementById('cc-previewCanvas'),
+      editorCanvas: document.getElementById('cc-logoEditorCanvas'),
+      stageHint: document.getElementById('cc-stageHint'),
+      logoFile: document.getElementById('cc-logoFile'),
+      partnerSearch: document.getElementById('cc-partnerSearch'),
+      partnerGallery: document.getElementById('cc-partnerGallery'),
+      logoScale: document.getElementById('cc-logoScale'),
+      logoScaleVal: document.getElementById('cc-logoScaleVal'),
+      logoOffsetX: document.getElementById('cc-logoOffsetX'),
+      logoOffsetXVal: document.getElementById('cc-logoOffsetXVal'),
+      logoOffsetY: document.getElementById('cc-logoOffsetY'),
+      logoOffsetYVal: document.getElementById('cc-logoOffsetYVal'),
+      brushSize: document.getElementById('cc-brushSize'),
+      brushSizeVal: document.getElementById('cc-brushSizeVal'),
+      resetLogo: document.getElementById('cc-resetLogo'),
+      clearLogo: document.getElementById('cc-clearLogo'),
+      exportBtn: document.getElementById('cc-exportBtn'),
+      lastExport: document.getElementById('cc-lastExport'),
+      previewZoom: document.getElementById('cc-previewZoom'),
+      zoomLabel: document.getElementById('cc-zoomLabel'),
+      toolToggle: document.getElementById('cc-toolToggle'),
+      brushPreview: document.getElementById('cc-brushPreview'),
+      saveCleaned: document.getElementById('cc-saveCleaned'),
+      circleMeta: document.getElementById('cc-circleMeta'),
+      themeToggle: document.getElementById('cc-themeToggle')
+    };
+
+    const previewCtx = els.previewCanvas.getContext('2d');
+    const editCtx = els.editorCanvas.getContext('2d');
+
+    els.previewCanvas.width = EXPORT_SIZE;
+    els.previewCanvas.height = EXPORT_SIZE;
+    els.editorCanvas.width = 400;
+    els.editorCanvas.height = 200;
+
+    const state = {
+      logoImageOriginal: null,
+      hasLogo:false,
+      brushSize:30,
+      circleRadius:EXPORT_SIZE * 0.42,
+      logoScale:0.6,
+      offsetX:0,
+      offsetY:0,
+      previewZoom:1,
+      tool:'brush',
+      activePartnerName:'',
+      activePartnerUrl:''
+    };
+
+    const brushPreviewState = { x:null, y:null };
+
+    const readPartnerDataFallback = ()=>{
+      try{
+        const dataEl = document.getElementById('partnerData');
+        if(dataEl?.textContent){ return JSON.parse(dataEl.textContent); }
+      }catch(err){ return []; }
+      return [];
+    };
+    const readStoredPartners = ()=>{
+      try{
+        const stored = localStorage.getItem(PARTNER_STORAGE_KEY);
+        if(stored){ return JSON.parse(stored); }
+      }catch(err){ return []; }
+      return [];
+    };
+
+    let partnerLibrary = normalize((window.frozonePartnerSync?.getLibrary?.()) || readStoredPartners() || readPartnerDataFallback());
+
+    function persistPartners(next){
+      partnerLibrary = normalize(next ?? partnerLibrary);
+      if(window.frozonePartnerSync?.replaceLibrary){
+        window.frozonePartnerSync.replaceLibrary(partnerLibrary, { source:'coupocut' });
+      } else {
+        try{ localStorage.setItem(PARTNER_STORAGE_KEY, JSON.stringify(partnerLibrary)); }catch(err){ console.warn('Unable to persist CoupoCut logos', err); }
+        window.dispatchEvent(new CustomEvent('frozone-partners-updated', { detail:{ partners: partnerLibrary, source:'coupocut' } }));
+      }
+      buildPartnerGallery(els.partnerSearch?.value || '');
+    }
+
+    window.addEventListener('frozone-partners-updated', (ev)=>{
+      if(ev.detail?.source === 'coupocut') return;
+      if(ev.detail?.partners){
+        partnerLibrary = normalize(ev.detail.partners);
+        buildPartnerGallery(els.partnerSearch?.value || '');
+      }
+    });
+
+    function updateSliderLabels(){
+      if(els.logoScaleVal) els.logoScaleVal.textContent = state.logoScale.toFixed(2) + 'x';
+      if(els.logoOffsetXVal) els.logoOffsetXVal.textContent = state.offsetX.toFixed(0);
+      if(els.logoOffsetYVal) els.logoOffsetYVal.textContent = state.offsetY.toFixed(0);
+      if(els.brushSizeVal) els.brushSizeVal.textContent = state.brushSize.toFixed(0) + ' px';
+    }
+
+    function updateSaveButton(){
+      if(!els.saveCleaned) return;
+      els.saveCleaned.disabled = !(state.activePartnerName && state.hasLogo);
+    }
+
+    function applyZoom(){
+      els.previewCanvas.style.transform = 'scale(' + state.previewZoom.toFixed(2) + ')';
+    }
+
+    function renderPreview(){
+      const c = els.previewCanvas;
+      const ctx = previewCtx;
+      const w = c.width;
+      const h = c.height;
+
+      ctx.clearRect(0,0,w,h);
+      if(!state.hasLogo){
+        return;
+      }
+
+      const r = state.circleRadius;
+      ctx.save();
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(w/2, h/2, r, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+
+      const maskCanvas = els.editorCanvas;
+      const maskW = maskCanvas.width;
+      const maskH = maskCanvas.height;
+      if(maskW > 0 && maskH > 0){
+        const maxDim = Math.max(maskW, maskH) || 1;
+        const scale = state.logoScale * (2 * r) / maxDim;
+        const drawW = maskW * scale;
+        const drawH = maskH * scale;
+
+        const dxNorm = state.offsetX / 100;
+        const dyNorm = state.offsetY / 100;
+        const dx = dxNorm * r * 0.8;
+        const dy = dyNorm * r * 0.8;
+
+        const cx = w / 2 + dx;
+        const cy = h / 2 + dy;
+
+        ctx.save();
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.drawImage(maskCanvas, cx - drawW / 2, cy - drawH / 2, drawW, drawH);
+        ctx.restore();
+      }
+    }
+
+    function getEditorPos(evt){
+      const rect = els.editorCanvas.getBoundingClientRect();
+      const clientX = evt.clientX ?? (evt.touches?.[0]?.clientX);
+      const clientY = evt.clientY ?? (evt.touches?.[0]?.clientY);
+      const x = (clientX - rect.left) * (els.editorCanvas.width / rect.width);
+      const y = (clientY - rect.top) * (els.editorCanvas.height / rect.height);
+      return { x, y, rect, clientX, clientY };
+    }
+
+    function updateBrushPreview(evt){
+      if(!els.brushPreview || !evt){ return; }
+      const pos = getEditorPos(evt);
+      const rect = pos.rect;
+      const px = pos.clientX - rect.left;
+      const py = pos.clientY - rect.top;
+      if(px < 0 || py < 0 || px > rect.width || py > rect.height){
+        hideBrushPreview();
+        return;
+      }
+      const scale = rect.width / (els.editorCanvas.width || 1);
+      const visualSize = state.brushSize * scale;
+      brushPreviewState.x = px;
+      brushPreviewState.y = py;
+      els.brushPreview.style.width = `${visualSize * 2}px`;
+      els.brushPreview.style.height = `${visualSize * 2}px`;
+      els.brushPreview.style.transform = `translate(${px - visualSize}px, ${py - visualSize}px)`;
+      els.brushPreview.style.opacity = state.hasLogo ? '1' : '0';
+    }
+
+    function hideBrushPreview(){
+      if(!els.brushPreview) return;
+      els.brushPreview.style.opacity = '0';
+      brushPreviewState.x = brushPreviewState.y = null;
+    }
+
+    function eraseAt(evt){
+      if(!state.hasLogo) return;
+      const pos = getEditorPos(evt);
+      editCtx.save();
+      editCtx.globalCompositeOperation = 'destination-out';
+      editCtx.beginPath();
+      editCtx.arc(pos.x, pos.y, state.brushSize, 0, Math.PI * 2);
+      editCtx.fill();
+      editCtx.restore();
+      renderPreview();
+    }
+
+    function magicEraseAt(evt){
+      if(!state.hasLogo) return;
+      const pos = getEditorPos(evt);
+      const x = Math.round(pos.x);
+      const y = Math.round(pos.y);
+      const w = els.editorCanvas.width;
+      const h = els.editorCanvas.height;
+      if(x < 0 || y < 0 || x >= w || y >= h) return;
+      const imageData = editCtx.getImageData(0,0,w,h);
+      const data = imageData.data;
+      const idx = (y * w + x) * 4;
+      const target = [data[idx], data[idx+1], data[idx+2], data[idx+3]];
+      const tol = 18;
+      const visited = new Uint8Array(w * h);
+      const stack = [x, y];
+      while(stack.length){
+        const cy = stack.pop();
+        const cx = stack.pop();
+        if(cx < 0 || cy < 0 || cx >= w || cy >= h) continue;
+        const flat = cy * w + cx;
+        if(visited[flat]) continue;
+        visited[flat] = 1;
+        const di = flat * 4;
+        const alpha = data[di+3];
+        if(alpha === 0) continue;
+        const dr = Math.abs(data[di] - target[0]);
+        const dg = Math.abs(data[di+1] - target[1]);
+        const db = Math.abs(data[di+2] - target[2]);
+        const da = Math.abs(alpha - target[3]);
+        if(dr <= tol && dg <= tol && db <= tol && da <= tol){
+          data[di+3] = 0;
+          stack.push(cx+1, cy, cx-1, cy, cx, cy+1, cx, cy-1);
+        }
+      }
+      editCtx.putImageData(imageData, 0, 0);
+      renderPreview();
+    }
+
+    function setEditorDisplaySize(img){
+      const w = img.width || img.naturalWidth || 1;
+      const h = img.height || img.naturalHeight || 1;
+      const maxSize = 360;
+      const scale = Math.min(maxSize / w, maxSize / h, 1);
+      els.editorCanvas.style.width = `${w * scale}px`;
+      els.editorCanvas.style.height = `${h * scale}px`;
+    }
+
+    function initLogoFromImage(img, meta = {}){
+      state.logoImageOriginal = img;
+      state.activePartnerName = meta.name || state.activePartnerName || '';
+      state.activePartnerUrl = meta.url || state.activePartnerUrl || '';
+      const w = img.width || img.naturalWidth || 1;
+      const h = img.height || img.naturalHeight || 1;
+      els.editorCanvas.width = w;
+      els.editorCanvas.height = h;
+      editCtx.setTransform(1,0,0,1,0,0);
+      editCtx.clearRect(0,0,w,h);
+      editCtx.drawImage(img,0,0);
+      setEditorDisplaySize(img);
+      state.logoScale = 0.6;
+      state.offsetX = 0;
+      state.offsetY = 0;
+      state.hasLogo = true;
+      if(els.exportBtn) els.exportBtn.disabled = false;
+      if(els.stageHint) els.stageHint.textContent = '';
+      updateSliderLabels();
+      updateSaveButton();
+      renderPreview();
+    }
+
+    function buildPartnerGallery(filter){
+      const term = (filter || '').toLowerCase();
+      const scroller = els.partnerGallery;
+      if(!scroller) return;
+      scroller.innerHTML = '';
+      const list = partnerLibrary.filter(p => p.name.toLowerCase().includes(term));
+      if(!list.length){
+        const msg = document.createElement('div');
+        msg.className = 'muted';
+        msg.style.padding = '6px';
+        msg.style.fontSize = '12px';
+        msg.textContent = term ? 'No matches in partner library' : 'Partner library is empty in this browser.';
+        scroller.appendChild(msg);
+        return;
+      }
+      list.forEach(entry => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'libItem';
+        btn.dataset.name = entry.name.toLowerCase();
+        const thumb = document.createElement('img');
+        thumb.src = entry.cleaned || entry.url;
+        thumb.alt = entry.name;
+        const cap = document.createElement('div');
+        cap.className = 'cap';
+        cap.textContent = entry.cleaned ? `${entry.name} (cleaned)` : entry.name;
+        btn.append(thumb, cap);
+        const isActive = state.activePartnerName && state.activePartnerName === entry.name;
+        if(isActive) btn.classList.add('active');
+        btn.addEventListener('click', ()=>{
+          scroller.querySelectorAll('.libItem').forEach(i=>i.classList.remove('active'));
+          btn.classList.add('active');
+          loadPartnerLogo(entry);
+        });
+        scroller.appendChild(btn);
+      });
+    }
+
+    function loadImageCORS(src){
+      return new Promise((resolve, reject)=>{
+        if(!src) return reject(new Error('No source'));
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = ()=>resolve(img);
+        img.onerror = (e)=>reject(e);
+        img.src = src;
+      });
+    }
+
+    async function loadPartnerLogo(entry){
+      try{
+        const img = await loadImageCORS(entry.cleaned || entry.url);
+        initLogoFromImage(img, { name: entry.name, url: entry.url });
+      }catch(err){
+        alert('This logo host blocks pixel access. Please download the logo and upload it as a file.');
+      }
+    }
+
+    // File upload
+    els.logoFile?.addEventListener('change', (e)=>{
+      const file = e.target.files && e.target.files[0];
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = ()=>{
+        const img = new Image();
+        img.onload = ()=>{ state.activePartnerName=''; state.activePartnerUrl=''; initLogoFromImage(img); };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Sliders
+    els.logoScale?.addEventListener('input', (e)=>{ state.logoScale = parseFloat(e.target.value) || 0.6; updateSliderLabels(); renderPreview(); });
+    els.logoOffsetX?.addEventListener('input', (e)=>{ state.offsetX = parseFloat(e.target.value) || 0; updateSliderLabels(); renderPreview(); });
+    els.logoOffsetY?.addEventListener('input', (e)=>{ state.offsetY = parseFloat(e.target.value) || 0; updateSliderLabels(); renderPreview(); });
+    els.brushSize?.addEventListener('input', (e)=>{
+      state.brushSize = parseFloat(e.target.value) || 10;
+      updateSliderLabels();
+      if(brushPreviewState.x !== null && brushPreviewState.y !== null){
+        updateBrushPreview({ clientX: brushPreviewState.x + els.editorCanvas.getBoundingClientRect().left, clientY: brushPreviewState.y + els.editorCanvas.getBoundingClientRect().top, touches:null, });
+      }
+    });
+
+    // Tool toggle
+    els.toolToggle?.querySelectorAll('button').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const tool = btn.dataset.tool === 'magic' ? 'magic' : 'brush';
+        state.tool = tool;
+        els.toolToggle.querySelectorAll('button').forEach(b=>{
+          const isActive = b === btn;
+          b.classList.toggle('active', isActive);
+          b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+      });
+    });
+
+    let isDrawing = false;
+    els.editorCanvas?.addEventListener('pointerdown', (e)=>{
+      if(!state.hasLogo) return;
+      if(e.button !== undefined && e.button !== 0) return;
+      if(state.tool === 'magic'){
+        magicEraseAt(e);
+        updateSaveButton();
+        return;
+      }
+      isDrawing = true;
+      eraseAt(e);
+      updateBrushPreview(e);
+    });
+    els.editorCanvas?.addEventListener('pointermove', (e)=>{
+      if(state.hasLogo) updateBrushPreview(e);
+      if(isDrawing && state.tool === 'brush'){ eraseAt(e); }
+    });
+    els.editorCanvas?.addEventListener('pointerup', ()=>{ isDrawing = false; });
+    els.editorCanvas?.addEventListener('pointercancel', ()=>{ isDrawing = false; hideBrushPreview(); });
+    els.editorCanvas?.addEventListener('pointerleave', hideBrushPreview);
+
+    // Reset and clear
+    els.resetLogo?.addEventListener('click', ()=>{ if(state.logoImageOriginal){ initLogoFromImage(state.logoImageOriginal, { name: state.activePartnerName, url: state.activePartnerUrl }); } });
+    els.clearLogo?.addEventListener('click', ()=>{ if(!state.hasLogo) return; editCtx.clearRect(0,0,els.editorCanvas.width, els.editorCanvas.height); renderPreview(); });
+
+    function bytesFromDataURL(dataURL){
+      try{ return atob(dataURL.split(',')[1]).length; }catch(e){ return 0; }
+    }
+
+    // Export
+    els.exportBtn?.addEventListener('click', ()=>{
+      if(!state.hasLogo) return;
+      renderPreview();
+      const dataURL = els.previewCanvas.toDataURL('image/png');
+      const kb = bytesFromDataURL(dataURL) / 1024;
+      const now = new Date();
+      const stamp = now.toISOString().slice(0,19).replace(/[-:T]/g,'');
+      const a = document.createElement('a');
+      a.href = dataURL;
+      a.download = `coupocut-${stamp}.png`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      if(els.lastExport) els.lastExport.textContent = `${EXPORT_SIZE} x ${EXPORT_SIZE} px · ${kb.toFixed(1)} KB`;
+    });
+
+    // Zoom
+    els.previewZoom?.addEventListener('input', (e)=>{
+      state.previewZoom = parseFloat(e.target.value) || 1;
+      if(els.zoomLabel) els.zoomLabel.textContent = state.previewZoom.toFixed(2);
+      applyZoom();
+    });
+
+    // Theme toggle
+    const COUPO_THEME_KEY = 'coupocut-theme';
+    function applyTheme(theme){
+      const mode = theme === 'dark' ? 'dark' : 'light';
+      app.setAttribute('data-theme', mode);
+      if(els.themeToggle){ els.themeToggle.textContent = mode === 'dark' ? 'Light mode' : 'Night mode'; }
+      try{ localStorage.setItem(COUPO_THEME_KEY, mode); }catch(err){}
+    }
+    (function initTheme(){
+      let stored = null;
+      try{ stored = localStorage.getItem(COUPO_THEME_KEY); }catch(err){}
+      applyTheme(stored || 'light');
+    })();
+    els.themeToggle?.addEventListener('click', ()=>{
+      const next = app.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+    });
+
+    // Partner gallery search
+    els.partnerSearch?.addEventListener('input', (e)=>{ buildPartnerGallery(e.target.value); });
+
+    // Save cleaned
+    els.saveCleaned?.addEventListener('click', ()=>{
+      if(!state.activePartnerName || !state.hasLogo) return;
+      const cleanedData = els.editorCanvas.toDataURL('image/png');
+      const existing = partnerLibrary.find(p=>p.name === state.activePartnerName);
+      if(existing){
+        existing.cleaned = cleanedData;
+        existing.cleanedUpdatedAt = new Date().toISOString();
+      } else {
+        partnerLibrary.push({ name: state.activePartnerName, url: state.activePartnerUrl || cleanedData, cleaned: cleanedData, cleanedUpdatedAt: new Date().toISOString() });
+      }
+      persistPartners(partnerLibrary);
+      updateSaveButton();
+    });
+
+    // Init
+    buildPartnerGallery('');
+    updateSliderLabels();
+    applyZoom();
+    renderPreview();
+    updateSaveButton();
+  })();
 </script>
 </body>
 </html>
