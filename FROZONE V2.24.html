@@ -72,7 +72,7 @@
   .btn.primary .btn-ico{stroke:#fff}
   .btn .btn-text{display:inline}
 
-  input[type="range"]{width:100%}
+  input[type="range"]{width:100%; accent-color:var(--brand)}
   input[type="search"], input[type="url"], select{width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:10px; background:var(--stageInner); color:var(--ink); font-size:14px; transition:background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease; box-shadow:0 6px 16px rgba(15,23,42,0.06); appearance:none}
 
   .seg{display:inline-flex; gap:6px; padding:4px; background:linear-gradient(135deg,#e0e7ff,#f5f8ff); border:1px solid rgba(99,102,241,0.2); border-radius:14px; box-shadow:inset 0 1px 0 rgba(255,255,255,0.6), 0 6px 14px rgba(14,165,233,0.08)}
@@ -547,11 +547,23 @@
 
   .frozone-shell{min-height:100vh; transition:opacity .4s ease, transform .4s ease, filter .4s ease;}
   body.show-coupocut{overflow:hidden;}
-  body.show-coupocut .frozone-shell{transform:translateY(-16px); opacity:0; filter:blur(6px); pointer-events:none;}
-  #coupoCutShell{display:block; opacity:0; visibility:hidden; pointer-events:none; transform:translate(80px,48px) scale(.98); transition:opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1), visibility .55s ease;}
-  body.show-coupocut #coupoCutShell{opacity:1; visibility:visible; pointer-events:auto; transform:translate(0,0);}
-  .coupocut-shell{position:fixed; inset:0; background: linear-gradient(180deg,var(--bg1),var(--bg2) 55%, var(--bg3)); overflow:hidden; z-index:70; padding:0; --brand:#f97316; --brand2:#fbbf24; --accent:#f59e0b; --bg1:#fffaf3; --bg2:#fff4e5; --bg3:#ffffff; --stageBg:#fff7ec; --stageInner:#ffffff; --headerBg:rgba(255,250,243,0.9); --muted:#7c5410;}
-  :root[data-theme="dark"] .coupocut-shell{--bg1:#1b1307; --bg2:#120c05; --bg3:#0d0804; --stageBg:#140a03; --stageInner:#0d0a06; --headerBg:rgba(16,12,9,0.92); --muted:#fcd34d; --brand:#fbbf24; --brand2:#fb923c; --accent:#f97316;}
+  body.show-coupocut .frozone-shell{transform:scale(0.99); opacity:0; filter:blur(10px); pointer-events:none;}
+  #coupoCutShell{display:block; opacity:0; visibility:hidden; pointer-events:none; transform:translateY(40px) scale(.98); transform-origin:50% 100%; filter:blur(6px); transition:opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1), visibility .55s ease, filter .5s ease;}
+  body.show-coupocut #coupoCutShell{opacity:1; visibility:visible; pointer-events:auto; transform:translateY(0) scale(1); filter:blur(0);}
+  .coupocut-shell{position:fixed; inset:0; background: linear-gradient(180deg,var(--bg1),var(--bg2) 55%, var(--bg3)); overflow:hidden; z-index:70; padding:0; --brand:#f97316; --brand2:#fbbf24; --accent:#f59e0b; --bg1:#fffaf3; --bg2:#fff4e5; --bg3:#ffffff; --stageBg:#fff7ec; --stageInner:#ffffff; --headerBg:rgba(255,250,243,0.9); --muted:#7c5410; --ink:#3b2a12; --card:#fff8ef; --border:#f4d5aa; --shadow:0 18px 42px rgba(140,71,14,0.16); --btn-bg:#fffaf4; --chip-bg:#fff3e1;}
+  :root[data-theme="dark"] .coupocut-shell{--bg1:#1b1307; --bg2:#120c05; --bg3:#0d0804; --stageBg:#120b05; --stageInner:#1a110a; --headerBg:rgba(20,13,9,0.9); --muted:#f6c977; --ink:#f8e8d3; --brand:#fbbf24; --brand2:#fb923c; --accent:#f97316; --card:#1b1208d9; --border:#3c2414; --shadow:0 22px 44px rgba(0,0,0,0.58); --btn-bg:#1c140c; --chip-bg:#25160c;}
+  body.show-coupocut{--card:#fff8ef; --border:#f4d5aa; --ink:#3b2a12; --muted:#9a6b1a; --btn-bg:#fffaf4;}
+  :root[data-theme="dark"] body.show-coupocut{--card:#1b1208d9; --border:#3c2414; --ink:#f8e8d3; --muted:#f6c977; --btn-bg:#1c140c;}
+  body.show-coupocut .modal{background:rgba(12,8,4,0.68);}
+  body.show-coupocut .modal-card{background:var(--card); border-color:var(--border);}
+  body.show-coupocut .modalHeader{background:linear-gradient(135deg,rgba(52,36,24,0.9),rgba(249,115,22,0.24)); border-bottom-color:rgba(124,78,36,0.65)}
+  body.show-coupocut .modalFooter{background:rgba(34,24,16,0.9); border-top-color:rgba(124,78,36,0.65)}
+  body.show-coupocut .modalIntro{background:rgba(34,24,16,0.7); border-color:rgba(124,78,36,0.65); color:rgba(248,232,210,0.86)}
+  body.show-coupocut .modalIntroNote{color:rgba(248,232,210,0.92)}
+  body.show-coupocut .modalNotice{color:rgba(248,232,210,0.78)}
+  body.show-coupocut .partnerRow{background:rgba(40,26,16,0.85); border-color:rgba(124,78,36,0.65); box-shadow:0 22px 48px rgba(0,0,0,0.65)}
+  body.show-coupocut .partnerRowFields input{background:rgba(28,20,14,0.7); border-color:rgba(124,78,36,0.65); color:#f8e8d3}
+  body.show-coupocut .partnerRowRemove{background:rgba(248,113,113,0.18); border-color:rgba(248,113,113,0.4); color:#fecaca}
   @media (max-width: 1000px){ .coupocut-shell{overflow:auto;} }
   .coupocut-shell .wrap{padding:16px;}
   .cc-header{position:sticky; top:0; z-index:75; backdrop-filter: blur(12px); background:var(--headerBg); border-bottom:1px solid var(--border); transition:background .25s ease, border-color .25s ease}
@@ -559,10 +571,10 @@
   .cc-brand{display:flex; align-items:center; gap:12px}
   .cc-logoBadge{width:44px; height:44px; border-radius:14px; background:var(--card); border:1px solid var(--border); box-shadow:0 10px 24px rgba(15,23,42,0.12); display:grid; place-items:center; overflow:hidden}
   .cc-logoBadge img{width:100%; height:100%; object-fit:contain}
-  .cc-main{display:grid; grid-template-columns:1fr 1.25fr; gap:18px; padding:16px 0 24px; height:calc(100vh - 110px); min-height:0; align-items:start}
+  .cc-main{display:grid; grid-template-columns:1fr 1.25fr; gap:18px; padding:16px 0 36px; height:calc(100vh - 110px); min-height:0; align-items:start}
   .cc-main>*{min-width:0}
   @media (max-width: 1000px){ .cc-main{grid-template-columns:1fr; height:auto;} }
-  .cc-scroll{padding:0 20px 20px; overflow:auto; max-height:calc(100vh - 210px);}
+  .cc-scroll{padding:0 20px 28px; overflow:auto; max-height:calc(100vh - 210px);}
   @media (max-width: 1000px){ .cc-scroll{max-height:none;} }
   .cc-stack{display:grid; gap:14px; text-align:left}
   .cc-pickStack{display:grid; gap:14px}
@@ -583,30 +595,36 @@
   .cc-toolSwitch[data-active="brush"] .cc-switchThumb{transform:translateX(0%)}
   .cc-editorWrap{margin-top:12px; border-radius:16px; border:1px solid var(--border); background:var(--stageBg); padding:14px; display:flex; align-items:center; justify-content:center; min-height:240px; position:relative}
   .cc-editorWrap canvas{display:block; max-width:100%; height:auto; background:conic-gradient(from 0deg,#f3f4f6 0 25%,#e5e7eb 25% 50%,#f3f4f6 50% 75%,#e5e7eb 75% 100%); background-size:18px 18px; border-radius:12px; cursor:none}
-  :root[data-theme="dark"] .cc-editorWrap canvas{background:conic-gradient(from 0deg,#0f172a 0 25%,#111827 25% 50%,#0f172a 50% 75%,#111827 75% 100%);}
+  :root[data-theme="dark"] .cc-editorWrap canvas{background:conic-gradient(from 0deg,#1f1309 0 25%,#1a110a 25% 50%,#1f1309 50% 75%,#1a110a 75% 100%);}
+  .cc-editorWrap.magic-mode canvas{cursor:default}
+  .cc-editorWrap.magic-mode .cc-brushPreview{opacity:0 !important}
   .cc-brushPreview{position:absolute; border:1.5px dashed var(--brand); border-radius:50%; pointer-events:none; opacity:0; transform:translate(-50%,-50%); box-shadow:0 6px 20px rgba(249,115,22,0.25); background:radial-gradient(circle at center, rgba(249,115,22,0.18), rgba(249,115,22,0.05)); transition:opacity .12s ease}
   .cc-stage{padding:18px; background:var(--stageBg); border-radius:var(--radius); flex:1; display:flex}
   .cc-stage-inner{position:relative; flex:1; border-radius:24px; display:flex; align-items:center; justify-content:center; overflow:hidden; box-shadow:0 20px 45px rgba(15,23,42,0.22); transition:background .25s ease, box-shadow .25s ease}
-  .cc-stage-inner.is-dark{background:radial-gradient(circle at 30% 30%,rgba(17,24,39,0.85),rgba(15,23,42,0.95));}
-  .cc-stage-inner.is-transparent{background-image: linear-gradient(45deg,#e5e7eb 25%,transparent 25%,transparent 75%,#e5e7eb 75%,#e5e7eb), linear-gradient(45deg,#e5e7eb 25%,transparent 25%,transparent 75%,#e5e7eb 75%,#e5e7eb); background-size:20px 20px; background-position:0 0,10px 10px;}
-  :root[data-theme="dark"] .cc-stage-inner.is-transparent{background-image: linear-gradient(45deg,#0b1224 25%,transparent 25%,transparent 75%,#0b1224 75%,#0b1224), linear-gradient(45deg,#0f172a 25%,transparent 25%,transparent 75%,#0f172a 75%,#0f172a);}
+  .cc-stage-inner.is-dark{background:radial-gradient(circle at 30% 30%,rgba(43,30,18,0.9),rgba(28,20,14,0.98));}
+  .cc-stage-inner.is-transparent{background-image: linear-gradient(45deg,#e5e1db 25%,transparent 25%,transparent 75%,#e5e1db 75%,#e5e1db), linear-gradient(45deg,#e5e1db 25%,transparent 25%,transparent 75%,#e5e1db 75%,#e5e1db); background-size:20px 20px; background-position:0 0,10px 10px;}
+  :root[data-theme="dark"] .cc-stage-inner.is-transparent{background-image: linear-gradient(45deg,#1f1a16 25%,transparent 25%,transparent 75%,#1f1a16 75%,#1f1a16), linear-gradient(45deg,#211a14 25%,transparent 25%,transparent 75%,#211a14 75%,#211a14);}
   .cc-stage-inner canvas{display:block; max-width:100%; height:auto; transform-origin:center center}
   .cc-stageHint{position:absolute; inset:auto 14px 14px 14px; text-align:center; font-size:12px; color:var(--muted); pointer-events:none}
-  .cc-preview-head{padding:16px 18px 10px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
-  .cc-previewHeadControls{display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:flex-end}
+  .cc-preview-head{padding:16px 18px 10px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:nowrap}
+  .cc-previewHeadControls{display:flex; align-items:center; gap:14px; flex:1; justify-content:space-between; flex-wrap:nowrap; min-width:0}
+  .cc-zoomRow{display:flex; align-items:center; gap:10px; padding:8px 12px; border-radius:12px; background:var(--card); border:1px solid var(--border); box-shadow:0 10px 20px rgba(15,23,42,0.08)}
+  .cc-zoomRow input[type="range"]{width:180px}
   .cc-preview-panel{display:flex; flex-direction:column; min-height:0; height:calc(100vh - 164px)}
   @media (max-width: 1000px){ .cc-preview-panel{height:auto;} }
-  .cc-exportBar{display:grid; grid-template-columns:1fr 1fr; gap:10px; align-items:center; margin-top:6px}
-  .cc-exportName{padding:12px 14px; border-radius:14px; border:1px solid var(--border); background:var(--card); font-weight:700; color:var(--ink); box-shadow:0 8px 18px rgba(15,23,42,0.06); text-align:left; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-  .cc-exportSize{padding:12px 14px; border-radius:14px; border:1px dashed var(--border); color:var(--muted); font-weight:600; text-align:right; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .cc-exportBar{display:flex; flex-direction:column; gap:10px; align-items:stretch; margin-top:6px}
+  .cc-exportName{padding:0; border:none; background:transparent; font-weight:800; color:var(--ink); text-align:left; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .cc-exportMeta{display:block; font-size:12px; color:var(--muted); font-weight:600; margin-top:2px}
+  .cc-exportCall{width:100%; align-items:flex-start; box-shadow:0 12px 24px rgba(15,23,42,0.12); flex-direction:column; gap:2px}
   .cc-bgToggle{display:flex; align-items:center; gap:6px; padding:4px; border-radius:12px; border:1px solid var(--border); background:var(--card); box-shadow:0 8px 18px rgba(15,23,42,0.06)}
   .cc-bgToggle button{border:none; background:transparent; padding:8px 10px; border-radius:10px; font-weight:700; color:var(--muted); cursor:pointer; transition:color .2s ease, background .2s ease}
   .cc-bgToggle button.active{background:rgba(249,115,22,0.14); color:var(--ink)}
-  .cc-actionBar{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; align-items:center}
+  .cc-actionBar{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; align-items:center}
   .cc-actionBar .btn{width:100%; justify-content:center; height:42px; font-weight:700}
+  .cc-actionBar .btn.full{grid-column:1 / -1}
   .cc-libScroller .libItem{position:relative}
   .cc-cleanTag{position:absolute; top:6px; right:6px; font-size:10px; background:rgba(249,115,22,0.14); color:var(--ink); padding:2px 6px; border-radius:999px; border:1px solid var(--border); box-shadow:0 6px 14px rgba(15,23,42,0.08)}
-  .fab-dock{position:fixed; right:24px; bottom:24px; display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:flex-end; z-index:80;}
+  .fab-dock{position:fixed; right:24px; bottom:24px; display:flex; flex-direction:column; gap:12px; align-items:flex-end; justify-content:flex-end; z-index:80;}
   .fab-dock.cc-dock{right:24px; bottom:24px; z-index:82;}
   #frozoneFabDock{z-index:62; transition:opacity .32s ease, transform .32s ease;}
   body.show-coupocut #frozoneFabDock{opacity:0; pointer-events:none; transform:translateY(10px);}
@@ -615,13 +633,13 @@
   .fab-coupo-back{background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#0f172a; border:none}
   .cc-fabLogo{width:32px; height:32px; object-fit:contain}
 
-  .floatingFab{position:fixed; right:24px; display:inline-flex; align-items:center; justify-content:flex-start; gap:0; min-width:56px; max-width:56px; height:56px; padding:0 12px; border-radius:50%; border:1px solid transparent; background:var(--card); color:var(--ink); font-weight:600; letter-spacing:0.02em; box-shadow:0 20px 38px rgba(15,23,42,0.16); z-index:61; cursor:pointer; white-space:nowrap; overflow:hidden; backdrop-filter:blur(14px); transition:max-width .36s cubic-bezier(.4,0,.2,1), padding .36s cubic-bezier(.4,0,.2,1), gap .36s cubic-bezier(.4,0,.2,1), border-radius .36s cubic-bezier(.4,0,.2,1), transform .36s cubic-bezier(.22,.61,.36,1), box-shadow .36s cubic-bezier(.22,.61,.36,1), background .3s ease, color .3s ease;}
+  .floatingFab{position:fixed; right:24px; display:inline-flex; align-items:center; justify-content:flex-start; gap:0; min-width:56px; max-width:64px; height:56px; padding:0 12px; border-radius:50%; border:1px solid transparent; background:var(--card); color:var(--ink); font-weight:600; letter-spacing:0.02em; box-shadow:0 20px 38px rgba(15,23,42,0.16); z-index:61; cursor:pointer; white-space:nowrap; overflow:hidden; backdrop-filter:blur(14px); transition:max-width .36s cubic-bezier(.4,0,.2,1), padding .36s cubic-bezier(.4,0,.2,1), gap .36s cubic-bezier(.4,0,.2,1), border-radius .36s cubic-bezier(.4,0,.2,1), transform .36s cubic-bezier(.22,.61,.36,1), box-shadow .36s cubic-bezier(.22,.61,.36,1), background .3s ease, color .3s ease;}
   .floatingFab .btn-ico{width:22px; height:22px; stroke:currentColor; flex-shrink:0; transition:transform .3s cubic-bezier(.22,.61,.36,1)}
   .floatingFab .fab-label{font-size:13px; font-weight:600; opacity:0; max-width:0; transform:translateX(8px); transition:opacity .28s ease, transform .28s ease, max-width .36s cubic-bezier(.4,0,.2,1); white-space:nowrap}
-  .floatingFab:hover, .floatingFab:focus-visible{max-width:220px; padding:0 20px 0 12px; border-radius:999px; gap:12px}
-  .floatingFab:hover .fab-label, .floatingFab:focus-visible .fab-label{opacity:1; transform:translateX(0); max-width:160px}
+  .floatingFab:hover, .floatingFab:focus-visible{max-width:240px; padding:0 20px 0 12px; border-radius:999px; gap:12px}
+  .floatingFab:hover .fab-label, .floatingFab:focus-visible .fab-label{opacity:1; transform:translateX(0); max-width:200px}
   .floatingFab:hover{transform:translateY(-2px); box-shadow:0 26px 46px rgba(15,23,42,0.22)}
-  .floatingFab:focus-visible{outline:3px solid rgba(14,165,233,0.45); outline-offset:3px}
+  .floatingFab:focus-visible{outline:3px solid var(--brand); outline-offset:3px}
   .floatingFab .fabIconWrap{display:inline-grid; place-items:center; width:32px; height:32px; position:relative; flex-shrink:0}
   .fab-dock .floatingFab{position:relative; right:auto; bottom:auto; flex:0 0 auto;}
   .fab-dock .floatingFab:hover, .fab-dock .floatingFab:focus-visible{max-width:190px}
@@ -630,8 +648,8 @@
   #downloadApp .btn-ico,.cc-download .btn-ico{margin-left:4px; position:relative; top:0.5px}
   #downloadApp .fab-label,.cc-download .fab-label{color:var(--ink)}
   #downloadApp:hover,.cc-download:hover{background:rgba(255,255,255,0.92)}
-  :root[data-theme="dark"] #downloadApp,:root[data-theme="dark"] .cc-download{background:rgba(9,20,41,0.72); border-color:rgba(46,63,98,0.65); box-shadow:0 26px 50px rgba(1,5,19,0.6)}
-  :root[data-theme="dark"] #downloadApp:hover,:root[data-theme="dark"] .cc-download:hover{background:rgba(15,32,58,0.85)}
+  :root[data-theme="dark"] #downloadApp,:root[data-theme="dark"] .cc-download{background:rgba(39,28,18,0.78); border-color:rgba(124,78,36,0.65); box-shadow:0 26px 50px rgba(0,0,0,0.65)}
+  :root[data-theme="dark"] #downloadApp:hover,:root[data-theme="dark"] .cc-download:hover{background:rgba(52,36,24,0.9)}
 
   .fab-theme{background:linear-gradient(135deg,var(--brand),var(--brand2)); border:none; box-shadow:0 18px 36px rgba(15,23,42,0.22); color:#fff; z-index:62}
   .fab-theme .btn-ico{width:26px; height:26px; stroke:#fff}
@@ -739,7 +757,7 @@
       </div>
       <div class="right-head">
         <div class="team">AdWise+ tools</div>
-        <div class="by">designed by Big Brother</div>
+        <div class="by">designed by <a href="https://www.pratov.site" target="_blank" rel="noopener">Beka Pratov</a></div>
       </div>
     </div>
   </header>
@@ -1630,7 +1648,7 @@
         <i data-lucide="sun" class="btn-ico sunIcon"></i>
         <i data-lucide="moon" class="btn-ico moonIcon"></i>
       </span>
-      <span class="fab-label" id="themeToggleLabelText">Night mode</span>
+      <span class="fab-label" id="themeToggleLabelText">Night Mode</span>
     </button>
     <button id="openCoupoCut" type="button" class="floatingFab fab-coupocut" aria-label="Open CoupoCut">
       <span class="fabIconWrap" aria-hidden="true">
@@ -1644,40 +1662,6 @@
       </span>
       <span class="fab-label">Open Mockup Maker</span>
     </button>
-  </div>
-  <div class="modal" id="partnerSettingsModal" role="dialog" aria-modal="true" aria-labelledby="partnerSettingsTitle">
-    <div class="modal-card">
-      <div class="modalHeader">
-        <span id="partnerSettingsTitle">Partner logo library</span>
-        <button class="btn icon ghost partnerSettingsClose" type="button" aria-label="Close partner logo settings">
-          <i data-lucide="x" class="btn-ico" aria-hidden="true"></i>
-        </button>
-      </div>
-      <div class="modalBody">
-        <div class="modalIntro">
-          <p>Curate partner logos, rename entries, or paste fresh image URLs. Everything saves directly into this file so you can ship updates without leaving Frozone.</p>
-          <p class="modalIntroNote">Changes are stored locally with functional cookies, so use the same browser for a consistent library. Your updates stay on this device and won’t impact other teammates.</p>
-        </div>
-        <div class="modalNotice">Before adding remote logos, confirm they follow partner brand guidelines and have transparent backgrounds when required.</div>
-        <div id="partnerSettingsList" class="partnerRows"></div>
-      </div>
-      <div class="modalFooter">
-        <div class="modalFooterStart">
-          <button class="btn ghost" type="button" id="partnerSettingsAdd">
-            <i data-lucide="plus" class="btn-ico" aria-hidden="true"></i>
-            <span class="btn-text">Add new logo</span>
-          </button>
-          <button class="btn ghost" type="button" id="partnerSettingsSort">
-            <i data-lucide="arrow-up-down" class="btn-ico" aria-hidden="true"></i>
-            <span class="btn-text">Sort A→Z</span>
-          </button>
-        </div>
-        <div class="modalFooterEnd">
-          <button class="btn ghost" type="button" id="partnerSettingsCancel">Cancel</button>
-          <button class="btn primary" type="button" id="partnerSettingsSave">Save logos</button>
-        </div>
-      </div>
-    </div>
   </div>
   <div class="versionTag">V2.24</div>
 
@@ -1697,7 +1681,7 @@
         </div>
         <div class="right-head">
           <div class="team">AdWise+ tools</div>
-          <div class="by">designed by Big Brother</div>
+          <div class="by">designed by <a href="https://www.pratov.site" target="_blank" rel="noopener">Beka Pratov</a></div>
         </div>
       </div>
     </header>
@@ -1708,20 +1692,27 @@
           <div class="kv" aria-label="Export status">
             <div class="kv-item"><span class="k">Output</span><span class="v">PNG 800 x 800</span></div>
             <span class="kv-sep">•</span>
-            <div class="kv-item"><span class="k">Circle</span><span class="v" id="ccCircleMeta">transparent punch</span></div>
+            <div class="kv-item"><span class="k">Circle</span><span class="v" id="ccCircleMeta">Transparent Punch</span></div>
           </div>
         </div>
 
         <div class="scroll cc-scroll">
           <div class="section">
-            <div class="section-title"><span class="badge">1</span> Pick logo</div>
+            <div class="section-title"><span class="badge">1</span> Pick Logo</div>
             <div class="cc-pickStack">
               <div class="uploadGrid">
                 <div class="uploadCell">
-                  <label class="btn primary">
-                    <span class="btn-text">Upload logo</span>
+                  <label class="btn primary uploadAction">
+                    <i data-lucide="upload" class="btn-ico" aria-hidden="true"></i>
+                    <span class="btn-text">Upload Image</span>
                     <input id="ccLogoFile" type="file" accept="image/*" style="display:none" />
                   </label>
+                </div>
+                <div class="uploadCell">
+                  <button class="btn ghost uploadAction" type="button" id="ccPasteUrlBtn">
+                    <i data-lucide="link" class="btn-ico" aria-hidden="true"></i>
+                    <span class="btn-text">Paste Image URL</span>
+                  </button>
                 </div>
               </div>
               <div class="libWrap">
@@ -1738,10 +1729,10 @@
           </div>
 
           <div class="section">
-            <div class="section-title"><span class="badge">2</span> Circle layout</div>
+            <div class="section-title"><span class="badge">2</span> Circle Layout</div>
             <div class="cc-stack">
               <div class="cc-sliderRow">
-                <span>Logo scale</span>
+                <span>Logo Scale</span>
                 <div class="cc-sliderControls">
                   <input id="ccLogoScale" type="range" min="0.3" max="1.3" step="0.02" value="0.6" />
                   <span class="cc-value" id="ccLogoScaleVal">0.60x</span>
@@ -1765,22 +1756,22 @@
           </div>
 
           <div class="section">
-            <div class="section-title"><span class="badge">3</span> Logo clean up</div>
+            <div class="section-title"><span class="badge">3</span> Logo Clean Up</div>
             <div class="cc-toolSwitch" role="group" aria-label="Cleanup tool" id="ccToolSwitch" data-active="brush">
               <span class="cc-switchThumb" aria-hidden="true"></span>
-              <button class="active" type="button" id="ccToolBrush">Cleaning brush</button>
-              <button type="button" id="ccToolMagic">Magic eraser</button>
+              <button class="active" type="button" id="ccToolBrush">Cleaning Brush</button>
+              <button type="button" id="ccToolMagic">Magic Eraser</button>
             </div>
             <p class="muted small">
               Paint directly on the logo preview to remove areas. Magic eraser wipes connected pixels of the tapped color.
             </p>
-            <div class="cc-editorWrap">
+            <div class="cc-editorWrap" id="ccEditorWrap">
               <canvas id="ccLogoEditorCanvas"></canvas>
               <div id="ccBrushPreview" class="cc-brushPreview" aria-hidden="true"></div>
             </div>
             <div class="row" style="margin-top:10px">
-              <div class="cc-sliderRow" style="flex:1">
-                <span>Brush size</span>
+              <div class="cc-sliderRow" style="flex:1" id="ccBrushRow">
+                <span>Brush Size</span>
                 <div class="cc-sliderControls">
                   <input id="ccBrushSize" type="range" min="4" max="220" step="1" value="30" />
                   <span class="cc-value" id="ccBrushSizeVal">30 px</span>
@@ -1788,21 +1779,32 @@
               </div>
             </div>
             <div class="cc-actionBar">
-              <button class="btn ghost" type="button" id="ccResetLogo">Reset logo</button>
-              <button class="btn ghost" type="button" id="ccClearLogo">Clear all</button>
-              <button class="btn" type="button" id="ccLoadOriginal" disabled>Load original logo</button>
-              <button class="btn primary" type="button" id="ccSaveCleaned" disabled>Save cleanup</button>
+              <button class="btn ghost" type="button" id="ccResetLogo">
+                <i data-lucide="rotate-ccw" class="btn-ico" aria-hidden="true"></i>
+                <span class="btn-text">Reset Logo</span>
+              </button>
+              <button class="btn ghost" type="button" id="ccClearLogo">
+                <i data-lucide="eraser" class="btn-ico" aria-hidden="true"></i>
+                <span class="btn-text">Clear All</span>
+              </button>
+              <button class="btn" type="button" id="ccLoadOriginal" disabled>
+                <i data-lucide="history" class="btn-ico" aria-hidden="true"></i>
+                <span class="btn-text">Load Original Logo</span>
+              </button>
+              <button class="btn primary full" type="button" id="ccSaveCleaned" disabled>
+                <i data-lucide="save" class="btn-ico" aria-hidden="true"></i>
+                <span class="btn-text">Save Cleanup</span>
+              </button>
             </div>
           </div>
 
           <div class="section">
-            <div class="section-title"><span class="badge">4</span> Export cutout</div>
+            <div class="section-title"><span class="badge">4</span> Export Cutout</div>
             <div class="cc-exportBar">
-              <div class="cc-exportName">export.png</div>
-              <div class="cc-exportSize" id="ccLastExport">No export yet</div>
-            </div>
-            <div class="row" style="justify-content:flex-end;gap:12px; margin-top:10px">
-              <button class="btn primary" type="button" id="ccExportBtn" disabled>Export PNG</button>
+              <button class="btn primary cc-exportCall" type="button" id="ccExportBtn" disabled>
+                <span class="cc-exportName">Export.png</span>
+                <span class="cc-exportMeta" id="ccLastExport">No Export Yet</span>
+              </button>
             </div>
             <p class="muted small" style="margin-top:6px">
               Output is a square PNG with a clean transparent punch—no outline stroke.
@@ -1813,17 +1815,14 @@
 
       <section class="panel preview-panel cc-preview-panel">
         <div class="preview-head cc-preview-head">
-          <div class="section-title" style="margin:0">
-            <span>Preview</span>
-          </div>
           <div class="cc-previewHeadControls">
-            <div class="row" style="gap:12px; align-items:center">
-              <span class="muted small">Preview zoom</span>
+            <div class="cc-zoomRow">
+              <span class="muted small">Preview Zoom</span>
               <span class="muted small"><span id="ccZoomLabel">1.00</span>x</span>
-              <input id="ccPreviewZoom" type="range" min="0.5" max="2" step="0.05" value="1" style="width:180px" />
+              <input id="ccPreviewZoom" type="range" min="0.5" max="2" step="0.05" value="1" />
             </div>
             <div class="cc-bgToggle" id="ccBgToggle" role="group" aria-label="Preview background">
-              <button type="button" data-bg="dark" class="active">Dark canvas</button>
+              <button type="button" data-bg="dark" class="active">Dark Canvas</button>
               <button type="button" data-bg="transparent">Transparent</button>
             </div>
           </div>
@@ -1856,8 +1855,49 @@
           <i data-lucide="sun" class="btn-ico sunIcon"></i>
           <i data-lucide="moon" class="btn-ico moonIcon"></i>
         </span>
-        <span class="fab-label">Night mode</span>
+        <span class="fab-label">Night Mode</span>
       </button>
+      <button id="ccOpenMockup" type="button" class="floatingFab fab-figma" aria-label="Open Mockup Maker">
+        <span class="fabIconWrap" aria-hidden="true">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/1667px-Figma-logo.svg.png" alt="" />
+        </span>
+        <span class="fab-label">Open Mockup Maker</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="modal" id="partnerSettingsModal" role="dialog" aria-modal="true" aria-labelledby="partnerSettingsTitle">
+    <div class="modal-card">
+      <div class="modalHeader">
+        <span id="partnerSettingsTitle">Partner logo library</span>
+        <button class="btn icon ghost partnerSettingsClose" type="button" aria-label="Close partner logo settings">
+          <i data-lucide="x" class="btn-ico" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="modalBody">
+        <div class="modalIntro">
+          <p>Curate partner logos, rename entries, or paste fresh image URLs. Everything saves directly into this file so you can ship updates without leaving Frozone.</p>
+          <p class="modalIntroNote">Changes are stored locally with functional cookies, so use the same browser for a consistent library. Your updates stay on this device and won’t impact other teammates.</p>
+        </div>
+        <div class="modalNotice">Before adding remote logos, confirm they follow partner brand guidelines and have transparent backgrounds when required.</div>
+        <div id="partnerSettingsList" class="partnerRows"></div>
+      </div>
+      <div class="modalFooter">
+        <div class="modalFooterStart">
+          <button class="btn ghost" type="button" id="partnerSettingsAdd">
+            <i data-lucide="plus" class="btn-ico" aria-hidden="true"></i>
+            <span class="btn-text">Add new logo</span>
+          </button>
+          <button class="btn ghost" type="button" id="partnerSettingsSort">
+            <i data-lucide="arrow-up-down" class="btn-ico" aria-hidden="true"></i>
+            <span class="btn-text">Sort A→Z</span>
+          </button>
+        </div>
+        <div class="modalFooterEnd">
+          <button class="btn ghost" type="button" id="partnerSettingsCancel">Cancel</button>
+          <button class="btn primary" type="button" id="partnerSettingsSave">Save logos</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -2731,12 +2771,12 @@
     root.dataset.theme = next;
     if(els.themeToggle){
       els.themeToggle.setAttribute('aria-pressed', next === 'dark');
-      const labelText = next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+      const labelText = next === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode';
       els.themeToggle.setAttribute('aria-label', labelText);
       els.themeToggle.title = labelText;
       els.themeToggle.dataset.next = upcoming;
       if(els.themeToggleLabelText){
-        els.themeToggleLabelText.textContent = upcoming === 'dark' ? 'Night mode' : 'Light mode';
+        els.themeToggleLabelText.textContent = upcoming === 'dark' ? 'Night Mode' : 'Light Mode';
       }
     }
     if(typeof coupoEls !== 'undefined' && coupoEls.themeClone){
@@ -5801,6 +5841,8 @@
     logoOffsetYVal: document.getElementById('ccLogoOffsetYVal'),
     brushSize: document.getElementById('ccBrushSize'),
     brushSizeVal: document.getElementById('ccBrushSizeVal'),
+    brushRow: document.getElementById('ccBrushRow'),
+    editorWrap: document.getElementById('ccEditorWrap'),
     resetLogo: document.getElementById('ccResetLogo'),
     clearLogo: document.getElementById('ccClearLogo'),
     exportBtn: document.getElementById('ccExportBtn'),
@@ -5817,7 +5859,9 @@
     backBtn: document.getElementById('ccBackFab'),
     themeClone: document.getElementById('ccThemeToggle'),
     downloadClone: document.getElementById('ccDownloadApp'),
-    bgToggle: document.getElementById('ccBgToggle')
+    bgToggle: document.getElementById('ccBgToggle'),
+    pasteUrl: document.getElementById('ccPasteUrlBtn'),
+    mockupClone: document.getElementById('ccOpenMockup')
   };
   const coupoPreviewCtx = coupoEls.previewCanvas?.getContext('2d');
   const coupoEditCtx = coupoEls.editorCanvas?.getContext('2d');
@@ -5914,9 +5958,15 @@
       coupoEls.toolMagic.setAttribute('aria-pressed', coupoState.activeTool === 'magic');
     }
     if(coupoEls.toolSwitch){ coupoEls.toolSwitch.dataset.active = coupoState.activeTool; }
+    const isBrush = coupoState.activeTool === 'brush';
+    if(coupoEls.brushRow){ coupoEls.brushRow.style.display = isBrush ? 'flex' : 'none'; }
+    if(coupoEls.brushSize){ coupoEls.brushSize.disabled = !isBrush; }
+    if(coupoEls.editorWrap){ coupoEls.editorWrap.classList.toggle('magic-mode', !isBrush); }
+    if(!isBrush){ hideBrushPreview(); }
   }
   function showBrushPreview(evt){
     if(!coupoEls.brushPreview || !coupoEls.editorCanvas) return;
+    if(coupoState.activeTool !== 'brush'){ hideBrushPreview(); return; }
     const canvasRect = coupoEls.editorCanvas.getBoundingClientRect();
     const hostRect = coupoEls.editorCanvas.parentElement?.getBoundingClientRect() || canvasRect;
     const pos = getCoupoEditorPos(evt);
@@ -6078,6 +6128,18 @@
     }
   }
 
+  async function handleCoupoPasteUrl(){
+    const url = (prompt('Paste logo image URL') || '').trim();
+    if(!url) return;
+    try{
+      const img = await loadImageCORS(url);
+      coupoState.libraryEntryName = '';
+      initCoupoLogo(img, { originalUrl:url, cleaned:false });
+    }catch(err){
+      alert('Unable to load that URL. Please try another link.');
+    }
+  }
+
   function initCoupoCut(){
     if(!coupoEls.shell || !coupoPreviewCtx || !coupoEditCtx) return;
     coupoEls.previewCanvas.width = COUPO_EXPORT_SIZE;
@@ -6097,6 +6159,7 @@
       reader.onload = ()=>{ const img = new Image(); img.onload = ()=>{ initCoupoLogo(img); }; img.src = reader.result; };
       reader.readAsDataURL(file);
     });
+    coupoEls.pasteUrl?.addEventListener('click', handleCoupoPasteUrl);
     coupoEls.logoScale?.addEventListener('input', e=>{ coupoState.logoScale = parseFloat(e.target.value) || 0.6; updateCoupoSliderLabels(); renderCoupoPreview(); });
     coupoEls.logoOffsetX?.addEventListener('input', e=>{ coupoState.offsetX = parseFloat(e.target.value) || 0; updateCoupoSliderLabels(); renderCoupoPreview(); });
     coupoEls.logoOffsetY?.addEventListener('input', e=>{ coupoState.offsetY = parseFloat(e.target.value) || 0; updateCoupoSliderLabels(); renderCoupoPreview(); });
@@ -6108,11 +6171,12 @@
       if(!coupoState.hasLogo) return;
       if(coupoState.activeTool === 'magic'){
         magicEraseAt(e);
+        hideBrushPreview();
       } else {
         isDrawing = true;
         eraseBrush(e);
+        showBrushPreview(e);
       }
-      showBrushPreview(e);
       e.preventDefault();
     });
     window.addEventListener('pointermove', (e)=>{ if(isDrawing && coupoState.activeTool === 'brush'){ eraseBrush(e); } if(e.target === coupoEls.editorCanvas){ showBrushPreview(e); } });
@@ -6144,6 +6208,7 @@
     coupoEls.openBtn?.addEventListener('click', openCoupoCut);
     coupoEls.backBtn?.addEventListener('click', closeCoupoCut);
     coupoEls.downloadClone?.addEventListener('click', ()=> els.downloadApp?.click());
+    coupoEls.mockupClone?.addEventListener('click', ()=> els.mockupMaker?.click());
     setCoupoTool(coupoState.activeTool);
   }
 
