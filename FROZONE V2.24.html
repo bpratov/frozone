@@ -546,42 +546,73 @@
   .stage-inner.fullscreen-active .fullscreenControlDock{display:flex}
 
   .frozone-shell{min-height:100vh;}
-  body.show-coupocut{overflow:auto;}
-  body.show-coupocut #coupoCutShell{display:block;}
-  .coupocut-shell{position:fixed; inset:0; display:none; background: linear-gradient(180deg,var(--bg1),var(--bg2) 55%, var(--bg3)); overflow:auto; z-index:70; padding-bottom:140px;}
+  body.show-coupocut{overflow:hidden;}
+  body.show-coupocut #coupoCutShell{pointer-events:auto; opacity:1; transform:translate(0,0);}
+  .coupocut-shell{position:fixed; inset:0; display:block; background: linear-gradient(180deg,var(--bg1),var(--bg2) 55%, var(--bg3)); z-index:70; padding-bottom:140px; opacity:0; pointer-events:none; transform:translate(24px,32px); transition:opacity .36s ease, transform .48s cubic-bezier(.2,.7,.3,1); overflow:hidden;}
   .coupocut-shell .wrap{padding:16px;}
+  .coupocut-shell{--brand:#f97316; --brand2:#f59e0b; --accent:#fbbf24; --stageBg:#fff8ec; --stageInner:#ffffff; --border:#f0d9b2; --card:#fffaf5; --headerBg:rgba(255,255,255,0.92);}
+  :root[data-theme="dark"] .coupocut-shell{--bg1:#0f0a07; --bg2:#1b1007; --bg3:#1a120c; --stageBg:#120c08; --stageInner:#18100a; --border:#3a2a16; --card:rgba(26,16,10,0.92); --headerBg:rgba(18,12,8,0.9);}
+  .frozone-shell{transition:transform .42s cubic-bezier(.2,.7,.3,1), filter .42s ease;}
+  body.show-coupocut .frozone-shell{transform:translateY(-8px) scale(.98); filter:blur(4px) saturate(.86); pointer-events:none; user-select:none;}
   .cc-header{position:sticky; top:0; z-index:75; backdrop-filter: blur(12px); background:var(--headerBg); border-bottom:1px solid var(--border); transition:background .25s ease}
   .cc-header-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0}
   .cc-brand{display:flex; align-items:center; gap:12px}
   .cc-logoBadge{width:44px; height:44px; border-radius:14px; background:var(--card); border:1px solid var(--border); box-shadow:0 10px 24px rgba(15,23,42,0.12); display:grid; place-items:center; overflow:hidden}
   .cc-logoBadge img{width:100%; height:100%; object-fit:contain}
-  .cc-main{display:grid; grid-template-columns:1fr 1.25fr; gap:18px; padding:16px 0 36px}
+  .cc-main{display:grid; grid-template-columns:1fr 1.25fr; gap:18px; padding:16px 0 36px; height:calc(100vh - var(--headerH) - 12px);}
   .cc-main>*{min-width:0}
-  @media (max-width: 1000px){ .cc-main{grid-template-columns:1fr} }
-  .cc-scroll{padding:0 20px 20px; overflow:auto}
-  .cc-stack{display:grid; gap:12px; text-align:left}
-  .cc-sliderRow{display:flex; flex-direction:column; gap:6px; font-size:13px}
-  .cc-sliderRow>span{font-weight:700}
-  .cc-sliderControls{display:flex; align-items:center; gap:10px}
+  @media (max-width: 1000px){ .cc-main{grid-template-columns:1fr; height:auto;} }
+  .cc-scroll{padding:0 20px 24px; overflow:auto; height:100%;}
+  .cc-stack{display:grid; gap:14px; text-align:left}
+  .cc-sliderRow{display:flex; flex-direction:column; gap:8px; font-size:13px}
+  .cc-sliderRow>span{font-weight:700; letter-spacing:0.01em}
+  .cc-sliderControls{display:flex; align-items:center; gap:12px}
   .cc-sliderControls input[type="range"]{flex:1}
-  .cc-toolSwitch{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px}
-  .cc-toolSwitch .btn.active{background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#fff; border-color:transparent}
+  .cc-logoPicker{display:grid; gap:16px}
+  .cc-libHeader{gap:10px}
+  .cc-libHeader input{min-height:44px}
+  .cc-libScroller{margin-top:6px}
+  .cc-value{display:inline-flex; align-items:center; gap:6px; padding:8px 10px; border-radius:12px; background:rgba(249,115,22,0.08); border:1px solid var(--border); font-size:12px; font-weight:700; color:var(--ink); min-width:70px; justify-content:center; box-shadow:inset 0 1px 0 rgba(255,255,255,0.6)}
+  .cc-toolSwitch{display:inline-flex; gap:6px; padding:6px; border-radius:14px; background:linear-gradient(135deg,rgba(249,115,22,0.12),rgba(251,191,36,0.12)); border:1px solid rgba(249,115,22,0.35); box-shadow:inset 0 1px 0 rgba(255,255,255,0.5), 0 10px 22px rgba(249,115,22,0.16); margin-bottom:10px}
+  .cc-toolSwitch .btn{all:unset; display:inline-flex; align-items:center; justify-content:center; padding:10px 16px; border-radius:10px; font-size:13px; font-weight:700; color:var(--ink); cursor:pointer; min-width:126px; text-align:center; transition:all .18s ease}
+  .cc-toolSwitch .btn.active{background:#fff; box-shadow:0 10px 22px rgba(249,115,22,0.18); border:1px solid rgba(249,115,22,0.35)}
+  .cc-toolSwitch .btn:not(.active):hover{background:rgba(249,115,22,0.08)}
   .cc-editorWrap{margin-top:8px; border-radius:16px; border:1px solid var(--border); background:var(--stageBg); padding:12px; display:flex; align-items:center; justify-content:center; min-height:220px; position:relative}
-  .cc-editorWrap canvas{display:block; max-width:100%; height:auto; background:conic-gradient(from 0deg,#f3f4f6 0 25%,#e5e7eb 25% 50%,#f3f4f6 50% 75%,#e5e7eb 75% 100%); background-size:24px 24px; border-radius:12px}
-  .cc-brushPreview{position:absolute; border:1.5px dashed var(--brand); border-radius:50%; pointer-events:none; opacity:0; transform:translate(-50%,-50%); box-shadow:0 6px 20px rgba(14,165,233,0.25); transition:opacity .12s ease}
+  .cc-editorWrap canvas{display:block; max-width:100%; height:auto; background:conic-gradient(from 0deg,#f8fafc 0 25%,#e2e8f0 25% 50%,#f8fafc 50% 75%,#e2e8f0 75% 100%); background-size:22px 22px; border-radius:12px; cursor:none}
+  :root[data-theme="dark"] .cc-editorWrap canvas{background:conic-gradient(from 0deg,#1f2937 0 25%,#111827 25% 50%,#1f2937 50% 75%,#111827 75% 100%);}
+  .cc-brushPreview{position:absolute; border:1.5px dashed var(--brand); border-radius:50%; pointer-events:none; opacity:0; transform:translate(-50%,-50%); box-shadow:0 6px 20px rgba(249,115,22,0.28); transition:opacity .12s ease; background:rgba(249,115,22,0.08)}
   .cc-stage{padding:18px; background:var(--stageBg); border-radius:var(--radius); flex:1; display:flex}
-  .cc-stage-inner{position:relative; flex:1; border-radius:24px; background-image: linear-gradient(45deg,#e5e7eb 25%,transparent 25%,transparent 75%,#e5e7eb 75%,#e5e7eb), linear-gradient(45deg,#e5e7eb 25%,transparent 25%,transparent 75%,#e5e7eb 75%,#e5e7eb); background-size:24px 24px; background-position:0 0,12px 12px; display:flex; align-items:center; justify-content:center; overflow:hidden; box-shadow:0 20px 45px rgba(15,23,42,0.25)}
-  .cc-stage-inner canvas{display:block; max-width:100%; height:auto; transform-origin:center center}
+  .cc-stage-inner{position:relative; flex:1; border-radius:24px; display:flex; align-items:center; justify-content:center; overflow:hidden; box-shadow:0 20px 45px rgba(15,23,42,0.25); background:linear-gradient(135deg,#111827,#0f172a); transition:background .25s ease, box-shadow .25s ease;}
+  .cc-stage-inner[data-bg="transparent"]{background-image: linear-gradient(45deg,rgba(229,231,235,0.75) 25%,transparent 25%,transparent 75%,rgba(229,231,235,0.75) 75%,rgba(229,231,235,0.75)), linear-gradient(45deg,rgba(229,231,235,0.75) 25%,transparent 25%,transparent 75%,rgba(229,231,235,0.75) 75%,rgba(229,231,235,0.75)); background-size:24px 24px; background-position:0 0,12px 12px;}
+  :root[data-theme="dark"] .cc-stage-inner{background:linear-gradient(135deg,#0b0f1a,#0a0c14); box-shadow:0 24px 50px rgba(0,0,0,0.55);}
+  :root[data-theme="dark"] .cc-stage-inner[data-bg="transparent"]{background-image: linear-gradient(45deg,rgba(75,85,99,0.75) 25%,transparent 25%,transparent 75%,rgba(75,85,99,0.75) 75%,rgba(75,85,99,0.75)), linear-gradient(45deg,rgba(75,85,99,0.75) 25%,transparent 25%,transparent 75%,rgba(75,85,99,0.75) 75%,rgba(75,85,99,0.75)); background-size:24px 24px; background-position:0 0,12px 12px;}
+  .cc-stage-inner canvas{display:block; max-width:100%; height:auto; transform-origin:center center; filter:drop-shadow(0 24px 40px rgba(0,0,0,0.22));}
   .cc-stageHint{position:absolute; inset:auto 14px 14px 14px; text-align:center; font-size:12px; color:var(--muted); pointer-events:none}
   .cc-preview-head{padding:16px 18px 10px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:12px}
+  .cc-preview-controls{display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:flex-end}
+  .cc-bgToggle{display:inline-flex; align-items:center; gap:6px; padding:4px; border-radius:12px; background:rgba(249,115,22,0.12); border:1px solid rgba(249,115,22,0.35)}
+  .cc-bgToggle button{all:unset; cursor:pointer; padding:8px 12px; border-radius:10px; font-size:12px; font-weight:700; color:var(--ink); min-width:96px; text-align:center; transition:all .18s ease}
+  .cc-bgToggle button.active{background:#fff; box-shadow:0 8px 18px rgba(249,115,22,0.18);}
+  .cc-bgToggle button:not(.active):hover{background:rgba(249,115,22,0.08)}
   .cc-cleanActions{gap:10px; align-items:center; flex-wrap:wrap}
   .cc-cleanActions .btn{white-space:nowrap}
+  .cc-cleanActionsRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+  .cc-cleanActionsRow .btn{flex:1; justify-content:center; min-width:150px}
   .cc-libScroller .libItem{position:relative}
   .cc-cleanTag{position:absolute; top:6px; right:6px; font-size:10px; background:rgba(14,165,233,0.14); color:var(--ink); padding:2px 6px; border-radius:999px; border:1px solid var(--border); box-shadow:0 6px 14px rgba(15,23,42,0.08)}
-  .fab-coupocut{bottom:188px; border-color:rgba(148,163,184,0.45); justify-content:center}
-  .fab-coupocut:hover{background:rgba(255,255,255,0.92)}
-  .fab-coupo-back{bottom:32px; background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#0f172a; border:none}
+  .fab-coupocut{border-color:rgba(148,163,184,0.45); justify-content:center; background:#fff}
+  .fab-coupocut:hover{background:linear-gradient(135deg,#fed7aa,#fef3c7); color:#111827;}
+  .fab-coupo-back{background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#0f172a; border:none}
   .cc-fabLogo{width:32px; height:32px; object-fit:contain}
+
+  .fab-figma{background:#fff; border-color:rgba(148,163,184,0.45)}
+  .fab-figma:hover{background:linear-gradient(135deg,#f9a8d4,#fecdd3); color:#111827}
+  .fab-figma .fabIconWrap img{width:22px; height:22px; object-fit:contain}
+  .fab-mockup{color:var(--ink)}
+  .cc-fabDock{position:fixed; right:24px; bottom:24px; display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; z-index:95}
+  .cc-fabDock .floatingFab{position:static; box-shadow:0 18px 36px rgba(15,23,42,0.22)}
+  .cc-fabDock .floatingFab:hover{box-shadow:0 24px 48px rgba(15,23,42,0.26)}
+  .cc-fabDock .fab-label{max-width:140px}
 
   .floatingFab{position:fixed; right:24px; display:inline-flex; align-items:center; justify-content:flex-start; gap:0; min-width:56px; max-width:56px; height:56px; padding:0 12px; border-radius:50%; border:1px solid transparent; background:var(--card); color:var(--ink); font-weight:600; letter-spacing:0.02em; box-shadow:0 20px 38px rgba(15,23,42,0.16); z-index:61; cursor:pointer; white-space:nowrap; overflow:hidden; backdrop-filter:blur(14px); transition:max-width .36s cubic-bezier(.4,0,.2,1), padding .36s cubic-bezier(.4,0,.2,1), gap .36s cubic-bezier(.4,0,.2,1), border-radius .36s cubic-bezier(.4,0,.2,1), transform .36s cubic-bezier(.22,.61,.36,1), box-shadow .36s cubic-bezier(.22,.61,.36,1), background .3s ease, color .3s ease;}
   .floatingFab .btn-ico{width:22px; height:22px; stroke:currentColor; flex-shrink:0; transition:transform .3s cubic-bezier(.22,.61,.36,1)}
@@ -592,21 +623,27 @@
   .floatingFab:focus-visible{outline:3px solid rgba(14,165,233,0.45); outline-offset:3px}
   .floatingFab .fabIconWrap{display:inline-grid; place-items:center; width:32px; height:32px; position:relative; flex-shrink:0}
 
-  #downloadApp{bottom:110px; border-color:rgba(148,163,184,0.45); justify-content:center; padding:0 16px}
+  .fab-dock{position:fixed; right:24px; bottom:24px; display:flex; align-items:flex-end; gap:12px; z-index:90; flex-wrap:wrap; justify-content:flex-end}
+  .fab-dock .floatingFab{position:static; bottom:auto; right:auto; box-shadow:0 16px 32px rgba(15,23,42,0.16)}
+  .fab-dock .floatingFab:hover{box-shadow:0 22px 44px rgba(15,23,42,0.22)}
+  .fab-dock .floatingFab .fab-label{max-width:140px}
+  .fab-dock .floatingFab .fabIconWrap{width:30px; height:30px}
+  body.show-coupocut #fabDock{opacity:0; pointer-events:none; transform:translateY(12px); transition:opacity .24s ease, transform .3s ease}
+  #downloadApp{border-color:rgba(148,163,184,0.45); justify-content:center; padding:0 16px}
   #downloadApp .btn-ico{margin-left:4px; position:relative; top:0.5px}
   #downloadApp .fab-label{color:var(--ink)}
   #downloadApp:hover{background:rgba(255,255,255,0.92)}
   :root[data-theme="dark"] #downloadApp{background:rgba(9,20,41,0.72); border-color:rgba(46,63,98,0.65); box-shadow:0 26px 50px rgba(1,5,19,0.6)}
   :root[data-theme="dark"] #downloadApp:hover{background:rgba(15,32,58,0.85)}
 
-  #themeToggle{bottom:32px; background:linear-gradient(135deg,var(--brand),var(--brand2)); border:none; box-shadow:0 18px 36px rgba(15,23,42,0.22); color:#fff; z-index:62}
-  #themeToggle .btn-ico{width:26px; height:26px; stroke:#fff}
-  #themeToggle .fab-label{color:#fff}
-  #themeToggle .sunIcon,#themeToggle .moonIcon{position:absolute; inset:0; margin:auto; opacity:0; transform:scale(0.7); transition:opacity .3s ease, transform .3s ease}
-  #themeToggle[data-next="light"] .sunIcon{opacity:1; transform:scale(1)}
-  #themeToggle[data-next="dark"] .moonIcon{opacity:1; transform:scale(1)}
-  #themeToggle:hover{box-shadow:0 28px 56px rgba(15,23,42,0.3)}
-  :root[data-theme="dark"] #themeToggle{box-shadow:0 24px 52px rgba(1,5,19,0.55)}
+  .theme-toggle{background:linear-gradient(135deg,var(--brand),var(--brand2)); border:none; box-shadow:0 18px 36px rgba(15,23,42,0.22); color:#fff; z-index:62}
+  .theme-toggle .btn-ico{width:26px; height:26px; stroke:#fff}
+  .theme-toggle .fab-label{color:#fff}
+  .theme-toggle .sunIcon,.theme-toggle .moonIcon{position:absolute; inset:0; margin:auto; opacity:0; transform:scale(0.7); transition:opacity .3s ease, transform .3s ease}
+  .theme-toggle[data-next="light"] .sunIcon{opacity:1; transform:scale(1)}
+  .theme-toggle[data-next="dark"] .moonIcon{opacity:1; transform:scale(1)}
+  .theme-toggle:hover{box-shadow:0 28px 56px rgba(15,23,42,0.3)}
+  :root[data-theme="dark"] .theme-toggle{box-shadow:0 24px 52px rgba(1,5,19,0.55)}
 
   .resizeHandle{position:absolute; width:18px; height:18px; border-radius:50%; border:2px solid rgba(255,255,255,0.9); background:rgba(14,165,233,0.75); box-shadow:0 6px 16px rgba(14,165,233,0.25); cursor:nwse-resize; z-index:30; transition:transform .12s ease}
   .resizeHandle:hover{transform:scale(1.1)}
@@ -659,7 +696,7 @@
   :root[data-theme="dark"] .mockupBlock{background:linear-gradient(135deg,rgba(30,64,175,0.22),rgba(15,23,42,0.55)); border-color:rgba(71,85,105,0.75); box-shadow:inset 0 1px 0 rgba(255,255,255,0.04);}
   :root[data-theme="dark"] .mockupOverlay{background:rgba(15,23,42,0.5); color:#e2e8f0;}
   :root[data-theme="dark"] .versionTag{background:rgba(15,23,42,0.7); color:rgba(226,232,240,0.7); box-shadow:0 16px 30px rgba(2,6,23,0.55);}
-  :root[data-theme="dark"] #themeToggle{box-shadow:0 20px 40px rgba(0,0,0,0.55);}
+  :root[data-theme="dark"] .theme-toggle{box-shadow:0 20px 40px rgba(0,0,0,0.55);}
   :root[data-theme="dark"] .modal{background:rgba(2,6,23,0.68)}
   :root[data-theme="dark"] .modal-card{background:var(--stageInner); border-color:rgba(71,85,105,0.75)}
   :root[data-theme="dark"] .modalHeader{background:linear-gradient(135deg,rgba(30,41,59,0.85),rgba(37,99,235,0.28)); border-bottom-color:rgba(71,85,105,0.75)}
@@ -699,8 +736,8 @@
         </div>
       </div>
       <div class="right-head">
-        <div class="team">LiveOps Team</div>
-        <div class="by">designed by <a href="https://www.pratov.site" target="_blank" rel="noopener">Beka Pratov</a></div>
+        <div class="team">AdWise+ tools</div>
+        <div class="by">designed by Big Brother</div>
       </div>
     </div>
   </header>
@@ -1581,23 +1618,31 @@
   </div>
 
   <div class="globalDropOverlay" id="globalDropOverlay">Drop images anywhere to upload</div>
-  <button id="openCoupoCut" type="button" class="floatingFab fab-coupocut" aria-label="Open CoupoCut">
-    <span class="fabIconWrap" aria-hidden="true">
-      <img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="" class="cc-fabLogo" />
-    </span>
-    <span class="fab-label">Open CoupoCut</span>
-  </button>
-  <button id="downloadApp" type="button" class="floatingFab fab-download" aria-label="Download Web App">
-    <i data-lucide="download" class="btn-ico" aria-hidden="true"></i>
-    <span class="fab-label">Download Web App</span>
-  </button>
-  <button id="themeToggle" type="button" class="floatingFab fab-theme" aria-pressed="false" aria-label="Toggle dark mode" data-next="dark">
-    <span class="fabIconWrap" aria-hidden="true">
-      <i data-lucide="sun" class="btn-ico sunIcon"></i>
-      <i data-lucide="moon" class="btn-ico moonIcon"></i>
-    </span>
-    <span class="fab-label" id="themeToggleLabelText">Night mode</span>
-  </button>
+  <div class="fab-dock" id="fabDock">
+    <button id="openCoupoCut" type="button" class="floatingFab fab-coupocut" aria-label="Open CoupoCut">
+      <span class="fabIconWrap" aria-hidden="true">
+        <img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="" class="cc-fabLogo" />
+      </span>
+      <span class="fab-label">Open CoupoCut</span>
+    </button>
+    <a id="openMockupMaker" class="floatingFab fab-figma fab-mockup" href="https://www.figma.com/buzz/m0uFepFCjhaah5nL3V8gAt/MockUp-Maker---MAIN-FILE?node-id=3-517&t=Anqi9e3rbQUykLA8-1" target="_blank" rel="noopener" aria-label="Open Mockup Maker in Figma">
+      <span class="fabIconWrap" aria-hidden="true">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/1667px-Figma-logo.svg.png" alt="Figma" />
+      </span>
+      <span class="fab-label">OpenMockupMaker</span>
+    </a>
+    <button id="downloadApp" type="button" class="floatingFab fab-download" aria-label="Download Web App" data-download-app>
+      <i data-lucide="download" class="btn-ico" aria-hidden="true"></i>
+      <span class="fab-label">Download Web App</span>
+    </button>
+    <button id="themeToggle" type="button" class="floatingFab fab-theme theme-toggle" aria-pressed="false" aria-label="Toggle dark mode" data-next="dark" data-theme-toggle>
+      <span class="fabIconWrap" aria-hidden="true">
+        <i data-lucide="sun" class="btn-ico sunIcon"></i>
+        <i data-lucide="moon" class="btn-ico moonIcon"></i>
+      </span>
+      <span class="fab-label" data-theme-label>Night mode</span>
+    </button>
+  </div>
   <div class="modal" id="partnerSettingsModal" role="dialog" aria-modal="true" aria-labelledby="partnerSettingsTitle">
     <div class="modal-card">
       <div class="modalHeader">
@@ -1649,8 +1694,8 @@
           </div>
         </div>
         <div class="right-head">
-          <div class="team">P+ LiveOps Tools</div>
-          <div class="by">Built alongside Frozone</div>
+          <div class="team">AdWise+ tools</div>
+          <div class="by">Designed by Big Brother</div>
         </div>
       </div>
     </header>
@@ -1668,22 +1713,24 @@
         <div class="scroll cc-scroll">
           <div class="section">
             <div class="section-title"><span class="badge">1</span> Pick logo</div>
-            <div class="uploadGrid">
-              <div class="uploadCell">
-                <label class="btn primary">
-                  <span class="btn-text">Upload logo</span>
-                  <input id="ccLogoFile" type="file" accept="image/*" style="display:none" />
-                </label>
+            <div class="cc-logoPicker">
+              <div class="uploadGrid">
+                <div class="uploadCell">
+                  <label class="btn primary">
+                    <span class="btn-text">Upload logo</span>
+                    <input id="ccLogoFile" type="file" accept="image/*" style="display:none" />
+                  </label>
+                </div>
               </div>
-            </div>
-            <div class="libWrap">
-              <div class="libHeader">
-                <input id="ccPartnerSearch" type="search" placeholder="Search partner library" />
-                <button class="btn ghost icon partnerSettingsBtn" type="button" aria-label="Open partner logo settings" data-partner-settings>
-                  <i data-lucide="sliders" class="btn-ico" aria-hidden="true"></i>
-                </button>
+              <div class="libWrap">
+                <div class="libHeader">
+                  <input id="ccPartnerSearch" type="search" placeholder="Search partner library" />
+                  <button class="btn ghost icon partnerSettingsBtn" type="button" aria-label="Open partner logo settings" data-partner-settings>
+                    <i data-lucide="sliders" class="btn-ico" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div id="ccPartnerGallery" class="libScroller cc-libScroller" aria-label="Partner logo library"></div>
               </div>
-              <div id="ccPartnerGallery" class="libScroller cc-libScroller" aria-label="Partner logo library"></div>
             </div>
             <p class="muted small">CoupoCut reads and saves the same browser logo library as Frozone.</p>
           </div>
@@ -1695,21 +1742,21 @@
                 <span>Logo scale</span>
                 <div class="cc-sliderControls">
                   <input id="ccLogoScale" type="range" min="0.3" max="1.3" step="0.02" value="0.6" />
-                  <span class="chip" id="ccLogoScaleVal">0.60x</span>
+                  <span class="cc-value" id="ccLogoScaleVal">0.60x</span>
                 </div>
               </div>
               <div class="cc-sliderRow">
                 <span>Offset X</span>
                 <div class="cc-sliderControls">
                   <input id="ccLogoOffsetX" type="range" min="-100" max="100" step="1" value="0" />
-                  <span class="chip" id="ccLogoOffsetXVal">0</span>
+                  <span class="cc-value" id="ccLogoOffsetXVal">0</span>
                 </div>
               </div>
               <div class="cc-sliderRow">
                 <span>Offset Y</span>
                 <div class="cc-sliderControls">
                   <input id="ccLogoOffsetY" type="range" min="-100" max="100" step="1" value="0" />
-                  <span class="chip" id="ccLogoOffsetYVal">0</span>
+                  <span class="cc-value" id="ccLogoOffsetYVal">0</span>
                 </div>
               </div>
             </div>
@@ -1724,7 +1771,7 @@
             <p class="muted small">
               Paint directly on the logo preview to remove areas. Magic eraser wipes connected pixels of the tapped color.
             </p>
-            <div class="cc-editorWrap">
+            <div class="cc-editorWrap" id="ccEditorWrap">
               <canvas id="ccLogoEditorCanvas"></canvas>
               <div id="ccBrushPreview" class="cc-brushPreview" aria-hidden="true"></div>
             </div>
@@ -1732,27 +1779,24 @@
               <div class="cc-sliderRow" style="flex:1">
                 <span>Brush size</span>
                 <div class="cc-sliderControls">
-                  <input id="ccBrushSize" type="range" min="4" max="80" step="1" value="30" />
-                  <span class="chip" id="ccBrushSizeVal">30 px</span>
+                  <input id="ccBrushSize" type="range" min="4" max="200" step="1" value="30" />
+                  <span class="cc-value" id="ccBrushSizeVal">30 px</span>
                 </div>
               </div>
             </div>
-            <div class="row cc-cleanActions">
-              <button class="btn small ghost" type="button" id="ccResetLogo">Reset logo</button>
-              <button class="btn small ghost" type="button" id="ccClearLogo">Clear all</button>
-              <button class="btn small" type="button" id="ccLoadOriginal" disabled>Load original logo</button>
-            </div>
-            <div class="row cc-cleanActions">
-              <button class="btn primary small" type="button" id="ccSaveCleaned" disabled>Save cleanup to library</button>
-              <span class="muted small" id="ccSaveStatus">Select a library logo to save cleanup.</span>
+            <div class="cc-cleanActionsRow">
+              <button class="btn ghost" type="button" id="ccResetLogo">Reset logo</button>
+              <button class="btn ghost" type="button" id="ccClearLogo">Clear all</button>
+              <button class="btn" type="button" id="ccLoadOriginal" disabled>Load original logo</button>
+              <button class="btn primary" type="button" id="ccSaveCleaned" disabled>Save cleanup to library</button>
             </div>
           </div>
 
           <div class="section">
             <div class="section-title"><span class="badge">4</span> Export cutout</div>
             <div class="row" style="justify-content:space-between;gap:12px">
-              <button class="btn primary" type="button" id="ccExportBtn" disabled>Export PNG</button>
-              <div class="chip" id="ccLastExport">No export yet</div>
+              <button class="btn primary" type="button" id="ccExportBtn" disabled style="flex:1">Export PNG</button>
+              <div class="cc-value" id="ccLastExport" style="flex:1; justify-content:flex-end">No export yet</div>
             </div>
             <p class="muted small" style="margin-top:6px">
               Output is a square PNG with a clean transparent punch—no outline stroke.
@@ -1762,18 +1806,22 @@
       </section>
 
       <section class="panel preview-panel cc-preview-panel">
-        <div class="preview-head cc-preview-head">
-          <div class="section-title" style="margin:0">
-            <span>Preview</span>
-          </div>
-          <div class="row" style="gap:12px">
+      <div class="preview-head cc-preview-head">
+        <div class="section-title" style="margin:0">
+          <span>Preview</span>
+        </div>
+          <div class="cc-preview-controls">
             <span class="muted small">Preview zoom</span>
             <span class="muted small"><span id="ccZoomLabel">1.00</span>x</span>
             <input id="ccPreviewZoom" type="range" min="0.5" max="2" step="0.05" value="1" style="width:160px" />
+          <div class="cc-bgToggle" role="group" aria-label="Preview background" id="ccBgToggle">
+            <button type="button" data-bg="dark" class="active">Dark background</button>
+            <button type="button" data-bg="transparent">Transparent</button>
+          </div>
           </div>
         </div>
         <div class="cc-stage" id="ccStage">
-          <div class="cc-stage-inner">
+        <div class="cc-stage-inner" data-bg="dark" id="ccStageInner">
             <canvas id="ccPreviewCanvas"></canvas>
             <div class="cc-stageHint" id="ccStageHint">Upload or pick a partner logo to start.</div>
           </div>
@@ -1784,12 +1832,25 @@
       </section>
     </main>
 
-    <button id="ccBackFab" type="button" class="floatingFab fab-coupo-back" aria-label="Back to Frozone">
-      <span class="fabIconWrap" aria-hidden="true">
-        <img src="https://i.postimg.cc/QMTckmdX/unnamed-1-1.png" alt="" class="cc-fabLogo" />
-      </span>
-      <span class="fab-label">Back to Frozone</span>
-    </button>
+    <div class="cc-fabDock">
+      <button id="ccBackFab" type="button" class="floatingFab fab-coupo-back" aria-label="Back to Frozone">
+        <span class="fabIconWrap" aria-hidden="true">
+          <img src="https://i.postimg.cc/QMTckmdX/unnamed-1-1.png" alt="" class="cc-fabLogo" />
+        </span>
+        <span class="fab-label">Back to Frozone</span>
+      </button>
+      <button id="ccDownloadApp" type="button" class="floatingFab fab-download" aria-label="Download Web App" data-download-app>
+        <i data-lucide="download" class="btn-ico" aria-hidden="true"></i>
+        <span class="fab-label">Download Web App</span>
+      </button>
+      <button id="ccThemeToggle" type="button" class="floatingFab fab-theme theme-toggle" aria-pressed="false" aria-label="Toggle dark mode" data-next="dark" data-theme-toggle>
+        <span class="fabIconWrap" aria-hidden="true">
+          <i data-lucide="sun" class="btn-ico sunIcon"></i>
+          <i data-lucide="moon" class="btn-ico moonIcon"></i>
+        </span>
+        <span class="fab-label" data-theme-label>Night mode</span>
+      </button>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/fflate@0.8.2/umd/index.min.js"></script>
@@ -2080,7 +2141,6 @@
     header: document.getElementById('appHeader'),
     introScreen: document.getElementById('introScreen'),
     themeToggle: document.getElementById('themeToggle'),
-    themeToggleLabelText: document.getElementById('themeToggleLabelText'),
     downloadApp: document.getElementById('downloadApp'),
     file: document.getElementById('file'),
     folder: document.getElementById('folder'),
@@ -2653,34 +2713,34 @@
   }
 
   const THEME_KEY = 'frozone-theme';
+  const themeToggleButtons = Array.from(document.querySelectorAll('[data-theme-toggle]'));
+  const themeToggleLabels = Array.from(document.querySelectorAll('[data-theme-label]'));
 
   function setTheme(mode){
     const root = document.documentElement;
     const next = mode === 'dark' ? 'dark' : 'light';
     root.dataset.theme = next;
-    if(els.themeToggle){
-      els.themeToggle.setAttribute('aria-pressed', next === 'dark');
-      const labelText = next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
-      els.themeToggle.setAttribute('aria-label', labelText);
-      els.themeToggle.title = labelText;
-      const upcoming = next === 'dark' ? 'light' : 'dark';
-      els.themeToggle.dataset.next = upcoming;
-      if(els.themeToggleLabelText){
-        els.themeToggleLabelText.textContent = upcoming === 'dark' ? 'Night mode' : 'Light mode';
-      }
-    }
+    const labelText = next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+    const upcoming = next === 'dark' ? 'light' : 'dark';
+    themeToggleButtons.forEach(btn=>{
+      btn.setAttribute('aria-pressed', next === 'dark');
+      btn.setAttribute('aria-label', labelText);
+      btn.title = labelText;
+      btn.dataset.next = upcoming;
+    });
+    themeToggleLabels.forEach(lab=>{ lab.textContent = upcoming === 'dark' ? 'Night mode' : 'Light mode'; });
     try{ localStorage.setItem(THEME_KEY, next); }catch(e){}
   }
   function initTheme(){
-    if(!els.themeToggle) return;
+    if(!themeToggleButtons.length) return;
     let stored = null;
     try{ stored = localStorage.getItem(THEME_KEY); }catch(e){ stored = null; }
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     setTheme(stored || (prefersDark ? 'dark' : 'light'));
-    els.themeToggle.addEventListener('click', ()=>{
+    themeToggleButtons.forEach(btn=> btn.addEventListener('click', ()=>{
       const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
       setTheme(next);
-    });
+    }));
   }
 
   function runIntroScreen(){
@@ -4703,25 +4763,27 @@
     state.banner.unsplash.page = safe;
     handleUnsplashSearch();
   });
-  els.downloadApp?.addEventListener('click', ()=>{
-    try {
-      const serializer = new XMLSerializer();
-      const clone = document.documentElement.cloneNode(true);
-      const docString = '<!DOCTYPE html>\n' + serializer.serializeToString(clone);
-      const blob = new Blob([docString], { type:'text/html' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      const now = new Date();
-      const stamp = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}_${String(now.getHours()).padStart(2,'0')}${String(now.getMinutes()).padStart(2,'0')}`;
-      a.href = url;
-      a.download = `frozone_${stamp}.html`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(()=> URL.revokeObjectURL(url), 1000);
-    } catch(err){
-      console.error('Unable to download app', err);
-    }
+  Array.from(document.querySelectorAll('[data-download-app]')).forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      try {
+        const serializer = new XMLSerializer();
+        const clone = document.documentElement.cloneNode(true);
+        const docString = '<!DOCTYPE html>\n' + serializer.serializeToString(clone);
+        const blob = new Blob([docString], { type:'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const now = new Date();
+        const stamp = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}_${String(now.getHours()).padStart(2,'0')}${String(now.getMinutes()).padStart(2,'0')}`;
+        a.href = url;
+        a.download = `frozone_${stamp}.html`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(()=> URL.revokeObjectURL(url), 1000);
+      } catch(err){
+        console.error('Unable to download app', err);
+      }
+    });
   });
   els.gradientGenerate?.addEventListener('click', ()=>{ generateGradientBackground(); });
   els.gradientRandomize?.addEventListener('click', ()=>{ generateGradientBackground(); });
@@ -5702,7 +5764,9 @@
     header: document.getElementById('ccHeader'),
     previewCanvas: document.getElementById('ccPreviewCanvas'),
     editorCanvas: document.getElementById('ccLogoEditorCanvas'),
+    editorWrap: document.getElementById('ccEditorWrap'),
     stageHint: document.getElementById('ccStageHint'),
+    stageInner: document.getElementById('ccStageInner'),
     logoFile: document.getElementById('ccLogoFile'),
     partnerSearch: document.getElementById('ccPartnerSearch'),
     partnerGallery: document.getElementById('ccPartnerGallery'),
@@ -5724,8 +5788,8 @@
     toolMagic: document.getElementById('ccToolMagic'),
     brushPreview: document.getElementById('ccBrushPreview'),
     saveCleaned: document.getElementById('ccSaveCleaned'),
-    saveStatus: document.getElementById('ccSaveStatus'),
     loadOriginal: document.getElementById('ccLoadOriginal'),
+    bgButtons: Array.from(document.querySelectorAll('#ccBgToggle button')),
     openBtn: document.getElementById('openCoupoCut'),
     backBtn: document.getElementById('ccBackFab')
   };
@@ -5740,6 +5804,7 @@
     offsetX:0,
     offsetY:0,
     previewZoom:1,
+    previewBg:'dark',
     activeTool:'brush',
     libraryEntryName:'',
     originalSourceUrl:'',
@@ -5759,19 +5824,15 @@
       coupoEls.previewCanvas.style.transform = 'scale(' + coupoState.previewZoom.toFixed(2) + ')';
     }
   }
+  function applyCoupoBg(){
+    const mode = coupoState.previewBg === 'transparent' ? 'transparent' : 'dark';
+    if(coupoEls.stageInner){ coupoEls.stageInner.setAttribute('data-bg', mode); }
+    coupoEls.bgButtons?.forEach(btn=> btn.classList.toggle('active', btn.dataset.bg === mode));
+  }
   function updateCoupoSaveButtons(){
     const hasLibrary = !!coupoState.libraryEntryName;
     if(coupoEls.saveCleaned){ coupoEls.saveCleaned.disabled = !hasLibrary || !coupoState.hasLogo; }
     if(coupoEls.loadOriginal){ coupoEls.loadOriginal.disabled = !hasLibrary || !coupoState.originalSourceUrl; }
-    if(coupoEls.saveStatus){
-      if(!hasLibrary){
-        coupoEls.saveStatus.textContent = 'Select a library logo to save cleanup.';
-      } else if(coupoState.cleanedFromLibrary){
-        coupoEls.saveStatus.textContent = 'Using saved cleanup for ' + coupoState.libraryEntryName + '.';
-      } else {
-        coupoEls.saveStatus.textContent = 'Save this cleanup once and reuse it from the library.';
-      }
-    }
   }
   function renderCoupoPreview(){
     if(!coupoPreviewCtx || !coupoEls.previewCanvas) return;
@@ -5816,14 +5877,18 @@
     }
   }
   function showBrushPreview(evt){
-    if(!coupoEls.brushPreview || !coupoEls.editorCanvas) return;
-    const rect = coupoEls.editorCanvas.getBoundingClientRect();
-    const factor = rect.width ? (coupoEls.editorCanvas.width / rect.width) : 1;
+    if(!coupoEls.brushPreview || !coupoEls.editorCanvas || !coupoEls.editorWrap) return;
+    const canvasRect = coupoEls.editorCanvas.getBoundingClientRect();
+    const wrapRect = coupoEls.editorWrap.getBoundingClientRect();
+    const factor = canvasRect.width ? (coupoEls.editorCanvas.width / canvasRect.width) : 1;
     const size = coupoState.brushSize * 2 / factor;
+    const clientX = evt.touches ? evt.touches[0]?.clientX : evt.clientX;
+    const clientY = evt.touches ? evt.touches[0]?.clientY : evt.clientY;
+    if(typeof clientX !== 'number' || typeof clientY !== 'number') return;
     coupoEls.brushPreview.style.width = size + 'px';
     coupoEls.brushPreview.style.height = size + 'px';
-    coupoEls.brushPreview.style.left = (evt.clientX - rect.left) + 'px';
-    coupoEls.brushPreview.style.top = (evt.clientY - rect.top) + 'px';
+    coupoEls.brushPreview.style.left = (clientX - wrapRect.left) + 'px';
+    coupoEls.brushPreview.style.top = (clientY - wrapRect.top) + 'px';
     coupoEls.brushPreview.style.opacity = coupoState.hasLogo ? 1 : 0;
   }
   function hideBrushPreview(){ if(coupoEls.brushPreview){ coupoEls.brushPreview.style.opacity = 0; } }
@@ -5980,6 +6045,7 @@
     coupoEls.editorCanvas.height = 200;
     updateCoupoSliderLabels();
     applyCoupoZoom();
+    applyCoupoBg();
     updateCoupoSaveButtons();
     refreshCoupoGallery = buildCoupoGallery;
     buildCoupoGallery('');
@@ -5994,6 +6060,12 @@
     coupoEls.logoOffsetX?.addEventListener('input', e=>{ coupoState.offsetX = parseFloat(e.target.value) || 0; updateCoupoSliderLabels(); renderCoupoPreview(); });
     coupoEls.logoOffsetY?.addEventListener('input', e=>{ coupoState.offsetY = parseFloat(e.target.value) || 0; updateCoupoSliderLabels(); renderCoupoPreview(); });
     coupoEls.brushSize?.addEventListener('input', e=>{ coupoState.brushSize = parseFloat(e.target.value) || 10; updateCoupoSliderLabels(); });
+    coupoEls.bgButtons?.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        coupoState.previewBg = btn.dataset.bg === 'transparent' ? 'transparent' : 'dark';
+        applyCoupoBg();
+      });
+    });
     coupoEls.toolBrush?.addEventListener('click', ()=>setCoupoTool('brush'));
     coupoEls.toolMagic?.addEventListener('click', ()=>setCoupoTool('magic'));
     let isDrawing = false;
