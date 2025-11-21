@@ -13,6 +13,7 @@
     --btn-bg:#ffffff; --btn-ghost-bg:transparent; --chip-bg:#ffffff;
     --stageBg:#f8fafc; --stageInner:#ffffff; --headerBg:#ffffffc7;
     --radius:18px; --radius-sm:12px; --headerH:64px;
+    --cc-amber:#f59e0b; --cc-orange:#f97316; --cc-sunset:#fbbf24; --cc-soft:#fff7ed; --cc-soft2:#fff3d8;
   }
   :root[data-theme="dark"]{
     color-scheme:dark;
@@ -22,6 +23,7 @@
     --card:#101a2fd9; --border:#1b2740; --shadow:0 22px 44px rgba(1,5,19,0.68);
     --btn-bg:#111c31; --btn-ghost-bg:rgba(8,14,26,0.72); --chip-bg:#0f1a30;
     --stageBg:#040a18; --stageInner:#091429; --headerBg:rgba(5,11,23,0.88);
+    --cc-amber:#f6c347; --cc-orange:#fb8a3c; --cc-sunset:#fbd247; --cc-soft:#1b202d; --cc-soft2:#131827;
   }
   *{box-sizing:border-box}
   html,body{height:100%}
@@ -546,43 +548,69 @@
   .stage-inner.fullscreen-active .fullscreenControlDock{display:flex}
 
   .frozone-shell{min-height:100vh;}
-  body.show-coupocut{overflow:auto;}
-  body.show-coupocut #coupoCutShell{display:block;}
-  .coupocut-shell{position:fixed; inset:0; display:none; background: linear-gradient(180deg,var(--bg1),var(--bg2) 55%, var(--bg3)); overflow:auto; z-index:70; padding-bottom:140px;}
+  body.show-coupocut{overflow:hidden; --brand:var(--cc-orange); --brand2:var(--cc-amber); --accent:var(--cc-sunset);}
+  body.show-coupocut #coupoCutShell{opacity:1; pointer-events:auto; transform:translate(0,0); visibility:visible;}
+  .coupocut-shell{position:fixed; inset:0; display:block; background: linear-gradient(180deg,var(--cc-soft),var(--cc-soft2) 55%, var(--bg3)); z-index:70; padding-bottom:0; opacity:0; pointer-events:none; transform:translate(28px,48px); transition:opacity .4s ease, transform .4s cubic-bezier(.32,.72,.21,1); overflow:hidden; visibility:hidden;}
   .coupocut-shell .wrap{padding:16px;}
-  .cc-header{position:sticky; top:0; z-index:75; backdrop-filter: blur(12px); background:var(--headerBg); border-bottom:1px solid var(--border); transition:background .25s ease}
+  .cc-header{position:sticky; top:0; z-index:75; backdrop-filter: blur(12px); background:color-mix(in srgb,var(--cc-soft) 70%,var(--card)); border-bottom:1px solid var(--border); transition:background .25s ease, border-color .25s ease}
   .cc-header-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0}
   .cc-brand{display:flex; align-items:center; gap:12px}
-  .cc-logoBadge{width:44px; height:44px; border-radius:14px; background:var(--card); border:1px solid var(--border); box-shadow:0 10px 24px rgba(15,23,42,0.12); display:grid; place-items:center; overflow:hidden}
+  .cc-logoBadge{width:48px; height:48px; border-radius:16px; background:linear-gradient(135deg,#fff,var(--cc-soft)); border:1px solid color-mix(in srgb,var(--border),var(--cc-amber)); box-shadow:0 12px 28px rgba(249,115,22,0.15); display:grid; place-items:center; overflow:hidden}
   .cc-logoBadge img{width:100%; height:100%; object-fit:contain}
-  .cc-main{display:grid; grid-template-columns:1fr 1.25fr; gap:18px; padding:16px 0 36px}
+  .cc-main{display:grid; grid-template-columns:1fr 1.25fr; gap:18px; padding:16px 0 20px; height:calc(100vh - var(--headerH)); overflow:hidden; align-items:start}
   .cc-main>*{min-width:0}
-  @media (max-width: 1000px){ .cc-main{grid-template-columns:1fr} }
-  .cc-scroll{padding:0 20px 20px; overflow:auto}
+  @media (max-width: 1000px){ .cc-main{grid-template-columns:1fr; height:auto; overflow:visible} }
+  .cc-controls{height:100%; display:flex; flex-direction:column}
+  .cc-scroll{padding:0 20px 20px; overflow:auto; flex:1}
   .cc-stack{display:grid; gap:12px; text-align:left}
-  .cc-sliderRow{display:flex; flex-direction:column; gap:6px; font-size:13px}
-  .cc-sliderRow>span{font-weight:700}
-  .cc-sliderControls{display:flex; align-items:center; gap:10px}
+  .cc-sliderRow{display:flex; align-items:center; gap:12px; font-size:13px; background:var(--card); border:1px solid var(--border); border-radius:14px; padding:12px 14px}
+  .cc-sliderRow>span{font-weight:700; min-width:90px}
+  .cc-sliderControls{display:flex; align-items:center; gap:10px; flex:1}
   .cc-sliderControls input[type="range"]{flex:1}
-  .cc-toolSwitch{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px}
-  .cc-toolSwitch .btn.active{background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#fff; border-color:transparent}
-  .cc-editorWrap{margin-top:8px; border-radius:16px; border:1px solid var(--border); background:var(--stageBg); padding:12px; display:flex; align-items:center; justify-content:center; min-height:220px; position:relative}
-  .cc-editorWrap canvas{display:block; max-width:100%; height:auto; background:conic-gradient(from 0deg,#f3f4f6 0 25%,#e5e7eb 25% 50%,#f3f4f6 50% 75%,#e5e7eb 75% 100%); background-size:24px 24px; border-radius:12px}
-  .cc-brushPreview{position:absolute; border:1.5px dashed var(--brand); border-radius:50%; pointer-events:none; opacity:0; transform:translate(-50%,-50%); box-shadow:0 6px 20px rgba(14,165,233,0.25); transition:opacity .12s ease}
-  .cc-stage{padding:18px; background:var(--stageBg); border-radius:var(--radius); flex:1; display:flex}
-  .cc-stage-inner{position:relative; flex:1; border-radius:24px; background-image: linear-gradient(45deg,#e5e7eb 25%,transparent 25%,transparent 75%,#e5e7eb 75%,#e5e7eb), linear-gradient(45deg,#e5e7eb 25%,transparent 25%,transparent 75%,#e5e7eb 75%,#e5e7eb); background-size:24px 24px; background-position:0 0,12px 12px; display:flex; align-items:center; justify-content:center; overflow:hidden; box-shadow:0 20px 45px rgba(15,23,42,0.25)}
+  .cc-sliderControls .chip{padding:6px 10px; font-size:12px; border-radius:10px; min-width:62px; text-align:center; background:var(--stageBg)}
+  .cc-toolSwitch{display:inline-flex; gap:6px; flex-wrap:wrap; margin-bottom:8px; padding:6px; border-radius:16px; border:1px solid var(--border); background:var(--card); box-shadow:inset 0 1px 0 rgba(255,255,255,0.6)}
+  .cc-toolSwitch .btn{flex:1; min-width:150px; border:none; box-shadow:none; background:transparent; color:var(--muted); font-weight:700; letter-spacing:0.01em}
+  .cc-toolSwitch .btn.active{background:linear-gradient(135deg,var(--cc-sunset),var(--cc-orange)); color:#0f172a; border:none; box-shadow:0 14px 30px rgba(249,115,22,0.25)}
+  .cc-editorWrap{margin-top:8px; border-radius:16px; border:1px solid var(--border); background:var(--stageBg); padding:12px; display:flex; align-items:center; justify-content:center; min-height:240px; position:relative}
+  .cc-editorWrap canvas{display:block; max-width:100%; height:auto; background:conic-gradient(from 0deg,#f3f4f6 0 25%,#e5e7eb 25% 50%,#f3f4f6 50% 75%,#e5e7eb 75% 100%); background-size:20px 20px; border-radius:12px; cursor:none}
+  .cc-brushPreview{position:absolute; border:1.6px dashed var(--cc-orange); border-radius:50%; pointer-events:none; opacity:0; transform:translate(-50%,-50%); box-shadow:0 10px 26px rgba(249,115,22,0.25); transition:opacity .12s ease}
+  .cc-stage{padding:18px; background:var(--stageBg); border-radius:var(--radius); flex:1; display:flex; min-height:420px; overflow:hidden}
+  .cc-stage-inner{position:relative; flex:1; border-radius:24px; display:flex; align-items:center; justify-content:center; overflow:hidden; box-shadow:0 20px 45px rgba(15,23,42,0.25); background:#111827; transition:background .25s ease, box-shadow .25s ease}
+  .cc-stage-inner[data-bg="grid"]{background-color:#f8fafc; background-image: linear-gradient(45deg,#e5e7eb 25%,transparent 25%,transparent 75%,#e5e7eb 75%,#e5e7eb), linear-gradient(45deg,#e5e7eb 25%,transparent 25%,transparent 75%,#e5e7eb 75%,#e5e7eb); background-size:22px 22px; background-position:0 0,11px 11px}
   .cc-stage-inner canvas{display:block; max-width:100%; height:auto; transform-origin:center center}
   .cc-stageHint{position:absolute; inset:auto 14px 14px 14px; text-align:center; font-size:12px; color:var(--muted); pointer-events:none}
-  .cc-preview-head{padding:16px 18px 10px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:12px}
-  .cc-cleanActions{gap:10px; align-items:center; flex-wrap:wrap}
+  .coupocut-shell .cc-stageHint{color:rgba(255,255,255,0.8)}
+  .cc-stage-inner[data-bg="grid"] .cc-stageHint{color:var(--muted)}
+  .cc-preview-head{padding:16px 18px 12px; border-bottom:1px solid var(--border); display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap}
+  .cc-previewControls{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+  .cc-bgToggle{display:inline-flex; gap:6px; padding:6px; border-radius:12px; border:1px solid var(--border); background:var(--card)}
+  .cc-bgToggle button{min-width:118px; border:none; box-shadow:none; background:transparent; color:var(--muted); font-weight:700}
+  .cc-bgToggle button.active{background:linear-gradient(135deg,var(--cc-sunset),var(--cc-orange)); color:#0f172a; box-shadow:0 12px 26px rgba(249,115,22,0.25)}
+  .cc-cleanActions{gap:12px; align-items:center; flex-wrap:wrap; justify-content:space-between}
   .cc-cleanActions .btn{white-space:nowrap}
+  .cc-actionBar{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+  .cc-actionBar .btn{flex:1; min-width:140px; justify-content:center}
+  .cc-actionBar .btn.primary{background:linear-gradient(135deg,var(--cc-sunset),var(--cc-orange)); color:#0f172a; border:none; box-shadow:0 14px 28px rgba(249,115,22,0.22)}
+  .cc-actionBar .btn.ghost{background:var(--btn-ghost-bg); border:1px solid var(--border)}
+  .cc-actionBar .btn:disabled{opacity:0.6}
   .cc-libScroller .libItem{position:relative}
-  .cc-cleanTag{position:absolute; top:6px; right:6px; font-size:10px; background:rgba(14,165,233,0.14); color:var(--ink); padding:2px 6px; border-radius:999px; border:1px solid var(--border); box-shadow:0 6px 14px rgba(15,23,42,0.08)}
-  .fab-coupocut{bottom:188px; border-color:rgba(148,163,184,0.45); justify-content:center}
-  .fab-coupocut:hover{background:rgba(255,255,255,0.92)}
-  .fab-coupo-back{bottom:32px; background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#0f172a; border:none}
+  .cc-cleanTag{position:absolute; top:6px; right:6px; font-size:10px; background:rgba(249,115,22,0.14); color:var(--ink); padding:2px 6px; border-radius:999px; border:1px solid var(--border); box-shadow:0 6px 14px rgba(15,23,42,0.08)}
+  .coupocut-shell .uploadGrid{gap:12px; margin-bottom:10px}
+  .coupocut-shell .libWrap{gap:14px; margin-top:6px}
+  .coupocut-shell .libHeader{gap:14px; align-items:center}
+  .coupocut-shell .libHeader input{padding:12px 12px}
+  .fab-coupocut{border-color:rgba(148,163,184,0.45); justify-content:center; background:#fff; color:var(--ink);}
+  .fab-coupocut:hover{background:linear-gradient(135deg,var(--cc-sunset),var(--cc-orange)); color:#0f172a; border-color:transparent}
+  .fab-coupo-back{background:linear-gradient(135deg,var(--cc-sunset),var(--cc-orange)); color:#0f172a; border:none}
   .cc-fabLogo{width:32px; height:32px; object-fit:contain}
+  :root[data-theme="dark"] .cc-stage-inner{background:var(--cc-soft2); box-shadow:0 18px 38px rgba(3,7,18,0.6)}
+  :root[data-theme="dark"] .cc-stage-inner[data-bg="grid"]{background-color:var(--cc-soft2); background-image: linear-gradient(45deg,rgba(255,255,255,0.08) 25%,transparent 25%,transparent 75%,rgba(255,255,255,0.08) 75%,rgba(255,255,255,0.08)), linear-gradient(45deg,rgba(255,255,255,0.08) 25%,transparent 25%,transparent 75%,rgba(255,255,255,0.08) 75%,rgba(255,255,255,0.08)); background-size:18px 18px; background-position:0 0,9px 9px}
 
+  .fabDock{position:fixed; right:24px; bottom:32px; display:flex; gap:12px; z-index:65; align-items:center}
+  .cc-fabDock{z-index:78}
+  .fabDock .floatingFab{position:relative; right:auto; bottom:auto}
+  .fabDock a.floatingFab{text-decoration:none}
+  .fabDock .floatingFab:hover, .fabDock .floatingFab:focus-visible{transform:translateY(-2px)}
   .floatingFab{position:fixed; right:24px; display:inline-flex; align-items:center; justify-content:flex-start; gap:0; min-width:56px; max-width:56px; height:56px; padding:0 12px; border-radius:50%; border:1px solid transparent; background:var(--card); color:var(--ink); font-weight:600; letter-spacing:0.02em; box-shadow:0 20px 38px rgba(15,23,42,0.16); z-index:61; cursor:pointer; white-space:nowrap; overflow:hidden; backdrop-filter:blur(14px); transition:max-width .36s cubic-bezier(.4,0,.2,1), padding .36s cubic-bezier(.4,0,.2,1), gap .36s cubic-bezier(.4,0,.2,1), border-radius .36s cubic-bezier(.4,0,.2,1), transform .36s cubic-bezier(.22,.61,.36,1), box-shadow .36s cubic-bezier(.22,.61,.36,1), background .3s ease, color .3s ease;}
   .floatingFab .btn-ico{width:22px; height:22px; stroke:currentColor; flex-shrink:0; transition:transform .3s cubic-bezier(.22,.61,.36,1)}
   .floatingFab .fab-label{font-size:13px; font-weight:600; opacity:0; max-width:0; transform:translateX(8px); transition:opacity .28s ease, transform .28s ease, max-width .36s cubic-bezier(.4,0,.2,1); white-space:nowrap}
@@ -592,14 +620,14 @@
   .floatingFab:focus-visible{outline:3px solid rgba(14,165,233,0.45); outline-offset:3px}
   .floatingFab .fabIconWrap{display:inline-grid; place-items:center; width:32px; height:32px; position:relative; flex-shrink:0}
 
-  #downloadApp{bottom:110px; border-color:rgba(148,163,184,0.45); justify-content:center; padding:0 16px}
+  #downloadApp{border-color:rgba(148,163,184,0.45); justify-content:center; padding:0 16px}
   #downloadApp .btn-ico{margin-left:4px; position:relative; top:0.5px}
   #downloadApp .fab-label{color:var(--ink)}
   #downloadApp:hover{background:rgba(255,255,255,0.92)}
   :root[data-theme="dark"] #downloadApp{background:rgba(9,20,41,0.72); border-color:rgba(46,63,98,0.65); box-shadow:0 26px 50px rgba(1,5,19,0.6)}
   :root[data-theme="dark"] #downloadApp:hover{background:rgba(15,32,58,0.85)}
 
-  #themeToggle{bottom:32px; background:linear-gradient(135deg,var(--brand),var(--brand2)); border:none; box-shadow:0 18px 36px rgba(15,23,42,0.22); color:#fff; z-index:62}
+  #themeToggle{background:linear-gradient(135deg,var(--brand),var(--brand2)); border:none; box-shadow:0 18px 36px rgba(15,23,42,0.22); color:#fff; z-index:62}
   #themeToggle .btn-ico{width:26px; height:26px; stroke:#fff}
   #themeToggle .fab-label{color:#fff}
   #themeToggle .sunIcon,#themeToggle .moonIcon{position:absolute; inset:0; margin:auto; opacity:0; transform:scale(0.7); transition:opacity .3s ease, transform .3s ease}
@@ -607,11 +635,28 @@
   #themeToggle[data-next="dark"] .moonIcon{opacity:1; transform:scale(1)}
   #themeToggle:hover{box-shadow:0 28px 56px rgba(15,23,42,0.3)}
   :root[data-theme="dark"] #themeToggle{box-shadow:0 24px 52px rgba(1,5,19,0.55)}
+  #openCoupoCut{border:1px solid rgba(148,163,184,0.45); background:#fff; color:var(--ink)}
+  #openCoupoCut .fabIconWrap{background:transparent}
+  #openCoupoCut:hover{background:linear-gradient(135deg,var(--cc-sunset),var(--cc-orange)); color:#0f172a; border-color:transparent}
+  #openMockupMaker{border:1px solid rgba(148,163,184,0.45); background:#fff; color:var(--ink)}
+  #openMockupMaker:hover{background:linear-gradient(135deg,#f687b3,#ef4444); color:#0f172a; border-color:transparent}
+  .fabDock .floatingFab:focus-visible{outline:3px solid rgba(250,204,21,0.55); outline-offset:3px}
+  .show-coupocut #fabDock{opacity:0; pointer-events:none;}
+  .cc-exportRow{display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:center}
+  .cc-exportRow .btn{width:100%; justify-content:center}
+  .cc-exportRow .chip{width:100%; text-align:right; justify-content:flex-end}
+  .cc-previewControls .muted{color:var(--muted)}
 
   .resizeHandle{position:absolute; width:18px; height:18px; border-radius:50%; border:2px solid rgba(255,255,255,0.9); background:rgba(14,165,233,0.75); box-shadow:0 6px 16px rgba(14,165,233,0.25); cursor:nwse-resize; z-index:30; transition:transform .12s ease}
   .resizeHandle:hover{transform:scale(1.1)}
   .resizeHandle[data-corner="ne"], .resizeHandle[data-corner="sw"]{cursor:nesw-resize}
   .stage.dragging{cursor:grabbing}
+
+  .coupocut-shell .btn.primary{background:linear-gradient(135deg,var(--cc-sunset),var(--cc-orange)); color:#0f172a; border:none; box-shadow:0 12px 26px rgba(249,115,22,0.2)}
+  .coupocut-shell .btn.primary:hover{transform:translateY(-1px)}
+  .coupocut-shell .btn.ghost{border-color:color-mix(in srgb,var(--border),var(--cc-amber) 30%)}
+  .coupocut-shell .btn.small{padding:10px 14px; border-radius:12px}
+  :root[data-theme="dark"] .coupocut-shell .cc-editorWrap canvas{background:conic-gradient(from 0deg,#111827 0 25%,#0b1220 25% 50%,#111827 50% 75%,#0b1220 75% 100%); background-size:18px 18px}
 
   :root[data-theme="dark"] .logo{box-shadow:0 6px 18px rgba(14,165,233,0.25)}
   :root[data-theme="dark"] .formatCard{box-shadow:0 18px 36px rgba(2,6,23,0.45)}
@@ -699,8 +744,8 @@
         </div>
       </div>
       <div class="right-head">
-        <div class="team">LiveOps Team</div>
-        <div class="by">designed by <a href="https://www.pratov.site" target="_blank" rel="noopener">Beka Pratov</a></div>
+        <div class="team">AdWise+ Tools</div>
+        <div class="by">designed by Big Brother</div>
       </div>
     </div>
   </header>
@@ -1581,23 +1626,31 @@
   </div>
 
   <div class="globalDropOverlay" id="globalDropOverlay">Drop images anywhere to upload</div>
-  <button id="openCoupoCut" type="button" class="floatingFab fab-coupocut" aria-label="Open CoupoCut">
-    <span class="fabIconWrap" aria-hidden="true">
-      <img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="" class="cc-fabLogo" />
-    </span>
-    <span class="fab-label">Open CoupoCut</span>
-  </button>
-  <button id="downloadApp" type="button" class="floatingFab fab-download" aria-label="Download Web App">
-    <i data-lucide="download" class="btn-ico" aria-hidden="true"></i>
-    <span class="fab-label">Download Web App</span>
-  </button>
-  <button id="themeToggle" type="button" class="floatingFab fab-theme" aria-pressed="false" aria-label="Toggle dark mode" data-next="dark">
-    <span class="fabIconWrap" aria-hidden="true">
-      <i data-lucide="sun" class="btn-ico sunIcon"></i>
-      <i data-lucide="moon" class="btn-ico moonIcon"></i>
-    </span>
-    <span class="fab-label" id="themeToggleLabelText">Night mode</span>
-  </button>
+  <div id="fabDock" class="fabDock">
+    <button id="themeToggle" type="button" class="floatingFab fab-theme" aria-pressed="false" aria-label="Toggle dark mode" data-next="dark">
+      <span class="fabIconWrap" aria-hidden="true">
+        <i data-lucide="sun" class="btn-ico sunIcon"></i>
+        <i data-lucide="moon" class="btn-ico moonIcon"></i>
+      </span>
+      <span class="fab-label" id="themeToggleLabelText">Night mode</span>
+    </button>
+    <button id="downloadApp" type="button" class="floatingFab fab-download" aria-label="Download Web App">
+      <i data-lucide="download" class="btn-ico" aria-hidden="true"></i>
+      <span class="fab-label">Download Web App</span>
+    </button>
+    <button id="openCoupoCut" type="button" class="floatingFab fab-coupocut" aria-label="Open CoupoCut">
+      <span class="fabIconWrap" aria-hidden="true">
+        <img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="" class="cc-fabLogo" />
+      </span>
+      <span class="fab-label">Open CoupoCut</span>
+    </button>
+    <a id="openMockupMaker" class="floatingFab fab-coupocut" href="https://www.figma.com/buzz/m0uFepFCjhaah5nL3V8gAt/MockUp-Maker---MAIN-FILE?node-id=3-517&t=Anqi9e3rbQUykLA8-1" target="_blank" rel="noopener">
+      <span class="fabIconWrap" aria-hidden="true">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/1667px-Figma-logo.svg.png" alt="Figma" class="cc-fabLogo" />
+      </span>
+      <span class="fab-label">OpenMockupMaker</span>
+    </a>
+  </div>
   <div class="modal" id="partnerSettingsModal" role="dialog" aria-modal="true" aria-labelledby="partnerSettingsTitle">
     <div class="modal-card">
       <div class="modalHeader">
@@ -1649,8 +1702,8 @@
           </div>
         </div>
         <div class="right-head">
-          <div class="team">P+ LiveOps Tools</div>
-          <div class="by">Built alongside Frozone</div>
+          <div class="team">AdWise+ Tools</div>
+          <div class="by">designed by Big Brother</div>
         </div>
       </div>
     </header>
@@ -1728,29 +1781,24 @@
               <canvas id="ccLogoEditorCanvas"></canvas>
               <div id="ccBrushPreview" class="cc-brushPreview" aria-hidden="true"></div>
             </div>
-            <div class="row" style="margin-top:10px">
-              <div class="cc-sliderRow" style="flex:1">
-                <span>Brush size</span>
-                <div class="cc-sliderControls">
-                  <input id="ccBrushSize" type="range" min="4" max="80" step="1" value="30" />
-                  <span class="chip" id="ccBrushSizeVal">30 px</span>
-                </div>
+            <div class="cc-sliderRow cc-brushRow">
+              <span>Brush size</span>
+              <div class="cc-sliderControls">
+                <input id="ccBrushSize" type="range" min="4" max="220" step="1" value="30" />
+                <span class="chip" id="ccBrushSizeVal">30 px</span>
               </div>
             </div>
-            <div class="row cc-cleanActions">
-              <button class="btn small ghost" type="button" id="ccResetLogo">Reset logo</button>
-              <button class="btn small ghost" type="button" id="ccClearLogo">Clear all</button>
-              <button class="btn small" type="button" id="ccLoadOriginal" disabled>Load original logo</button>
-            </div>
-            <div class="row cc-cleanActions">
-              <button class="btn primary small" type="button" id="ccSaveCleaned" disabled>Save cleanup to library</button>
-              <span class="muted small" id="ccSaveStatus">Select a library logo to save cleanup.</span>
+            <div class="cc-actionBar">
+              <button class="btn ghost" type="button" id="ccResetLogo">Reset logo</button>
+              <button class="btn ghost" type="button" id="ccClearLogo">Clean all</button>
+              <button class="btn ghost" type="button" id="ccLoadOriginal" disabled>Load original logo</button>
+              <button class="btn primary" type="button" id="ccSaveCleaned" disabled>Save cleanup</button>
             </div>
           </div>
 
           <div class="section">
             <div class="section-title"><span class="badge">4</span> Export cutout</div>
-            <div class="row" style="justify-content:space-between;gap:12px">
+            <div class="cc-exportRow">
               <button class="btn primary" type="button" id="ccExportBtn" disabled>Export PNG</button>
               <div class="chip" id="ccLastExport">No export yet</div>
             </div>
@@ -1766,14 +1814,20 @@
           <div class="section-title" style="margin:0">
             <span>Preview</span>
           </div>
-          <div class="row" style="gap:12px">
-            <span class="muted small">Preview zoom</span>
-            <span class="muted small"><span id="ccZoomLabel">1.00</span>x</span>
-            <input id="ccPreviewZoom" type="range" min="0.5" max="2" step="0.05" value="1" style="width:160px" />
+          <div class="cc-previewControls">
+            <div class="cc-bgToggle" role="group" aria-label="Preview background">
+              <button type="button" class="btn small ghost active" id="ccBgDark" aria-pressed="true">Dark canvas</button>
+              <button type="button" class="btn small ghost" id="ccBgGrid" aria-pressed="false">Transparent</button>
+            </div>
+            <div class="row" style="gap:10px; align-items:center">
+              <span class="muted small">Preview zoom</span>
+              <span class="muted small"><span id="ccZoomLabel">1.00</span>x</span>
+              <input id="ccPreviewZoom" type="range" min="0.5" max="2" step="0.05" value="1" style="width:160px" />
+            </div>
           </div>
         </div>
         <div class="cc-stage" id="ccStage">
-          <div class="cc-stage-inner">
+          <div class="cc-stage-inner" id="ccStageInner" data-bg="solid">
             <canvas id="ccPreviewCanvas"></canvas>
             <div class="cc-stageHint" id="ccStageHint">Upload or pick a partner logo to start.</div>
           </div>
@@ -1784,12 +1838,25 @@
       </section>
     </main>
 
-    <button id="ccBackFab" type="button" class="floatingFab fab-coupo-back" aria-label="Back to Frozone">
-      <span class="fabIconWrap" aria-hidden="true">
-        <img src="https://i.postimg.cc/QMTckmdX/unnamed-1-1.png" alt="" class="cc-fabLogo" />
-      </span>
-      <span class="fab-label">Back to Frozone</span>
-    </button>
+    <div class="fabDock cc-fabDock">
+      <button id="ccBackFab" type="button" class="floatingFab fab-coupo-back" aria-label="Back to Frozone">
+        <span class="fabIconWrap" aria-hidden="true">
+          <img src="https://i.postimg.cc/QMTckmdX/unnamed-1-1.png" alt="" class="cc-fabLogo" />
+        </span>
+        <span class="fab-label">Back to Frozone</span>
+      </button>
+      <button id="ccDownloadApp" type="button" class="floatingFab fab-download" aria-label="Download Web App">
+        <i data-lucide="download" class="btn-ico" aria-hidden="true"></i>
+        <span class="fab-label">Download Web App</span>
+      </button>
+      <button id="ccThemeToggle" type="button" class="floatingFab fab-theme" aria-pressed="false" aria-label="Toggle dark mode" data-next="dark">
+        <span class="fabIconWrap" aria-hidden="true">
+          <i data-lucide="sun" class="btn-ico sunIcon"></i>
+          <i data-lucide="moon" class="btn-ico moonIcon"></i>
+        </span>
+        <span class="fab-label" id="ccThemeToggleLabel">Night mode</span>
+      </button>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/fflate@0.8.2/umd/index.min.js"></script>
@@ -2081,7 +2148,10 @@
     introScreen: document.getElementById('introScreen'),
     themeToggle: document.getElementById('themeToggle'),
     themeToggleLabelText: document.getElementById('themeToggleLabelText'),
+    ccThemeToggle: document.getElementById('ccThemeToggle'),
+    ccThemeToggleLabel: document.getElementById('ccThemeToggleLabel'),
     downloadApp: document.getElementById('downloadApp'),
+    ccDownloadApp: document.getElementById('ccDownloadApp'),
     file: document.getElementById('file'),
     folder: document.getElementById('folder'),
     pasteUrlBtn: document.getElementById('pasteUrlBtn'),
@@ -2654,21 +2724,24 @@
 
   const THEME_KEY = 'frozone-theme';
 
+  function syncThemeToggle(btn, label, next){
+    if(!btn) return;
+    btn.setAttribute('aria-pressed', next === 'dark');
+    const upcoming = next === 'dark' ? 'light' : 'dark';
+    btn.dataset.next = upcoming;
+    const labelText = upcoming === 'dark' ? 'Night mode' : 'Light mode';
+    const ariaLabel = upcoming === 'dark' ? 'Switch to dark mode' : 'Switch to light mode';
+    btn.setAttribute('aria-label', ariaLabel);
+    btn.title = ariaLabel;
+    if(label){ label.textContent = labelText; }
+  }
+
   function setTheme(mode){
     const root = document.documentElement;
     const next = mode === 'dark' ? 'dark' : 'light';
     root.dataset.theme = next;
-    if(els.themeToggle){
-      els.themeToggle.setAttribute('aria-pressed', next === 'dark');
-      const labelText = next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
-      els.themeToggle.setAttribute('aria-label', labelText);
-      els.themeToggle.title = labelText;
-      const upcoming = next === 'dark' ? 'light' : 'dark';
-      els.themeToggle.dataset.next = upcoming;
-      if(els.themeToggleLabelText){
-        els.themeToggleLabelText.textContent = upcoming === 'dark' ? 'Night mode' : 'Light mode';
-      }
-    }
+    syncThemeToggle(els.themeToggle, els.themeToggleLabelText, next);
+    syncThemeToggle(els.ccThemeToggle, els.ccThemeToggleLabel, next);
     try{ localStorage.setItem(THEME_KEY, next); }catch(e){}
   }
   function initTheme(){
@@ -2677,10 +2750,12 @@
     try{ stored = localStorage.getItem(THEME_KEY); }catch(e){ stored = null; }
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     setTheme(stored || (prefersDark ? 'dark' : 'light'));
-    els.themeToggle.addEventListener('click', ()=>{
+    const toggleTheme = ()=>{
       const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
       setTheme(next);
-    });
+    };
+    els.themeToggle.addEventListener('click', toggleTheme);
+    els.ccThemeToggle?.addEventListener('click', toggleTheme);
   }
 
   function runIntroScreen(){
@@ -4703,7 +4778,7 @@
     state.banner.unsplash.page = safe;
     handleUnsplashSearch();
   });
-  els.downloadApp?.addEventListener('click', ()=>{
+  function downloadWebApp(){
     try {
       const serializer = new XMLSerializer();
       const clone = document.documentElement.cloneNode(true);
@@ -4721,8 +4796,10 @@
       setTimeout(()=> URL.revokeObjectURL(url), 1000);
     } catch(err){
       console.error('Unable to download app', err);
+      alert('Unable to download the web app.');
     }
-  });
+  }
+  els.downloadApp?.addEventListener('click', downloadWebApp);
   els.gradientGenerate?.addEventListener('click', ()=>{ generateGradientBackground(); });
   els.gradientRandomize?.addEventListener('click', ()=>{ generateGradientBackground(); });
   els.gradientTypeSeg?.addEventListener('click', (e)=>{
@@ -5724,10 +5801,15 @@
     toolMagic: document.getElementById('ccToolMagic'),
     brushPreview: document.getElementById('ccBrushPreview'),
     saveCleaned: document.getElementById('ccSaveCleaned'),
-    saveStatus: document.getElementById('ccSaveStatus'),
     loadOriginal: document.getElementById('ccLoadOriginal'),
     openBtn: document.getElementById('openCoupoCut'),
-    backBtn: document.getElementById('ccBackFab')
+    backBtn: document.getElementById('ccBackFab'),
+    stageInner: document.getElementById('ccStageInner'),
+    bgDark: document.getElementById('ccBgDark'),
+    bgGrid: document.getElementById('ccBgGrid'),
+    downloadApp: document.getElementById('ccDownloadApp'),
+    themeToggle: document.getElementById('ccThemeToggle'),
+    themeToggleLabel: document.getElementById('ccThemeToggleLabel')
   };
   const coupoPreviewCtx = coupoEls.previewCanvas?.getContext('2d');
   const coupoEditCtx = coupoEls.editorCanvas?.getContext('2d');
@@ -5740,6 +5822,7 @@
     offsetX:0,
     offsetY:0,
     previewZoom:1,
+    previewBgMode:'solid',
     activeTool:'brush',
     libraryEntryName:'',
     originalSourceUrl:'',
@@ -5763,15 +5846,18 @@
     const hasLibrary = !!coupoState.libraryEntryName;
     if(coupoEls.saveCleaned){ coupoEls.saveCleaned.disabled = !hasLibrary || !coupoState.hasLogo; }
     if(coupoEls.loadOriginal){ coupoEls.loadOriginal.disabled = !hasLibrary || !coupoState.originalSourceUrl; }
-    if(coupoEls.saveStatus){
-      if(!hasLibrary){
-        coupoEls.saveStatus.textContent = 'Select a library logo to save cleanup.';
-      } else if(coupoState.cleanedFromLibrary){
-        coupoEls.saveStatus.textContent = 'Using saved cleanup for ' + coupoState.libraryEntryName + '.';
-      } else {
-        coupoEls.saveStatus.textContent = 'Save this cleanup once and reuse it from the library.';
-      }
+    if(coupoEls.saveCleaned){
+      coupoEls.saveCleaned.textContent = coupoState.cleanedFromLibrary ? 'Update cleanup' : 'Save cleanup';
     }
+  }
+  function setCoupoPreviewBg(mode){
+    const next = mode === 'grid' ? 'grid' : 'solid';
+    coupoState.previewBgMode = next;
+    if(coupoEls.stageInner){ coupoEls.stageInner.dataset.bg = next; }
+    coupoEls.bgDark?.classList.toggle('active', next === 'solid');
+    coupoEls.bgGrid?.classList.toggle('active', next === 'grid');
+    coupoEls.bgDark?.setAttribute('aria-pressed', next === 'solid' ? 'true' : 'false');
+    coupoEls.bgGrid?.setAttribute('aria-pressed', next === 'grid' ? 'true' : 'false');
   }
   function renderCoupoPreview(){
     if(!coupoPreviewCtx || !coupoEls.previewCanvas) return;
@@ -5818,12 +5904,14 @@
   function showBrushPreview(evt){
     if(!coupoEls.brushPreview || !coupoEls.editorCanvas) return;
     const rect = coupoEls.editorCanvas.getBoundingClientRect();
+    const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
+    const clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
     const factor = rect.width ? (coupoEls.editorCanvas.width / rect.width) : 1;
     const size = coupoState.brushSize * 2 / factor;
     coupoEls.brushPreview.style.width = size + 'px';
     coupoEls.brushPreview.style.height = size + 'px';
-    coupoEls.brushPreview.style.left = (evt.clientX - rect.left) + 'px';
-    coupoEls.brushPreview.style.top = (evt.clientY - rect.top) + 'px';
+    coupoEls.brushPreview.style.left = (clientX - rect.left) + 'px';
+    coupoEls.brushPreview.style.top = (clientY - rect.top) + 'px';
     coupoEls.brushPreview.style.opacity = coupoState.hasLogo ? 1 : 0;
   }
   function hideBrushPreview(){ if(coupoEls.brushPreview){ coupoEls.brushPreview.style.opacity = 0; } }
@@ -6032,8 +6120,12 @@
     coupoEls.partnerSearch?.addEventListener('input', e=> buildCoupoGallery(e.target.value));
     coupoEls.saveCleaned?.addEventListener('click', saveCoupoCleanup);
     coupoEls.loadOriginal?.addEventListener('click', reloadCoupoOriginal);
+    coupoEls.downloadApp?.addEventListener('click', downloadWebApp);
     coupoEls.openBtn?.addEventListener('click', openCoupoCut);
     coupoEls.backBtn?.addEventListener('click', closeCoupoCut);
+    coupoEls.bgDark?.addEventListener('click', ()=>setCoupoPreviewBg('solid'));
+    coupoEls.bgGrid?.addEventListener('click', ()=>setCoupoPreviewBg('grid'));
+    setCoupoPreviewBg(coupoState.previewBgMode);
   }
 
   function toneImageSource(image, tone){
