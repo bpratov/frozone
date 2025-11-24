@@ -537,6 +537,7 @@
   .globalDropOverlay.show{opacity:1}
 
   .versionTag{position:fixed; left:24px; bottom:24px; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(100,116,139,0.8); backdrop-filter:blur(8px); background:rgba(255,255,255,0.45); border-radius:999px; padding:6px 12px; box-shadow:0 10px 20px rgba(15,23,42,0.1);}
+  .cc-versionTag{left:auto; right:24px; background:rgba(249,146,60,0.18); color:#9a3412; box-shadow:0 12px 24px rgba(124,58,18,0.2);}
   .fullscreenControlDock{position:absolute; top:16px; left:50%; transform:translateX(-50%); display:none; align-items:center; gap:12px; padding:10px 18px; border-radius:999px; background:var(--headerBg); border:1px solid var(--border); box-shadow:0 22px 44px rgba(2,6,23,0.32); backdrop-filter:blur(18px); z-index:63}
   .fullscreenControlDock .btn{box-shadow:none}
   .fullscreenControlDock .zoomSlider{display:flex; align-items:center; gap:12px; padding:6px 12px; border-radius:12px; border:1px solid rgba(148,163,184,0.35); background:var(--stageInner)}
@@ -550,32 +551,34 @@
   body.show-coupocut .frozone-shell{transform:translateY(-10px) scale(.99); opacity:0; filter:blur(10px); pointer-events:none;}
   #coupoCutShell{display:block; opacity:0; visibility:hidden; pointer-events:none; transform:translateY(36px) scale(.985); transform-origin:center bottom; transition:opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1), visibility .55s ease;}
   body.show-coupocut #coupoCutShell{opacity:1; visibility:visible; pointer-events:auto; transform:translateY(0) scale(1);}
-  .coupocut-shell{position:fixed; inset:0; background: linear-gradient(180deg,var(--bg1),var(--bg2) 55%, var(--bg3)); overflow:hidden; z-index:70; padding:0; --brand:#f97316; --brand2:#fbbf24; --accent:#f59e0b; --bg1:#fff6ec; --bg2:#fff0dc; --bg3:#fffaf4; --stageBg:#fff4e3; --stageInner:#fffaf6; --headerBg:rgba(255,247,238,0.92); --muted:#8c5a16; --ink:#2a1508; --border:#f4c7a1; --card:#fffaf3d9; --btn-bg:#fffaf3; --btn-ghost-bg:rgba(255,250,243,0.7); --chip-bg:#fffaf3;}
+  .coupocut-shell{position:fixed; inset:0; background: linear-gradient(180deg,var(--bg1),var(--bg2) 55%, var(--bg3)); overflow:hidden; z-index:70; padding:0; --brand:#f97316; --brand2:#fbbf24; --accent:#f59e0b; --bg1:#fff6ec; --bg2:#fff0dc; --bg3:#fffaf4; --stageBg:#fff4e3; --stageInner:#fffaf6; --headerBg:rgba(255,247,238,0.92); --muted:#8c5a16; --ink:#2a1508; --border:#f4c7a1; --card:#fffaf3d9; --btn-bg:#fffaf3; --btn-ghost-bg:rgba(255,250,243,0.7); --chip-bg:#fffaf3; --headerH:88px; display:flex; flex-direction:column;}
   :root[data-theme="dark"] .coupocut-shell{--bg1:#1c1309; --bg2:#140d06; --bg3:#0f0a05; --stageBg:#130c06; --stageInner:#1b120a; --headerBg:rgba(20,14,9,0.92); --muted:#f2c791; --ink:#f7e6cf; --brand:#fbbf24; --brand2:#fb923c; --accent:#f97316; --border:#4b2f1a; --card:rgba(34,22,14,0.92); --btn-bg:#1e140c; --btn-ghost-bg:rgba(32,22,14,0.85); --chip-bg:#23160e;}
   @media (max-width: 1000px){ .coupocut-shell{overflow:auto;} }
-  .coupocut-shell .wrap{padding:16px 16px 28px;}
+  .coupocut-shell .wrap{padding:16px 16px 26px; flex:1; display:flex; flex-direction:column; min-height:100%;}
   .coupocut-shell input[type="range"]{accent-color:var(--accent);}
   .cc-header{position:sticky; top:0; z-index:75; backdrop-filter: blur(12px); background:var(--headerBg); border-bottom:1px solid var(--border); transition:background .25s ease, border-color .25s ease}
-  .cc-header-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0}
+  .cc-header-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 16px}
   .cc-brand{display:flex; align-items:center; gap:12px}
   .cc-logoBadge{width:44px; height:44px; border-radius:14px; background:var(--card); border:1px solid var(--border); box-shadow:0 10px 24px rgba(15,23,42,0.12); display:grid; place-items:center; overflow:hidden}
   .cc-logoBadge img{width:100%; height:100%; object-fit:contain}
-  .cc-main{display:grid; grid-template-columns:1fr 1.25fr; gap:20px; padding:16px 0 32px; height:calc(100vh - 110px); min-height:0; align-items:start}
+  .cc-main{display:grid; grid-template-columns:1fr 1.25fr; gap:20px; padding:12px 0 22px; height:calc(100vh - var(--headerH) - 42px); min-height:0; align-items:stretch}
   .cc-main>*{min-width:0}
   @media (max-width: 1000px){ .cc-main{grid-template-columns:1fr; height:auto;} }
-  .cc-scroll{padding:0 20px 20px; overflow:auto; max-height:calc(100vh - 210px);}
+  .cc-controls{height:100%;}
+  .cc-scroll{padding:0 20px 20px; overflow:auto; max-height:none; display:flex; flex-direction:column; gap:16px;}
   @media (max-width: 1000px){ .cc-scroll{max-height:none;} }
   .cc-stack{display:grid; gap:14px; text-align:left}
   .cc-pickStack{display:grid; gap:14px}
   .coupocut-shell .libWrap{display:grid; gap:12px}
   .cc-libHeader{display:grid; grid-template-columns:1fr auto; gap:10px; align-items:center; padding:10px 12px; border-radius:14px; border:1px solid var(--border); background:var(--card); box-shadow:0 10px 24px rgba(15,23,42,0.06)}
   .cc-libHeader input{height:40px}
-  .cc-libScroller{padding:6px 0 0}
+  .cc-libScroller{padding:10px 10px 12px}
   .cc-sliderRow{display:flex; flex-direction:column; gap:6px; font-size:13px}
   .cc-sliderRow>span{font-weight:700; color:var(--ink)}
   .cc-sliderControls{display:flex; align-items:center; gap:12px}
   .cc-sliderControls input[type="range"]{flex:1}
   .cc-value{min-width:62px; padding:8px 10px; border-radius:12px; background:var(--card); border:1px solid var(--border); font-size:12px; font-weight:700; color:var(--ink); text-align:center; box-shadow:0 8px 18px rgba(15,23,42,0.06)}
+  .cc-brushControls{margin-top:12px; margin-bottom:12px}
   .cc-toolSwitch{position:relative; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); padding:6px; border-radius:16px; background:var(--card); border:1px solid var(--border); box-shadow:0 10px 24px rgba(15,23,42,0.06); margin-bottom:6px; gap:6px}
   .cc-toolSwitch button{position:relative; z-index:2; border:none; background:transparent; padding:10px 12px; border-radius:12px; font-weight:700; color:var(--muted); cursor:pointer; transition:color .2s ease}
   .cc-toolSwitch button.active{color:var(--ink)}
@@ -589,6 +592,10 @@
   :root[data-theme="dark"] .cc-editorWrap canvas{background:conic-gradient(from 0deg,#1f1a15 0 25%,#17110b 25% 50%,#1f1a15 50% 75%,#17110b 75% 100%);}
   .cc-brushPreview{position:absolute; border:1.5px dashed var(--brand); border-radius:50%; pointer-events:none; opacity:0; transform:translate(-50%,-50%); box-shadow:0 6px 20px rgba(249,115,22,0.25); background:radial-gradient(circle at center, rgba(249,115,22,0.18), rgba(249,115,22,0.05)); transition:opacity .12s ease}
   .cc-editorWrap.magic-mode .cc-brushPreview{display:none}
+  .cc-undoRedo{display:flex; align-items:center; gap:10px; margin-top:10px; margin-bottom:6px; justify-content:flex-end}
+  .cc-undoRedo button{width:34px; height:34px; border-radius:50%; border:1px solid var(--border); background:var(--card); box-shadow:0 6px 16px rgba(15,23,42,0.08); display:grid; place-items:center; cursor:pointer; transition:transform .08s ease, box-shadow .18s ease, border-color .18s ease}
+  .cc-undoRedo button:active{transform:translateY(1px)}
+  .cc-undoRedo button:disabled{opacity:0.5; cursor:not-allowed}
   .cc-stage{padding:18px; background:var(--stageBg); border-radius:var(--radius); flex:1; display:flex}
   .cc-stage-inner{position:relative; flex:1; border-radius:24px; display:flex; align-items:center; justify-content:center; overflow:hidden; box-shadow:0 20px 45px rgba(124,58,18,0.22); transition:background .25s ease, box-shadow .25s ease}
   .cc-stage-inner.is-dark{background:radial-gradient(circle at 30% 30%,rgba(48,30,16,0.9),rgba(24,15,10,0.96));}
@@ -597,9 +604,11 @@
   .cc-stage-inner canvas{display:block; max-width:100%; height:auto; transform-origin:center center}
   .cc-stageHint{position:absolute; inset:auto 14px 14px 14px; text-align:center; font-size:12px; color:var(--muted); pointer-events:none}
   .cc-preview-head{padding:16px 18px 12px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:flex-end; gap:12px; flex-wrap:wrap}
-  .cc-previewHeadControls{display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:flex-end}
+  .cc-previewHeadControls{display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:space-between; width:100%}
+  .cc-zoomRow{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-right:auto}
+  .cc-zoomRow input[type="range"]{width:240px}
   #ccZoomLabel{display:inline-block; min-width:3.5ch; text-align:right; font-variant-numeric:tabular-nums;}
-  .cc-preview-panel{display:flex; flex-direction:column; min-height:0; height:calc(100vh - 164px); padding-bottom:8px}
+  .cc-preview-panel{display:flex; flex-direction:column; min-height:0; height:100%; padding-bottom:8px}
   @media (max-width: 1000px){ .cc-preview-panel{height:auto;} }
   .cc-exportBar{display:grid; grid-template-columns:1fr 1fr; gap:10px; align-items:center; margin-top:6px}
   .cc-exportMain{width:100%; justify-content:flex-start; flex-direction:column; gap:4px; text-align:left; align-items:flex-start; padding:14px 16px; box-shadow:0 14px 30px rgba(15,23,42,0.1)}
@@ -609,11 +618,13 @@
   .cc-bgToggle{display:flex; align-items:center; gap:6px; padding:4px; border-radius:12px; border:1px solid var(--border); background:var(--card); box-shadow:0 8px 18px rgba(15,23,42,0.06)}
   .cc-bgToggle button{border:none; background:transparent; padding:8px 10px; border-radius:10px; font-weight:700; color:var(--muted); cursor:pointer; transition:color .2s ease, background .2s ease}
   .cc-bgToggle button.active{background:rgba(249,115,22,0.14); color:var(--ink)}
-  .cc-actionBar{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; align-items:center}
+  .cc-actionBar{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; align-items:center; margin-top:14px}
   .cc-actionBar .btn{width:100%; justify-content:center; height:42px; font-weight:700}
   #ccSaveCleaned{grid-column:1 / -1}
   .cc-libScroller .libItem{position:relative}
-  .cc-cleanTag{position:absolute; top:6px; right:6px; font-size:10px; background:rgba(249,115,22,0.14); color:var(--ink); padding:2px 6px; border-radius:999px; border:1px solid var(--border); box-shadow:0 6px 14px rgba(15,23,42,0.08)}
+  .cc-cleanTag{position:absolute; top:6px; right:6px; width:26px; height:26px; display:grid; place-items:center; border-radius:50%; background:rgba(249,115,22,0.16); color:var(--ink); border:1px solid rgba(244,167,94,0.9); box-shadow:0 8px 18px rgba(15,23,42,0.1)}
+  .cc-cleanTag svg{width:14px; height:14px; stroke:currentColor; stroke-width:2; fill:none}
+  .cc-libScroller .libItem.cleaned{outline:2px solid rgba(249,115,22,0.6); outline-offset:0; box-shadow:0 10px 26px rgba(124,58,18,0.18)}
   .fab-dock{position:fixed; right:24px; bottom:24px; display:flex; flex-direction:column; gap:12px; align-items:flex-end; justify-content:flex-end; z-index:80;}
   .fab-dock.cc-dock{right:24px; bottom:24px; z-index:82;}
   #frozoneFabDock{z-index:62; transition:opacity .32s ease, transform .32s ease;}
@@ -706,6 +717,7 @@
   :root[data-theme="dark"] .mockupBlock{background:linear-gradient(135deg,rgba(30,64,175,0.22),rgba(15,23,42,0.55)); border-color:rgba(71,85,105,0.75); box-shadow:inset 0 1px 0 rgba(255,255,255,0.04);}
   :root[data-theme="dark"] .mockupOverlay{background:rgba(15,23,42,0.5); color:#e2e8f0;}
   :root[data-theme="dark"] .versionTag{background:rgba(15,23,42,0.7); color:rgba(226,232,240,0.7); box-shadow:0 16px 30px rgba(2,6,23,0.55);}
+  :root[data-theme="dark"] .coupocut-shell .cc-versionTag{background:rgba(124,58,18,0.35); color:#fed7aa; box-shadow:0 16px 30px rgba(20,9,0,0.55);}
   :root[data-theme="dark"] .fab-theme{box-shadow:0 20px 40px rgba(0,0,0,0.55);}
   :root[data-theme="dark"] .modal{background:rgba(2,6,23,0.68)}
   :root[data-theme="dark"] .modal-card{background:var(--stageInner); border-color:rgba(71,85,105,0.75)}
@@ -717,6 +729,12 @@
   :root[data-theme="dark"] .partnerRow{background:rgba(15,23,42,0.7); border-color:rgba(71,85,105,0.75); box-shadow:0 22px 48px rgba(2,6,23,0.7)}
   :root[data-theme="dark"] .partnerRowFields input{background:rgba(15,23,42,0.55); border-color:rgba(71,85,105,0.75); color:#e2e8f0}
   :root[data-theme="dark"] .partnerRowRemove{background:rgba(248,113,113,0.28); border-color:rgba(248,113,113,0.4); color:#fecaca}
+  body.show-coupocut .modal{background:rgba(249,115,22,0.16)}
+  body.show-coupocut .modal-card{background:var(--card); border-color:rgba(244,167,94,0.7); box-shadow:0 28px 60px rgba(124,58,18,0.3)}
+  body.show-coupocut .modalHeader{background:linear-gradient(135deg,rgba(249,146,60,0.32),rgba(251,191,36,0.16)); border-bottom-color:rgba(244,167,94,0.6)}
+  body.show-coupocut .modalFooter{background:rgba(255,247,238,0.92); border-top-color:rgba(244,167,94,0.55)}
+  body.show-coupocut .modalIntro{background:rgba(255,237,213,0.7); border-color:rgba(244,167,94,0.65); color:var(--ink)}
+  body.show-coupocut .modalNotice{color:#9a3412; background:rgba(251,191,36,0.16); border:1px solid rgba(244,167,94,0.75)}
   :root[data-theme="dark"] .btn.danger{color:#fee2e2; border-color:rgba(248,113,113,0.55); background:rgba(127,29,29,0.32)}
   :root[data-theme="dark"] .btn.danger:hover{background:rgba(248,113,113,0.28)}
   :root[data-theme="dark"] .btn.danger.ghost{background:rgba(127,29,29,0.22); border-color:rgba(248,113,113,0.55); color:#fecaca}
@@ -730,11 +748,11 @@
   <div id="frozoneShell" class="frozone-shell">
   <div id="introScreen" class="introScreen show" aria-hidden="true">
     <div class="introInner">
-      <div class="introLogoWrap"><img src="https://i.postimg.cc/QMTckmdX/unnamed-1-1.png" alt=""></div>
-      <h2>Frozone</h2>
+      <div class="introLogoWrap"><img src="https://i.postimg.cc/Xq88DYKS/image-761.png" alt=""></div>
+      <h2>ADWISE+</h2>
       <p class="introTagline">LiveOps creative toolkit</p>
     </div>
-    <span class="introVersion">v2.24</span>
+    <span class="introVersion">v3.00</span>
   </div>
   <header id="appHeader">
     <div class="wrap inner">
@@ -1629,6 +1647,18 @@
 
   <div class="globalDropOverlay" id="globalDropOverlay">Drop images anywhere to upload</div>
   <div class="fab-dock" id="frozoneFabDock">
+    <button id="openCoupoCut" type="button" class="floatingFab fab-coupocut" aria-label="Open CoupCut">
+      <span class="fabIconWrap" aria-hidden="true">
+        <img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="" class="cc-fabLogo" />
+      </span>
+      <span class="fab-label">Open CoupCut</span>
+    </button>
+    <button id="openMockupMaker" type="button" class="floatingFab fab-figma" aria-label="Open Mockup Maker">
+      <span class="fabIconWrap" aria-hidden="true">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/1667px-Figma-logo.svg.png" alt="" />
+      </span>
+      <span class="fab-label">Open Mockup Maker</span>
+    </button>
     <button id="downloadApp" type="button" class="floatingFab fab-download" aria-label="Download Web App">
       <i data-lucide="download" class="btn-ico" aria-hidden="true"></i>
       <span class="fab-label">Download Web App</span>
@@ -1640,20 +1670,8 @@
       </span>
       <span class="fab-label" id="themeToggleLabelText">Night mode</span>
     </button>
-    <button id="openCoupoCut" type="button" class="floatingFab fab-coupocut" aria-label="Open CoupoCut">
-      <span class="fabIconWrap" aria-hidden="true">
-        <img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="" class="cc-fabLogo" />
-      </span>
-      <span class="fab-label">Open CoupoCut</span>
-    </button>
-    <button id="openMockupMaker" type="button" class="floatingFab fab-figma" aria-label="Open Mockup Maker">
-      <span class="fabIconWrap" aria-hidden="true">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/1667px-Figma-logo.svg.png" alt="" />
-      </span>
-      <span class="fab-label">Open Mockup Maker</span>
-    </button>
   </div>
-  <div class="versionTag">V2.24</div>
+  <div class="versionTag">V3.00</div>
 
   </div><!-- end frozoneShell -->
 
@@ -1662,10 +1680,10 @@
       <div class="wrap cc-header-inner">
         <div class="cc-brand">
           <div class="cc-logoBadge">
-            <img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="CoupoCut logo" />
+            <img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="CoupCut logo" />
           </div>
           <div class="title">
-            <h1>CoupoCut</h1>
+            <h1>CoupCut</h1>
             <div class="sub">Punch partner logos into clean coupon cutouts</div>
           </div>
         </div>
@@ -1715,7 +1733,7 @@
                 <div id="ccPartnerGallery" class="libScroller cc-libScroller" aria-label="Partner logo library"></div>
               </div>
             </div>
-            <p class="muted small">CoupoCut reads and saves the same browser logo library as Frozone.</p>
+            <p class="muted small">CoupCut reads and saves the same browser logo library as Frozone.</p>
           </div>
 
           <div class="section">
@@ -1768,6 +1786,14 @@
                 </div>
               </div>
             </div>
+            <div class="cc-undoRedo">
+              <button type="button" id="ccUndo" aria-label="Undo cleanup step">
+                <i data-lucide="undo-2" class="btn-ico" aria-hidden="true"></i>
+              </button>
+              <button type="button" id="ccRedo" aria-label="Redo cleanup step">
+                <i data-lucide="redo-2" class="btn-ico" aria-hidden="true"></i>
+              </button>
+            </div>
             <div class="cc-actionBar">
               <button class="btn ghost" type="button" id="ccResetLogo">
                 <i data-lucide="rotate-ccw" class="btn-ico" aria-hidden="true"></i>
@@ -1779,10 +1805,10 @@
               </button>
               <button class="btn" type="button" id="ccLoadOriginal" disabled>
                 <i data-lucide="image" class="btn-ico" aria-hidden="true"></i>
-                <span class="btn-text">Load Original Logo</span>
+                <span class="btn-text">Load Original</span>
               </button>
               <button class="btn primary" type="button" id="ccSaveCleaned" disabled>
-                <span class="btn-text">Save Cleanup</span>
+                <span class="btn-text">Save Cleanup to Partner Library</span>
               </button>
             </div>
           </div>
@@ -1791,8 +1817,7 @@
             <div class="section-title"><span class="badge">4</span> Export Cutout</div>
             <div class="cc-exportBar">
               <button class="btn primary cc-exportMain" type="button" id="ccExportBtn" disabled>
-                <span class="cc-exportTitle">Export.png</span>
-                <span class="cc-exportMeta" id="ccLastExport">PNG 800 × 800 · Not Exported Yet</span>
+                <span class="cc-exportTitle">Export as PNG</span>
               </button>
               <div class="cc-exportSize" id="ccExportSize">800 × 800 px · Transparent PNG</div>
             </div>
@@ -1806,10 +1831,10 @@
       <section class="panel preview-panel cc-preview-panel">
         <div class="preview-head cc-preview-head">
           <div class="cc-previewHeadControls">
-            <div class="row" style="gap:12px; align-items:center">
+            <div class="cc-zoomRow">
               <span class="muted small">Preview Zoom</span>
               <span class="muted small"><span id="ccZoomLabel">1.00</span>x</span>
-              <input id="ccPreviewZoom" type="range" min="0.5" max="2" step="0.05" value="1" style="width:180px" />
+              <input id="ccPreviewZoom" type="range" min="0.5" max="2" step="0.05" value="1" />
             </div>
             <div class="cc-bgToggle" id="ccBgToggle" role="group" aria-label="Preview background">
               <button type="button" data-bg="dark" class="active">Dark Canvas</button>
@@ -1836,6 +1861,12 @@
         </span>
         <span class="fab-label">Back to Frozone</span>
       </button>
+      <button id="ccMockupMaker" type="button" class="floatingFab fab-figma" aria-label="Open Mockup Maker">
+        <span class="fabIconWrap" aria-hidden="true">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/1667px-Figma-logo.svg.png" alt="" />
+        </span>
+        <span class="fab-label">Open Mockup Maker</span>
+      </button>
       <button id="ccDownloadApp" type="button" class="floatingFab fab-download cc-download" aria-label="Download Web App">
         <i data-lucide="download" class="btn-ico" aria-hidden="true"></i>
         <span class="fab-label">Download Web App</span>
@@ -1847,13 +1878,8 @@
         </span>
         <span class="fab-label">Night mode</span>
       </button>
-      <button id="ccMockupMaker" type="button" class="floatingFab fab-figma" aria-label="Open Mockup Maker">
-        <span class="fabIconWrap" aria-hidden="true">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/1667px-Figma-logo.svg.png" alt="" />
-        </span>
-        <span class="fab-label">Open Mockup Maker</span>
-      </button>
     </div>
+    <div class="versionTag cc-versionTag">V1.86</div>
   </div>
 
   <div class="modal" id="partnerSettingsModal" role="dialog" aria-modal="true" aria-labelledby="partnerSettingsTitle">
@@ -1881,6 +1907,10 @@
           <button class="btn ghost" type="button" id="partnerSettingsSort">
             <i data-lucide="arrow-up-down" class="btn-ico" aria-hidden="true"></i>
             <span class="btn-text">Sort A→Z</span>
+          </button>
+          <button class="btn danger ghost" type="button" id="partnerSettingsReset">
+            <i data-lucide="rotate-ccw" class="btn-ico" aria-hidden="true"></i>
+            <span class="btn-text">Reset to Default</span>
           </button>
         </div>
         <div class="modalFooterEnd">
@@ -2146,11 +2176,15 @@
 
   const partnerDataScript = document.getElementById('partnerData');
   let partnerLibrary = [];
+  let defaultPartnerLibrary = [];
   try {
-    partnerLibrary = JSON.parse(partnerDataScript?.textContent || '[]');
+    const parsed = JSON.parse(partnerDataScript?.textContent || '[]');
+    partnerLibrary = parsed;
+    defaultPartnerLibrary = Array.isArray(parsed) ? parsed.map(entry=>({...entry})) : [];
   } catch (err) {
     console.warn('Unable to parse partner data', err);
     partnerLibrary = [];
+    defaultPartnerLibrary = [];
   }
   const PARTNER_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
   const PARTNER_STORAGE_KEY = 'frozone-partners';
@@ -2158,6 +2192,8 @@
   const TEXT_STATE_KEY = 'frozone-text-state';
   let partnerSettingsRestoreFocus = null;
   let refreshCoupoGallery = ()=>{};
+  let partnerResetTimer = null;
+  let partnerResetArmed = false;
 
   try{
     const storedPartners = localStorage.getItem(PARTNER_STORAGE_KEY);
@@ -2166,14 +2202,15 @@
       if(Array.isArray(parsed) && parsed.length){ partnerLibrary = parsed; }
     }
   }catch(err){ console.warn('Unable to read partner storage', err); }
-  if(!Array.isArray(partnerLibrary)) partnerLibrary = [];
-  partnerLibrary = partnerLibrary
+  const sanitizePartners = (list)=> (Array.isArray(list) ? list : [])
     .map(entry => ({
       name: String(entry?.name || '').trim(),
       url: String(entry?.url || '').trim(),
       cleanedDataUrl: typeof entry?.cleanedDataUrl === 'string' ? entry.cleanedDataUrl : ''
     }))
     .filter(entry => entry.name && entry.url);
+  partnerLibrary = sanitizePartners(partnerLibrary);
+  defaultPartnerLibrary = sanitizePartners(defaultPartnerLibrary);
 
   const els = {
     header: document.getElementById('appHeader'),
@@ -2374,6 +2411,7 @@
     partnerSettingsList: document.getElementById('partnerSettingsList'),
     partnerSettingsAdd: document.getElementById('partnerSettingsAdd'),
     partnerSettingsSort: document.getElementById('partnerSettingsSort'),
+    partnerSettingsReset: document.getElementById('partnerSettingsReset'),
     partnerSettingsSave: document.getElementById('partnerSettingsSave'),
     partnerSettingsCancel: document.getElementById('partnerSettingsCancel'),
     partnerSettingsClose: document.querySelector('.partnerSettingsClose'),
@@ -4705,6 +4743,19 @@
     });
   }
 
+  function resetPartnerPrompt(){
+    partnerResetArmed = false;
+    if(partnerResetTimer){
+      clearTimeout(partnerResetTimer);
+      partnerResetTimer = null;
+    }
+    if(els.partnerSettingsReset){
+      els.partnerSettingsReset.classList.remove('armed');
+      const label = els.partnerSettingsReset.querySelector('.btn-text');
+      if(label) label.textContent = 'Reset to Default';
+    }
+  }
+
   function openPartnerSettings(){
     if(!els.partnerSettingsModal) return;
     partnerSettingsRestoreFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -4719,6 +4770,7 @@
     if(!els.partnerSettingsModal) return;
     els.partnerSettingsModal.classList.remove('show');
     document.body.style.overflow = '';
+    resetPartnerPrompt();
     if(partnerSettingsRestoreFocus && typeof partnerSettingsRestoreFocus.focus === 'function'){
       partnerSettingsRestoreFocus.focus();
     }
@@ -5798,8 +5850,10 @@
     }
     partnerLibrary.forEach(p=>{
       const displayUrl = p.cleanedDataUrl || p.url;
-      const it = document.createElement('button'); it.type='button'; it.className='libItem'; it.dataset.name=p.name.toLowerCase();
-      it.innerHTML = `<img alt="${p.name}" src="${displayUrl}"><div class=\"cap\">${p.name}</div>${p.cleanedDataUrl ? '<span class="cc-cleanTag">Clean</span>' : ''}`;
+      const cleaned = !!p.cleanedDataUrl;
+      const it = document.createElement('button'); it.type='button'; it.className='libItem' + (cleaned ? ' cleaned' : ''); it.dataset.name=p.name.toLowerCase();
+      const cleanBadge = cleaned ? '<span class="cc-cleanTag" aria-label="Edited with cleanup"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 21h10a2 2 0 0 0 1.41-.59l3-3a2 2 0 0 0 0-2.82l-8-8a2 2 0 0 0-2.82 0l-5 5a2 2 0 0 0 0 2.82l5 5A2 2 0 0 0 7 21Z"></path></svg></span>' : '';
+      it.innerHTML = `<img alt="${p.name}" src="${displayUrl}"><div class=\"cap\">${p.name}</div>${cleanBadge}`;
       const isActive = !!(store && store.source==='partner' && store.chosen === p.name);
       if(isActive) it.classList.add('active');
       it.addEventListener('click', async ()=>{
@@ -5814,7 +5868,7 @@
 
   function loadImageCORS(src){ return new Promise((res,rej)=>{ if(!src) return res(null); const im=new Image(); im.crossOrigin='anonymous'; im.onload=()=>res(im); im.onerror=(e)=>rej(e); im.src=src; }); }
 
-  // ---------- CoupoCut addon ----------
+  // ---------- CoupCut addon ----------
   const coupoEls = {
     shell: document.getElementById('coupoCutShell'),
     header: document.getElementById('ccHeader'),
@@ -5836,6 +5890,8 @@
     brushSize: document.getElementById('ccBrushSize'),
     brushSizeVal: document.getElementById('ccBrushSizeVal'),
     brushControls: Array.from(document.querySelectorAll('.cc-brushControls')),
+    undoBtn: document.getElementById('ccUndo'),
+    redoBtn: document.getElementById('ccRedo'),
     resetLogo: document.getElementById('ccResetLogo'),
     clearLogo: document.getElementById('ccClearLogo'),
     exportBtn: document.getElementById('ccExportBtn'),
@@ -5874,6 +5930,7 @@
     cleanedFromLibrary:false,
     logoImageOriginal:null
   };
+  const coupoHistory = { past: [], future: [], max: 30 };
 
   function updateCoupoSliderLabels(){
     if(!coupoEls.logoScaleVal) return;
@@ -5886,6 +5943,35 @@
     if(coupoEls.previewCanvas){
       coupoEls.previewCanvas.style.transform = 'scale(' + coupoState.previewZoom.toFixed(2) + ')';
     }
+  }
+  function updateCoupoHistoryButtons(){
+    if(coupoEls.undoBtn){ coupoEls.undoBtn.disabled = coupoHistory.past.length === 0; }
+    if(coupoEls.redoBtn){ coupoEls.redoBtn.disabled = coupoHistory.future.length === 0; }
+  }
+  function snapshotCoupoEdit(){
+    if(!coupoEditCtx || !coupoEls.editorCanvas || !coupoState.hasLogo) return;
+    try{
+      const snap = coupoEditCtx.getImageData(0,0,coupoEls.editorCanvas.width,coupoEls.editorCanvas.height);
+      coupoHistory.past.push(snap);
+      if(coupoHistory.past.length > coupoHistory.max){ coupoHistory.past.shift(); }
+      coupoHistory.future.length = 0;
+      updateCoupoHistoryButtons();
+    }catch(err){ console.warn('Unable to snapshot cleanup', err); }
+  }
+  function restoreCoupoHistory(direction){
+    if(!coupoEditCtx || !coupoEls.editorCanvas || !coupoState.hasLogo) return;
+    const source = direction === 'redo' ? coupoHistory.future : coupoHistory.past;
+    if(!source.length) return;
+    try{
+      const current = coupoEditCtx.getImageData(0,0,coupoEls.editorCanvas.width,coupoEls.editorCanvas.height);
+      const data = source.pop();
+      if(!data) return;
+      (direction === 'redo' ? coupoHistory.past : coupoHistory.future).push(current);
+      const clone = new ImageData(new Uint8ClampedArray(data.data), data.width, data.height);
+      coupoEditCtx.putImageData(clone,0,0);
+      renderCoupoPreview();
+    }catch(err){ console.warn('Unable to restore cleanup', err); }
+    updateCoupoHistoryButtons();
   }
   function setCoupoPreviewBg(mode){
     const next = mode === 'transparent' ? 'transparent' : 'dark';
@@ -6052,6 +6138,9 @@
     coupoState.libraryEntryName = opts.libraryName || '';
     coupoState.originalSourceUrl = opts.originalUrl || '';
     coupoState.cleanedFromLibrary = !!opts.cleaned;
+    coupoHistory.past.length = 0;
+    coupoHistory.future.length = 0;
+    updateCoupoHistoryButtons();
     if(coupoEls.exportBtn) coupoEls.exportBtn.disabled = false;
     if(coupoEls.stageHint) coupoEls.stageHint.textContent = '';
     updateCoupoSliderLabels();
@@ -6081,10 +6170,12 @@
     list.forEach(entry => {
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = 'libItem';
+      const cleaned = !!entry.cleanedDataUrl;
+      btn.className = 'libItem' + (cleaned ? ' cleaned' : '');
       btn.dataset.name = entry.name.toLowerCase();
       const displayUrl = entry.cleanedDataUrl || entry.url;
-      btn.innerHTML = `<img src="${displayUrl}" alt="${entry.name}"><div class=\"cap\">${entry.name}</div>${entry.cleanedDataUrl ? '<span class="cc-cleanTag">Clean</span>' : ''}`;
+      const cleanBadge = cleaned ? '<span class="cc-cleanTag" aria-label="Edited with cleanup"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 21h10a2 2 0 0 0 1.41-.59l3-3a2 2 0 0 0 0-2.82l-8-8a2 2 0 0 0-2.82 0l-5 5a2 2 0 0 0 0 2.82l5 5A2 2 0 0 0 7 21Z"></path></svg></span>' : '';
+      btn.innerHTML = `<img src="${displayUrl}" alt="${entry.name}"><div class=\"cap\">${entry.name}</div>${cleanBadge}`;
       if(entry.name === coupoState.libraryEntryName){ btn.classList.add('active'); }
       btn.addEventListener('click', ()=>{ loadCoupoPartner(entry, displayUrl); });
       coupoEls.partnerGallery.appendChild(btn);
@@ -6135,6 +6226,7 @@
     applyCoupoZoom();
     setCoupoPreviewBg(coupoState.previewBg);
     updateCoupoSaveButtons();
+    updateCoupoHistoryButtons();
     refreshCoupoGallery = buildCoupoGallery;
     buildCoupoGallery('');
     coupoEls.logoFile?.addEventListener('change', (e)=>{
@@ -6163,6 +6255,7 @@
     let isDrawing = false;
     coupoEls.editorCanvas?.addEventListener('pointerdown', (e)=>{
       if(!coupoState.hasLogo) return;
+      snapshotCoupoEdit();
       if(coupoState.activeTool === 'magic'){
         magicEraseAt(e);
       } else {
@@ -6178,7 +6271,7 @@
     coupoEls.editorCanvas?.addEventListener('pointermove', showBrushPreview);
     coupoEls.editorCanvas?.addEventListener('pointerleave', hideBrushPreview);
     coupoEls.resetLogo?.addEventListener('click', ()=>{ if(coupoState.logoImageOriginal){ initCoupoLogo(coupoState.logoImageOriginal, { libraryName: coupoState.libraryEntryName, originalUrl: coupoState.originalSourceUrl, cleaned: coupoState.cleanedFromLibrary }); } });
-    coupoEls.clearLogo?.addEventListener('click', ()=>{ if(!coupoState.hasLogo) return; coupoEditCtx.clearRect(0,0,coupoEls.editorCanvas.width,coupoEls.editorCanvas.height); renderCoupoPreview(); });
+    coupoEls.clearLogo?.addEventListener('click', ()=>{ if(!coupoState.hasLogo) return; snapshotCoupoEdit(); coupoEditCtx.clearRect(0,0,coupoEls.editorCanvas.width,coupoEls.editorCanvas.height); renderCoupoPreview(); updateCoupoHistoryButtons(); });
     coupoEls.exportBtn?.addEventListener('click', ()=>{
       if(!coupoState.hasLogo) return;
       renderCoupoPreview();
@@ -6199,6 +6292,8 @@
     coupoEls.partnerSearch?.addEventListener('input', e=> buildCoupoGallery(e.target.value));
     coupoEls.saveCleaned?.addEventListener('click', saveCoupoCleanup);
     coupoEls.loadOriginal?.addEventListener('click', reloadCoupoOriginal);
+    coupoEls.undoBtn?.addEventListener('click', ()=>restoreCoupoHistory('undo'));
+    coupoEls.redoBtn?.addEventListener('click', ()=>restoreCoupoHistory('redo'));
     coupoEls.openBtn?.addEventListener('click', openCoupoCut);
     coupoEls.backBtn?.addEventListener('click', closeCoupoCut);
     coupoEls.downloadClone?.addEventListener('click', ()=> els.downloadApp?.click());
@@ -6313,6 +6408,27 @@
       els.partnerSettingsSort.classList.add('feedback-success');
       window.setTimeout(()=> els.partnerSettingsSort?.classList.remove('feedback-success'), 1200);
     }
+  });
+  els.partnerSettingsReset?.addEventListener('click', ()=>{
+    if(!partnerResetArmed){
+      partnerResetArmed = true;
+      els.partnerSettingsReset.classList.add('armed');
+      const label = els.partnerSettingsReset.querySelector('.btn-text');
+      if(label) label.textContent = 'Are you sure?';
+      partnerResetTimer = setTimeout(resetPartnerPrompt, 4000);
+      return;
+    }
+    resetPartnerPrompt();
+    try{
+      localStorage.removeItem(PARTNER_STORAGE_KEY);
+      localStorage.removeItem(LOGO_STATE_KEY);
+      localStorage.removeItem(TEXT_STATE_KEY);
+    }catch(err){ console.warn('Unable to clear partner storage', err); }
+    partnerLibrary = sanitizePartners(defaultPartnerLibrary.map(entry=>({...entry})));
+    buildAllGalleries();
+    renderPartnerSettings();
+    refreshCoupoGallery(coupoEls.partnerSearch?.value || '');
+    updateCoupoSaveButtons();
   });
   window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && els.partnerSettingsModal?.classList.contains('show')){ closePartnerSettings(); } });
   els.partnerSettingsSave?.addEventListener('click', ()=>{
