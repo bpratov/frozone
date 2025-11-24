@@ -550,27 +550,27 @@
   body.show-coupocut .frozone-shell{transform:translateY(-10px) scale(.99); opacity:0; filter:blur(10px); pointer-events:none;}
   #coupoCutShell{display:block; opacity:0; visibility:hidden; pointer-events:none; transform:translateY(36px) scale(.985); transform-origin:center bottom; transition:opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1), visibility .55s ease;}
   body.show-coupocut #coupoCutShell{opacity:1; visibility:visible; pointer-events:auto; transform:translateY(0) scale(1);}
-  .coupocut-shell{position:fixed; inset:0; background: linear-gradient(180deg,var(--bg1),var(--bg2) 55%, var(--bg3)); overflow:hidden; z-index:70; padding:0; --brand:#f97316; --brand2:#fbbf24; --accent:#f59e0b; --bg1:#fff6ec; --bg2:#fff0dc; --bg3:#fffaf4; --stageBg:#fff4e3; --stageInner:#fffaf6; --headerBg:rgba(255,247,238,0.92); --muted:#8c5a16; --ink:#2a1508; --border:#f4c7a1; --card:#fffaf3d9; --btn-bg:#fffaf3; --btn-ghost-bg:rgba(255,250,243,0.7); --chip-bg:#fffaf3;}
+  .coupocut-shell{position:fixed; inset:0; background: linear-gradient(180deg,var(--bg1),var(--bg2) 55%, var(--bg3)); overflow:hidden; z-index:70; padding:0; --brand:#f97316; --brand2:#fbbf24; --accent:#f59e0b; --bg1:#fff6ec; --bg2:#fff0dc; --bg3:#fffaf4; --stageBg:#fff4e3; --stageInner:#fffaf6; --headerBg:rgba(255,247,238,0.92); --muted:#8c5a16; --ink:#2a1508; --border:#f4c7a1; --card:#fffaf3d9; --btn-bg:#fffaf3; --btn-ghost-bg:rgba(255,250,243,0.7); --chip-bg:#fffaf3; --headerH:64px;}
   :root[data-theme="dark"] .coupocut-shell{--bg1:#1c1309; --bg2:#140d06; --bg3:#0f0a05; --stageBg:#130c06; --stageInner:#1b120a; --headerBg:rgba(20,14,9,0.92); --muted:#f2c791; --ink:#f7e6cf; --brand:#fbbf24; --brand2:#fb923c; --accent:#f97316; --border:#4b2f1a; --card:rgba(34,22,14,0.92); --btn-bg:#1e140c; --btn-ghost-bg:rgba(32,22,14,0.85); --chip-bg:#23160e;}
   @media (max-width: 1000px){ .coupocut-shell{overflow:auto;} }
-  .coupocut-shell .wrap{padding:16px 16px 28px;}
+  .coupocut-shell .wrap{padding:16px;}
   .coupocut-shell input[type="range"]{accent-color:var(--accent);}
   .cc-header{position:sticky; top:0; z-index:75; backdrop-filter: blur(12px); background:var(--headerBg); border-bottom:1px solid var(--border); transition:background .25s ease, border-color .25s ease}
   .cc-header-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0}
   .cc-brand{display:flex; align-items:center; gap:12px}
   .cc-logoBadge{width:44px; height:44px; border-radius:14px; background:var(--card); border:1px solid var(--border); box-shadow:0 10px 24px rgba(15,23,42,0.12); display:grid; place-items:center; overflow:hidden}
   .cc-logoBadge img{width:100%; height:100%; object-fit:contain}
-  .cc-main{display:grid; grid-template-columns:1fr 1.25fr; gap:20px; padding:16px 0 32px; height:calc(100vh - 110px); min-height:0; align-items:start}
+  .cc-main{display:grid; grid-template-columns:1fr 1.25fr; gap:18px; padding:14px 0 18px; height:calc(100vh - var(--headerH) - 28px); min-height:0; align-items:stretch}
   .cc-main>*{min-width:0}
   @media (max-width: 1000px){ .cc-main{grid-template-columns:1fr; height:auto;} }
-  .cc-scroll{padding:0 20px 20px; overflow:auto; max-height:calc(100vh - 210px);}
+  .cc-scroll{padding:0 20px 24px; overflow:auto; max-height:calc(100vh - var(--headerH) - 170px);}
   @media (max-width: 1000px){ .cc-scroll{max-height:none;} }
   .cc-stack{display:grid; gap:14px; text-align:left}
   .cc-pickStack{display:grid; gap:14px}
   .coupocut-shell .libWrap{display:grid; gap:12px}
   .cc-libHeader{display:grid; grid-template-columns:1fr auto; gap:10px; align-items:center; padding:10px 12px; border-radius:14px; border:1px solid var(--border); background:var(--card); box-shadow:0 10px 24px rgba(15,23,42,0.06)}
   .cc-libHeader input{height:40px}
-  .cc-libScroller{padding:6px 0 0}
+  .cc-libScroller{padding:10px; gap:10px; flex-wrap:wrap; align-items:flex-start}
   .cc-sliderRow{display:flex; flex-direction:column; gap:6px; font-size:13px}
   .cc-sliderRow>span{font-weight:700; color:var(--ink)}
   .cc-sliderControls{display:flex; align-items:center; gap:12px}
@@ -589,7 +589,7 @@
   :root[data-theme="dark"] .cc-editorWrap canvas{background:conic-gradient(from 0deg,#1f1a15 0 25%,#17110b 25% 50%,#1f1a15 50% 75%,#17110b 75% 100%);}
   .cc-brushPreview{position:absolute; border:1.5px dashed var(--brand); border-radius:50%; pointer-events:none; opacity:0; transform:translate(-50%,-50%); box-shadow:0 6px 20px rgba(249,115,22,0.25); background:radial-gradient(circle at center, rgba(249,115,22,0.18), rgba(249,115,22,0.05)); transition:opacity .12s ease}
   .cc-editorWrap.magic-mode .cc-brushPreview{display:none}
-  .cc-stage{padding:18px; background:var(--stageBg); border-radius:var(--radius); flex:1; display:flex}
+  .cc-stage{padding:18px; background:var(--stageBg); border-radius:var(--radius); flex:1; display:flex; min-height:0}
   .cc-stage-inner{position:relative; flex:1; border-radius:24px; display:flex; align-items:center; justify-content:center; overflow:hidden; box-shadow:0 20px 45px rgba(124,58,18,0.22); transition:background .25s ease, box-shadow .25s ease}
   .cc-stage-inner.is-dark{background:radial-gradient(circle at 30% 30%,rgba(48,30,16,0.9),rgba(24,15,10,0.96));}
   .cc-stage-inner.is-transparent{background-image: linear-gradient(45deg,#e5e7eb 25%,transparent 25%,transparent 75%,#e5e7eb 75%,#e5e7eb), linear-gradient(45deg,#e5e7eb 25%,transparent 25%,transparent 75%,#e5e7eb 75%,#e5e7eb); background-size:20px 20px; background-position:0 0,10px 10px;}
@@ -597,10 +597,31 @@
   .cc-stage-inner canvas{display:block; max-width:100%; height:auto; transform-origin:center center}
   .cc-stageHint{position:absolute; inset:auto 14px 14px 14px; text-align:center; font-size:12px; color:var(--muted); pointer-events:none}
   .cc-preview-head{padding:16px 18px 12px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:flex-end; gap:12px; flex-wrap:wrap}
-  .cc-previewHeadControls{display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:flex-end}
+  .cc-previewHeadControls{display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:space-between; width:100%}
+  .cc-zoomRow{display:flex; align-items:center; gap:10px; flex:1; min-width:260px}
+  .cc-zoomRow input[type="range"]{flex:1; min-width:180px}
   #ccZoomLabel{display:inline-block; min-width:3.5ch; text-align:right; font-variant-numeric:tabular-nums;}
-  .cc-preview-panel{display:flex; flex-direction:column; min-height:0; height:calc(100vh - 164px); padding-bottom:8px}
+  .cc-preview-panel{display:flex; flex-direction:column; min-height:0; height:calc(100vh - var(--headerH) - 104px); padding-bottom:12px}
   @media (max-width: 1000px){ .cc-preview-panel{height:auto;} }
+  .cc-brushControls{margin-top:12px; margin-bottom:14px}
+  .cc-undoRedo{display:flex; gap:10px; margin-top:6px}
+  .cc-undoRedo .btn{width:44px; height:44px; padding:0; border-radius:50%; box-shadow:0 8px 16px rgba(249,115,22,0.18); background:var(--card)}
+  .cc-undoRedo .btn .btn-ico{width:18px; height:18px}
+  .cc-actionBar{gap:10px; flex-wrap:wrap}
+  .cc-cleanIcon{position:absolute; top:8px; right:8px; width:22px; height:22px; border-radius:50%; background:rgba(249,115,22,0.12); border:1px solid rgba(249,115,22,0.32); display:grid; place-items:center; color:var(--accent); box-shadow:0 10px 20px rgba(249,115,22,0.2)}
+  .cc-cleanIcon svg{width:12px; height:12px; stroke:currentColor; stroke-width:2; fill:none}
+  .libItem.cleaned{outline:2px solid rgba(249,115,22,0.35); outline-offset:1px}
+  .cc-versionTag{left:auto; right:24px; background:rgba(249,115,22,0.12); color:rgba(76,29,11,0.8); box-shadow:0 12px 24px rgba(249,115,22,0.18)}
+  :root[data-theme="dark"] .cc-versionTag{background:rgba(251,191,36,0.16); color:rgba(252,211,77,0.88); box-shadow:0 16px 28px rgba(0,0,0,0.42)}
+  .show-coupocut #partnerSettingsModal{background:rgba(16,9,2,0.45)}
+  .show-coupocut #partnerSettingsModal .modal-card{background:linear-gradient(135deg,rgba(255,247,238,0.96),rgba(255,237,213,0.95)); border-color:rgba(249,146,60,0.35); box-shadow:0 26px 50px rgba(133,77,24,0.24)}
+  .show-coupocut #partnerSettingsModal .modalHeader{background:linear-gradient(135deg,rgba(253,230,138,0.92),rgba(249,115,22,0.22)); border-bottom-color:rgba(249,146,60,0.35); color:#7c2d12}
+  .show-coupocut #partnerSettingsModal .modalFooter{background:rgba(255,248,237,0.9); border-top-color:rgba(249,146,60,0.35)}
+  .show-coupocut #partnerSettingsModal .modalIntro{background:rgba(255,243,224,0.8); border-color:rgba(249,146,60,0.25); color:#7c2d12}
+  .show-coupocut #partnerSettingsModal .modalNotice{background:rgba(249,115,22,0.1); border-color:rgba(249,115,22,0.35); color:#7c2d12}
+  .show-coupocut #partnerSettingsModal .partnerRow{background:rgba(255,247,238,0.92); border-color:rgba(249,146,60,0.28); box-shadow:0 20px 40px rgba(133,77,24,0.16)}
+  .show-coupocut #partnerSettingsModal .partnerRowRemove{background:rgba(248,113,113,0.16); border-color:rgba(248,113,113,0.35); color:#7f1d1d}
+  .resetDefaultsBtn.armed{background:rgba(248,113,113,0.2); border-color:#fca5a5; color:#7f1d1d}
   .cc-exportBar{display:grid; grid-template-columns:1fr 1fr; gap:10px; align-items:center; margin-top:6px}
   .cc-exportMain{width:100%; justify-content:flex-start; flex-direction:column; gap:4px; text-align:left; align-items:flex-start; padding:14px 16px; box-shadow:0 14px 30px rgba(15,23,42,0.1)}
   .cc-exportTitle{font-weight:800; letter-spacing:0.01em}
@@ -730,11 +751,11 @@
   <div id="frozoneShell" class="frozone-shell">
   <div id="introScreen" class="introScreen show" aria-hidden="true">
     <div class="introInner">
-      <div class="introLogoWrap"><img src="https://i.postimg.cc/QMTckmdX/unnamed-1-1.png" alt=""></div>
-      <h2>Frozone</h2>
+      <div class="introLogoWrap"><img src="https://i.postimg.cc/Xq88DYKS/image-761.png" alt=""></div>
+      <h2>ADWISE+</h2>
       <p class="introTagline">LiveOps creative toolkit</p>
     </div>
-    <span class="introVersion">v2.24</span>
+    <span class="introVersion">v3.00</span>
   </div>
   <header id="appHeader">
     <div class="wrap inner">
@@ -1629,6 +1650,18 @@
 
   <div class="globalDropOverlay" id="globalDropOverlay">Drop images anywhere to upload</div>
   <div class="fab-dock" id="frozoneFabDock">
+    <button id="openCoupoCut" type="button" class="floatingFab fab-coupocut" aria-label="Open CoupCut">
+      <span class="fabIconWrap" aria-hidden="true">
+        <img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="" class="cc-fabLogo" />
+      </span>
+      <span class="fab-label">Open CoupCut</span>
+    </button>
+    <button id="openMockupMaker" type="button" class="floatingFab fab-figma" aria-label="Open Mockup Maker">
+      <span class="fabIconWrap" aria-hidden="true">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/1667px-Figma-logo.svg.png" alt="" />
+      </span>
+      <span class="fab-label">Open Mockup Maker</span>
+    </button>
     <button id="downloadApp" type="button" class="floatingFab fab-download" aria-label="Download Web App">
       <i data-lucide="download" class="btn-ico" aria-hidden="true"></i>
       <span class="fab-label">Download Web App</span>
@@ -1640,20 +1673,8 @@
       </span>
       <span class="fab-label" id="themeToggleLabelText">Night mode</span>
     </button>
-    <button id="openCoupoCut" type="button" class="floatingFab fab-coupocut" aria-label="Open CoupoCut">
-      <span class="fabIconWrap" aria-hidden="true">
-        <img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="" class="cc-fabLogo" />
-      </span>
-      <span class="fab-label">Open CoupoCut</span>
-    </button>
-    <button id="openMockupMaker" type="button" class="floatingFab fab-figma" aria-label="Open Mockup Maker">
-      <span class="fabIconWrap" aria-hidden="true">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/1667px-Figma-logo.svg.png" alt="" />
-      </span>
-      <span class="fab-label">Open Mockup Maker</span>
-    </button>
   </div>
-  <div class="versionTag">V2.24</div>
+  <div class="versionTag">V3.00</div>
 
   </div><!-- end frozoneShell -->
 
@@ -1662,10 +1683,10 @@
       <div class="wrap cc-header-inner">
         <div class="cc-brand">
           <div class="cc-logoBadge">
-            <img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="CoupoCut logo" />
+            <img src="https://i.postimg.cc/B6jVYhc6/Frame-11095.png" alt="CoupCut logo" />
           </div>
           <div class="title">
-            <h1>CoupoCut</h1>
+            <h1>CoupCut</h1>
             <div class="sub">Punch partner logos into clean coupon cutouts</div>
           </div>
         </div>
@@ -1715,7 +1736,7 @@
                 <div id="ccPartnerGallery" class="libScroller cc-libScroller" aria-label="Partner logo library"></div>
               </div>
             </div>
-            <p class="muted small">CoupoCut reads and saves the same browser logo library as Frozone.</p>
+            <p class="muted small">CoupCut reads and saves the same browser logo library as Frozone.</p>
           </div>
 
           <div class="section">
@@ -1759,7 +1780,7 @@
               <canvas id="ccLogoEditorCanvas"></canvas>
               <div id="ccBrushPreview" class="cc-brushPreview" aria-hidden="true"></div>
             </div>
-            <div class="row cc-brushControls" style="margin-top:10px">
+            <div class="row cc-brushControls">
               <div class="cc-sliderRow" style="flex:1">
                 <span>Brush Size</span>
                 <div class="cc-sliderControls">
@@ -1767,6 +1788,14 @@
                   <span class="cc-value" id="ccBrushSizeVal">30 px</span>
                 </div>
               </div>
+            </div>
+            <div class="cc-undoRedo">
+              <button class="btn ghost" type="button" id="ccUndo" aria-label="Undo cleanup step">
+                <i data-lucide="undo-2" class="btn-ico" aria-hidden="true"></i>
+              </button>
+              <button class="btn ghost" type="button" id="ccRedo" aria-label="Redo cleanup step">
+                <i data-lucide="redo-2" class="btn-ico" aria-hidden="true"></i>
+              </button>
             </div>
             <div class="cc-actionBar">
               <button class="btn ghost" type="button" id="ccResetLogo">
@@ -1779,21 +1808,21 @@
               </button>
               <button class="btn" type="button" id="ccLoadOriginal" disabled>
                 <i data-lucide="image" class="btn-ico" aria-hidden="true"></i>
-                <span class="btn-text">Load Original Logo</span>
+                <span class="btn-text">Load Original</span>
               </button>
               <button class="btn primary" type="button" id="ccSaveCleaned" disabled>
-                <span class="btn-text">Save Cleanup</span>
+                <span class="btn-text">Save Cleanup to Partner Library</span>
               </button>
             </div>
           </div>
 
           <div class="section">
-            <div class="section-title"><span class="badge">4</span> Export Cutout</div>
+          <div class="section-title"><span class="badge">4</span> Export Cutout</div>
             <div class="cc-exportBar">
               <button class="btn primary cc-exportMain" type="button" id="ccExportBtn" disabled>
-                <span class="cc-exportTitle">Export.png</span>
-                <span class="cc-exportMeta" id="ccLastExport">PNG 800 × 800 · Not Exported Yet</span>
+                <span class="cc-exportTitle">Export as PNG</span>
               </button>
+              <div class="cc-exportMeta" id="ccLastExport">PNG 800 × 800 · Not Exported Yet</div>
               <div class="cc-exportSize" id="ccExportSize">800 × 800 px · Transparent PNG</div>
             </div>
             <p class="muted small" style="margin-top:6px">
@@ -1806,10 +1835,10 @@
       <section class="panel preview-panel cc-preview-panel">
         <div class="preview-head cc-preview-head">
           <div class="cc-previewHeadControls">
-            <div class="row" style="gap:12px; align-items:center">
+            <div class="cc-zoomRow">
               <span class="muted small">Preview Zoom</span>
               <span class="muted small"><span id="ccZoomLabel">1.00</span>x</span>
-              <input id="ccPreviewZoom" type="range" min="0.5" max="2" step="0.05" value="1" style="width:180px" />
+              <input id="ccPreviewZoom" type="range" min="0.5" max="2" step="0.05" value="1" />
             </div>
             <div class="cc-bgToggle" id="ccBgToggle" role="group" aria-label="Preview background">
               <button type="button" data-bg="dark" class="active">Dark Canvas</button>
@@ -1832,9 +1861,15 @@
     <div class="fab-dock cc-dock">
       <button id="ccBackFab" type="button" class="floatingFab fab-coupo-back" aria-label="Back to Frozone">
         <span class="fabIconWrap" aria-hidden="true">
-          <img src="https://i.postimg.cc/QMTckmdX/unnamed-1-1.png" alt="" class="cc-fabLogo" />
+          <img src="https://i.postimg.cc/Xq88DYKS/image-761.png" alt="" class="cc-fabLogo" />
         </span>
         <span class="fab-label">Back to Frozone</span>
+      </button>
+      <button id="ccMockupMaker" type="button" class="floatingFab fab-figma" aria-label="Open Mockup Maker">
+        <span class="fabIconWrap" aria-hidden="true">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/1667px-Figma-logo.svg.png" alt="" />
+        </span>
+        <span class="fab-label">Open Mockup Maker</span>
       </button>
       <button id="ccDownloadApp" type="button" class="floatingFab fab-download cc-download" aria-label="Download Web App">
         <i data-lucide="download" class="btn-ico" aria-hidden="true"></i>
@@ -1847,13 +1882,8 @@
         </span>
         <span class="fab-label">Night mode</span>
       </button>
-      <button id="ccMockupMaker" type="button" class="floatingFab fab-figma" aria-label="Open Mockup Maker">
-        <span class="fabIconWrap" aria-hidden="true">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/1667px-Figma-logo.svg.png" alt="" />
-        </span>
-        <span class="fab-label">Open Mockup Maker</span>
-      </button>
     </div>
+    <div class="versionTag cc-versionTag">V1.86</div>
   </div>
 
   <div class="modal" id="partnerSettingsModal" role="dialog" aria-modal="true" aria-labelledby="partnerSettingsTitle">
@@ -1872,19 +1902,23 @@
         <div class="modalNotice">Before adding remote logos, confirm they follow partner brand guidelines and have transparent backgrounds when required.</div>
         <div id="partnerSettingsList" class="partnerRows"></div>
       </div>
-      <div class="modalFooter">
-        <div class="modalFooterStart">
-          <button class="btn ghost" type="button" id="partnerSettingsAdd">
-            <i data-lucide="plus" class="btn-ico" aria-hidden="true"></i>
-            <span class="btn-text">Add new logo</span>
-          </button>
-          <button class="btn ghost" type="button" id="partnerSettingsSort">
-            <i data-lucide="arrow-up-down" class="btn-ico" aria-hidden="true"></i>
-            <span class="btn-text">Sort A→Z</span>
-          </button>
-        </div>
-        <div class="modalFooterEnd">
-          <button class="btn ghost" type="button" id="partnerSettingsCancel">Cancel</button>
+        <div class="modalFooter">
+          <div class="modalFooterStart">
+            <button class="btn ghost" type="button" id="partnerSettingsAdd">
+              <i data-lucide="plus" class="btn-ico" aria-hidden="true"></i>
+              <span class="btn-text">Add new logo</span>
+            </button>
+            <button class="btn ghost" type="button" id="partnerSettingsSort">
+              <i data-lucide="arrow-up-down" class="btn-ico" aria-hidden="true"></i>
+              <span class="btn-text">Sort A→Z</span>
+            </button>
+            <button class="btn danger resetDefaultsBtn" type="button" id="partnerSettingsReset" aria-live="polite">
+              <i data-lucide="alert-triangle" class="btn-ico" aria-hidden="true"></i>
+              <span class="btn-text" id="partnerResetLabel">Reset to Default</span>
+            </button>
+          </div>
+          <div class="modalFooterEnd">
+            <button class="btn ghost" type="button" id="partnerSettingsCancel">Cancel</button>
           <button class="btn primary" type="button" id="partnerSettingsSave">Save logos</button>
         </div>
       </div>
@@ -2152,6 +2186,11 @@
     console.warn('Unable to parse partner data', err);
     partnerLibrary = [];
   }
+  const defaultPartnerLibrary = (Array.isArray(partnerLibrary) ? partnerLibrary : []).map(entry=>({
+    name: String(entry?.name || '').trim(),
+    url: String(entry?.url || '').trim(),
+    cleanedDataUrl: typeof entry?.cleanedDataUrl === 'string' ? entry.cleanedDataUrl : ''
+  })).filter(entry=>entry.name && entry.url);
   const PARTNER_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
   const PARTNER_STORAGE_KEY = 'frozone-partners';
   const LOGO_STATE_KEY = 'frozone-logo-state';
@@ -2374,6 +2413,8 @@
     partnerSettingsList: document.getElementById('partnerSettingsList'),
     partnerSettingsAdd: document.getElementById('partnerSettingsAdd'),
     partnerSettingsSort: document.getElementById('partnerSettingsSort'),
+    partnerSettingsReset: document.getElementById('partnerSettingsReset'),
+    partnerResetLabel: document.getElementById('partnerResetLabel'),
     partnerSettingsSave: document.getElementById('partnerSettingsSave'),
     partnerSettingsCancel: document.getElementById('partnerSettingsCancel'),
     partnerSettingsClose: document.querySelector('.partnerSettingsClose'),
@@ -4725,6 +4766,21 @@
     partnerSettingsRestoreFocus = null;
   }
 
+  function resetPartnerStorage(){
+    try{
+      localStorage.removeItem(PARTNER_STORAGE_KEY);
+      localStorage.removeItem(LOGO_STATE_KEY);
+      localStorage.removeItem(TEXT_STATE_KEY);
+    }catch(err){ console.warn('Unable to clear logo storage', err); }
+  }
+  function restoreDefaultPartners(){
+    partnerLibrary = defaultPartnerLibrary.map(entry=>({ ...entry }));
+    resetPartnerStorage();
+    buildAllGalleries();
+    refreshCoupoGallery();
+    if(els.partnerSettingsList){ renderPartnerSettings(); }
+  }
+
   const hasFileType = (dt)=>!!(dt && Array.from(dt.types||[]).includes('Files'));
   let dragDepth = 0;
 
@@ -5798,8 +5854,10 @@
     }
     partnerLibrary.forEach(p=>{
       const displayUrl = p.cleanedDataUrl || p.url;
-      const it = document.createElement('button'); it.type='button'; it.className='libItem'; it.dataset.name=p.name.toLowerCase();
-      it.innerHTML = `<img alt="${p.name}" src="${displayUrl}"><div class=\"cap\">${p.name}</div>${p.cleanedDataUrl ? '<span class="cc-cleanTag">Clean</span>' : ''}`;
+      const cleaned = !!p.cleanedDataUrl;
+      const it = document.createElement('button'); it.type='button'; it.className='libItem' + (cleaned ? ' cleaned' : ''); it.dataset.name=p.name.toLowerCase();
+      const cleanBadge = '<span class="cc-cleanIcon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M19 5 5 19M15 5h4v4"/><path d="M9 19H5v-4"/></svg></span>';
+      it.innerHTML = `<img alt="${p.name}" src="${displayUrl}"><div class=\"cap\">${p.name}</div>${cleaned ? cleanBadge : ''}`;
       const isActive = !!(store && store.source==='partner' && store.chosen === p.name);
       if(isActive) it.classList.add('active');
       it.addEventListener('click', async ()=>{
@@ -5849,6 +5907,8 @@
     brushPreview: document.getElementById('ccBrushPreview'),
     saveCleaned: document.getElementById('ccSaveCleaned'),
     loadOriginal: document.getElementById('ccLoadOriginal'),
+    undoBtn: document.getElementById('ccUndo'),
+    redoBtn: document.getElementById('ccRedo'),
     openBtn: document.getElementById('openCoupoCut'),
     backBtn: document.getElementById('ccBackFab'),
     themeClone: document.getElementById('ccThemeToggle'),
@@ -5872,7 +5932,10 @@
     libraryEntryName:'',
     originalSourceUrl:'',
     cleanedFromLibrary:false,
-    logoImageOriginal:null
+    logoImageOriginal:null,
+    history:[],
+    future:[],
+    historyLimit:25
   };
 
   function updateCoupoSliderLabels(){
@@ -5979,6 +6042,38 @@
     coupoEls.brushPreview.style.opacity = coupoState.hasLogo ? 1 : 0;
   }
   function hideBrushPreview(){ if(coupoEls.brushPreview){ coupoEls.brushPreview.style.opacity = 0; } }
+  function updateCoupoHistoryButtons(){
+    if(coupoEls.undoBtn){ coupoEls.undoBtn.disabled = coupoState.history.length === 0; }
+    if(coupoEls.redoBtn){ coupoEls.redoBtn.disabled = coupoState.future.length === 0; }
+  }
+  function pushCoupoHistory(){
+    if(!coupoEditCtx || !coupoEls.editorCanvas || !coupoState.hasLogo) return;
+    const snapshot = coupoEditCtx.getImageData(0,0,coupoEls.editorCanvas.width,coupoEls.editorCanvas.height);
+    coupoState.history.push(snapshot);
+    if(coupoState.history.length > coupoState.historyLimit){ coupoState.history.shift(); }
+    coupoState.future = [];
+    updateCoupoHistoryButtons();
+  }
+  function applyCoupoImageData(imageData){
+    if(!coupoEditCtx || !imageData) return;
+    coupoEditCtx.putImageData(imageData,0,0);
+    renderCoupoPreview();
+    updateCoupoHistoryButtons();
+  }
+  function undoCoupoEdit(){
+    if(!coupoEditCtx || !coupoEls.editorCanvas || coupoState.history.length === 0) return;
+    const current = coupoEditCtx.getImageData(0,0,coupoEls.editorCanvas.width,coupoEls.editorCanvas.height);
+    const prev = coupoState.history.pop();
+    coupoState.future.push(current);
+    applyCoupoImageData(prev);
+  }
+  function redoCoupoEdit(){
+    if(!coupoEditCtx || !coupoEls.editorCanvas || coupoState.future.length === 0) return;
+    const current = coupoEditCtx.getImageData(0,0,coupoEls.editorCanvas.width,coupoEls.editorCanvas.height);
+    const next = coupoState.future.pop();
+    coupoState.history.push(current);
+    applyCoupoImageData(next);
+  }
   function getCoupoEditorPos(evt){
     if(!coupoEls.editorCanvas) return {x:0,y:0};
     const rect = coupoEls.editorCanvas.getBoundingClientRect();
@@ -6049,12 +6144,15 @@
     coupoState.offsetX = 0;
     coupoState.offsetY = 0;
     coupoState.hasLogo = true;
+    coupoState.history = [];
+    coupoState.future = [];
     coupoState.libraryEntryName = opts.libraryName || '';
     coupoState.originalSourceUrl = opts.originalUrl || '';
     coupoState.cleanedFromLibrary = !!opts.cleaned;
     if(coupoEls.exportBtn) coupoEls.exportBtn.disabled = false;
     if(coupoEls.stageHint) coupoEls.stageHint.textContent = '';
     updateCoupoSliderLabels();
+    updateCoupoHistoryButtons();
     updateCoupoSaveButtons();
     renderCoupoPreview();
   }
@@ -6084,7 +6182,10 @@
       btn.className = 'libItem';
       btn.dataset.name = entry.name.toLowerCase();
       const displayUrl = entry.cleanedDataUrl || entry.url;
-      btn.innerHTML = `<img src="${displayUrl}" alt="${entry.name}"><div class=\"cap\">${entry.name}</div>${entry.cleanedDataUrl ? '<span class="cc-cleanTag">Clean</span>' : ''}`;
+      const cleaned = !!entry.cleanedDataUrl;
+      const cleanBadge = '<span class="cc-cleanIcon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M19 5 5 19M15 5h4v4"/><path d="M9 19H5v-4"/></svg></span>';
+      btn.innerHTML = `<img src="${displayUrl}" alt="${entry.name}"><div class=\"cap\">${entry.name}</div>${cleaned ? cleanBadge : ''}`;
+      if(cleaned){ btn.classList.add('cleaned'); }
       if(entry.name === coupoState.libraryEntryName){ btn.classList.add('active'); }
       btn.addEventListener('click', ()=>{ loadCoupoPartner(entry, displayUrl); });
       coupoEls.partnerGallery.appendChild(btn);
@@ -6161,8 +6262,11 @@
     coupoEls.toolBrush?.addEventListener('click', ()=>setCoupoTool('brush'));
     coupoEls.toolMagic?.addEventListener('click', ()=>setCoupoTool('magic'));
     let isDrawing = false;
+    let editSnapshotTaken = false;
+    const armCoupoSnapshot = ()=>{ if(!editSnapshotTaken){ pushCoupoHistory(); editSnapshotTaken = true; } };
     coupoEls.editorCanvas?.addEventListener('pointerdown', (e)=>{
       if(!coupoState.hasLogo) return;
+      armCoupoSnapshot();
       if(coupoState.activeTool === 'magic'){
         magicEraseAt(e);
       } else {
@@ -6173,12 +6277,12 @@
       e.preventDefault();
     });
     window.addEventListener('pointermove', (e)=>{ if(isDrawing && coupoState.activeTool === 'brush'){ eraseBrush(e); } if(e.target === coupoEls.editorCanvas){ showBrushPreview(e); } });
-    window.addEventListener('pointerup', ()=>{ isDrawing = false; hideBrushPreview(); });
+    window.addEventListener('pointerup', ()=>{ isDrawing = false; editSnapshotTaken = false; hideBrushPreview(); });
     coupoEls.editorCanvas?.addEventListener('pointerenter', showBrushPreview);
     coupoEls.editorCanvas?.addEventListener('pointermove', showBrushPreview);
     coupoEls.editorCanvas?.addEventListener('pointerleave', hideBrushPreview);
     coupoEls.resetLogo?.addEventListener('click', ()=>{ if(coupoState.logoImageOriginal){ initCoupoLogo(coupoState.logoImageOriginal, { libraryName: coupoState.libraryEntryName, originalUrl: coupoState.originalSourceUrl, cleaned: coupoState.cleanedFromLibrary }); } });
-    coupoEls.clearLogo?.addEventListener('click', ()=>{ if(!coupoState.hasLogo) return; coupoEditCtx.clearRect(0,0,coupoEls.editorCanvas.width,coupoEls.editorCanvas.height); renderCoupoPreview(); });
+    coupoEls.clearLogo?.addEventListener('click', ()=>{ if(!coupoState.hasLogo) return; pushCoupoHistory(); coupoEditCtx.clearRect(0,0,coupoEls.editorCanvas.width,coupoEls.editorCanvas.height); coupoState.future = []; renderCoupoPreview(); updateCoupoHistoryButtons(); });
     coupoEls.exportBtn?.addEventListener('click', ()=>{
       if(!coupoState.hasLogo) return;
       renderCoupoPreview();
@@ -6187,7 +6291,7 @@
       const stamp = now.toISOString().slice(0,19).replace(/[-:T]/g,'');
       const a = document.createElement('a');
       a.href = dataURL;
-      a.download = 'coupocut-' + stamp + '.png';
+      a.download = 'coupcut-' + stamp + '.png';
       document.body.appendChild(a); a.click(); a.remove();
       const bytes = (()=>{ try{ return atob(dataURL.split(',')[1]).length; }catch(err){ return 0; }})();
       const kb = bytes / 1024;
@@ -6199,10 +6303,13 @@
     coupoEls.partnerSearch?.addEventListener('input', e=> buildCoupoGallery(e.target.value));
     coupoEls.saveCleaned?.addEventListener('click', saveCoupoCleanup);
     coupoEls.loadOriginal?.addEventListener('click', reloadCoupoOriginal);
+    coupoEls.undoBtn?.addEventListener('click', undoCoupoEdit);
+    coupoEls.redoBtn?.addEventListener('click', redoCoupoEdit);
     coupoEls.openBtn?.addEventListener('click', openCoupoCut);
     coupoEls.backBtn?.addEventListener('click', closeCoupoCut);
     coupoEls.downloadClone?.addEventListener('click', ()=> els.downloadApp?.click());
     setCoupoTool(coupoState.activeTool);
+    updateCoupoHistoryButtons();
   }
 
   function toneImageSource(image, tone){
@@ -6313,6 +6420,29 @@
       els.partnerSettingsSort.classList.add('feedback-success');
       window.setTimeout(()=> els.partnerSettingsSort?.classList.remove('feedback-success'), 1200);
     }
+  });
+  let resetConfirmTimer = null;
+  let resetArmed = false;
+  const resetDefaultLabel = 'Reset to Default';
+  const resetConfirmLabel = 'Are you sure?';
+  els.partnerSettingsReset?.addEventListener('click', ()=>{
+    if(resetArmed){
+      window.clearTimeout(resetConfirmTimer);
+      restoreDefaultPartners();
+      els.partnerSettingsReset.classList.remove('armed');
+      if(els.partnerResetLabel){ els.partnerResetLabel.textContent = resetDefaultLabel; }
+      resetArmed = false;
+      return;
+    }
+    resetArmed = true;
+    els.partnerSettingsReset.classList.add('armed');
+    if(els.partnerResetLabel){ els.partnerResetLabel.textContent = resetConfirmLabel; }
+    window.clearTimeout(resetConfirmTimer);
+    resetConfirmTimer = window.setTimeout(()=>{
+      resetArmed = false;
+      els.partnerSettingsReset?.classList.remove('armed');
+      if(els.partnerResetLabel){ els.partnerResetLabel.textContent = resetDefaultLabel; }
+    }, 1400);
   });
   window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && els.partnerSettingsModal?.classList.contains('show')){ closePartnerSettings(); } });
   els.partnerSettingsSave?.addEventListener('click', ()=>{
